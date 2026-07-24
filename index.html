@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alberto Costa | Industrial Designer</title>
+    <title>Alberto Costa | Progettare l'essenziale</title>
     
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,9 +27,9 @@
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
                         accent: '#d54026',
-                        surface: '#f4f4f5',
-                        dark: '#0a0a0a',
-                        muted: '#8f8f8f'
+                        surface: '#f5f5f4', /* Un grigio pietra chiarissimo e sofisticato */
+                        dark: '#0c0c0c',
+                        muted: '#8a8a8a'
                     }
                 }
             }
@@ -38,14 +38,23 @@
 
     <style>
         /* Base e Tipografia */
-        ::selection { background-color: #0a0a0a; color: #ffffff; }
+        ::selection { background-color: #0c0c0c; color: #ffffff; }
         
         body {
-            background-color: #f4f4f5; 
-            color: #0a0a0a;
+            background-color: #f5f5f4; 
+            color: #0c0c0c;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             cursor: none; /* Nascondiamo il cursore di default per PC */
+        }
+
+        /* Effetto Grana Fotografica (Tactile feel) */
+        .bg-noise {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 9999;
+            opacity: 0.035;
+            background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
         }
 
         /* Lenis Smooth Scroll Recommended CSS */
@@ -53,97 +62,115 @@
         .lenis.lenis-smooth { scroll-behavior: auto; }
         .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
         .lenis.lenis-stopped { overflow: hidden; }
-        .lenis.lenis-scrolling iframe { pointer-events: none; }
 
-        /* Custom Cursor */
+        /* Custom Cursor Advanced */
         #custom-cursor {
-            position: fixed;
-            top: 0; left: 0;
+            position: fixed; top: 0; left: 0;
             width: 8px; height: 8px;
-            background-color: #0a0a0a;
+            background-color: #0c0c0c;
             border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
+            pointer-events: none; z-index: 10000;
             transform: translate(-50%, -50%);
-            transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+            display: flex; justify-content: center; items-center;
+            color: transparent; font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
+            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), height 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, border 0.4s ease, color 0.4s ease;
         }
+        /* Stato Hover Base */
         #custom-cursor.hovered {
-            width: 40px; height: 40px;
-            background-color: rgba(10, 10, 10, 0.1);
+            width: 48px; height: 48px;
+            background-color: transparent;
+            border: 1px solid rgba(12, 12, 12, 0.2);
             backdrop-filter: blur(2px);
-            border: 1px solid rgba(10, 10, 10, 0.5);
         }
-        /* Disabilita cursore custom su mobile */
+        /* Stato Hover su Immagini (Mostra 'VIEW') */
+        #custom-cursor.view-mode {
+            width: 70px; height: 70px;
+            background-color: rgba(245, 245, 244, 0.9);
+            border: none;
+            color: #0c0c0c;
+            align-items: center;
+        }
         @media (max-width: 768px) {
             body { cursor: auto; }
             #custom-cursor { display: none; }
         }
 
-        /* Utilities per GSAP Reveal */
-        .clip-text {
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-        }
+        /* Layout & Utilities GSAP */
         .reveal-mask {
-            overflow: hidden;
-            display: inline-block;
-            vertical-align: top;
+            overflow: hidden; display: block;
         }
-        
-        /* Immagini Parallax */
         .img-container {
-            overflow: hidden;
-            background-color: #e5e5e5;
+            overflow: hidden; background-color: #e5e5e4;
         }
         .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.15); /* Partono ingrandite per il reveal */
+            width: 100%; height: 100%; object-fit: cover;
+            transform: scale(1.15); 
         }
 
         /* Glass Header */
         .glass-header {
-            background: rgba(244, 244, 245, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(245, 245, 244, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
         }
 
-        /* Scrollbar rimossa per eleganza */
+        /* Linee separartici extra-fini */
+        .hairline-b { border-bottom: 1px solid rgba(12, 12, 12, 0.08); }
+        .hairline-t { border-top: 1px solid rgba(12, 12, 12, 0.08); }
+
         ::-webkit-scrollbar { width: 0px; background: transparent; }
     </style>
 </head>
 <body class="font-sans min-h-screen flex flex-col relative">
 
-    <!-- Cursore Custom -->
-    <div id="custom-cursor"></div>
+    <!-- Texture Grana e Cursore -->
+    <div class="bg-noise"></div>
+    <div id="custom-cursor"><span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">VIEW</span></div>
 
     <!-- Header -->
-    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-500 glass-header border-b border-transparent" id="main-header">
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-700 glass-header border-b border-transparent" id="main-header">
         <div class="max-w-[100rem] mx-auto px-6 md:px-12 h-20 md:h-24 flex justify-between items-center">
-            <a href="#home" class="hover-target text-base font-medium tracking-tight text-dark flex items-center gap-3 group">
+            <a href="#home" class="magnetic-target text-base font-medium tracking-tight text-dark flex items-center gap-3 group">
                 <img src="aa2ac9_f9a421c68d3246a4853336b643c7e006~mv2.jpg" alt="Logo" class="h-4 md:h-5 w-auto block object-contain grayscale opacity-80 group-hover:opacity-100 transition-opacity" onerror="this.outerHTML='<span class=\'font-semibold text-lg\'>AC</span>'">
                 <span class="group-hover:opacity-60 transition-opacity hidden sm:block">Alberto Costa<span class="text-accent">.</span></span>
             </a>
             <nav class="flex space-x-6 md:space-x-12">
-                <a href="#progetti" class="nav-link hover-target text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted hover:text-dark transition-colors">Progetti</a>
-                <a href="#render" class="nav-link hover-target text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted hover:text-dark transition-colors">Render</a>
-                <a href="#profilo" class="nav-link hover-target text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted hover:text-dark transition-colors">Profilo</a>
+                <a href="#progetti" class="nav-link magnetic-target text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted hover:text-dark transition-colors">Progetti</a>
+                <a href="#render" class="nav-link magnetic-target text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted hover:text-dark transition-colors">Render</a>
+                <a href="#profilo" class="nav-link magnetic-target text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted hover:text-dark transition-colors">Profilo</a>
             </nav>
         </div>
     </header>
 
     <main id="home" class="flex-grow">
         
-        <!-- HERO SECTION -->
-        <section class="h-screen min-h-[600px] flex items-center max-w-[100rem] mx-auto px-6 md:px-12">
-            <div class="w-full">
-                <div class="reveal-mask mb-6 md:mb-10">
-                    <p class="hero-text text-[10px] md:text-xs uppercase tracking-[0.3em] text-muted font-medium">Portfolio</p>
+        <!-- HERO SECTION: Il Manifesto -->
+        <section class="h-screen min-h-[600px] flex items-center max-w-[100rem] mx-auto px-6 md:px-12 pt-20">
+            <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+                <div class="md:col-span-12 lg:col-span-8">
+                    <div class="reveal-mask mb-6 md:mb-10">
+                        <p class="hero-text text-[10px] md:text-xs uppercase tracking-[0.3em] text-muted font-medium">Manifesto</p>
+                    </div>
+                    <h1 class="text-[3.5rem] leading-[1] md:text-8xl lg:text-[8.5rem] font-light tracking-tighter text-dark md:leading-[0.9] ml-[-4px] md:ml-[-8px]">
+                        <div class="reveal-mask"><span class="hero-title block">Progettare</span></div>
+                        <div class="reveal-mask"><span class="hero-title block">l'essenziale<span class="text-accent">.</span></span></div>
+                    </h1>
                 </div>
-                <h1 class="text-5xl md:text-8xl lg:text-9xl font-light tracking-tighter text-dark leading-[0.9] ml-[-4px] md:ml-[-8px]">
-                    <div class="reveal-mask"><span class="hero-title block">Industrial</span></div>
-                    <div class="reveal-mask"><span class="hero-title block">Designer<span class="text-accent">.</span></span></div>
-                </h1>
+                <div class="md:col-span-8 lg:col-span-4 lg:pb-4">
+                    <div class="reveal-mask">
+                        <p class="hero-subtitle text-sm text-dark/70 font-light leading-relaxed max-w-sm">
+                            Esploro l'intersezione tra meccanica e minimalismo. Progetto apparecchi per l'illuminazione e oggetti d'uso quotidiano dove ogni dettaglio tecnico diventa manifesto estetico.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-12 left-6 md:left-12 flex items-center gap-4 reveal-mask">
+                <span class="hero-text text-[9px] uppercase tracking-[0.2em] text-muted">Scroll</span>
+                <div class="w-12 h-[1px] bg-dark/20 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-full bg-dark scroll-line"></div>
+                </div>
             </div>
         </section>
 
@@ -151,7 +178,7 @@
         <section id="progetti" class="max-w-[100rem] mx-auto px-6 md:px-12 py-24 md:py-40">
             
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-32 md:mb-48">
-                <div class="md:col-span-12 lg:col-span-10 border-t border-dark/10 pt-8 section-title-wrapper">
+                <div class="md:col-span-12 lg:col-span-10 hairline-t pt-8 section-title-wrapper">
                     <p class="text-[10px] uppercase tracking-[0.2em] text-muted mb-4 font-medium fade-up">01 &mdash; Lavori Selezionati</p>
                     <h2 class="text-3xl md:text-5xl font-light tracking-tight text-dark leading-tight fade-up">Progetti e <br/>Realizzazioni</h2>
                 </div>
@@ -166,22 +193,22 @@
                         <p class="text-muted leading-relaxed text-sm font-light">
                             Lampada da tavolo a luce direzionabile. La struttura è caratterizzata da un'asta snodata in acciaio inox con meccanismi di serraggio a vista in finitura rossa, che fungono sia da elemento funzionale che estetico. Il paralume in lamiera di alluminio piegata direziona la luce in modo preciso, ottimizzando l'illuminazione per la lettura e il lavoro.
                         </p>
-                        <div class="mt-10 pt-6 border-t border-dark/10">
+                        <div class="mt-10 pt-6 hairline-t">
                             <p class="text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Materiali</p>
                             <p class="text-sm text-dark font-medium">Alluminio, Acciaio Inox, Lamiera Verniciata</p>
                         </div>
                     </div>
-                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-12 md:gap-24">
-                        <div class="img-container hover-target w-full">
+                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-8 md:gap-20">
+                        <div class="img-container image-target w-full">
                             <img src="Copia di DSC_2836.jpg" alt="Lampada" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
                         </div>
-                        <div class="img-container hover-target w-full">
+                        <div class="img-container image-target w-full">
                             <img src="Copia di DSC_1643.jpg" alt="Lampada" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=1200'">
                         </div>
-                        <div class="img-container hover-target w-full">
+                        <div class="img-container image-target w-full">
                             <img src="Copia di DSC_1641.jpg" alt="Lampada" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=1200'">
                         </div>
-                        <div class="img-container hover-target w-full">
+                        <div class="img-container image-target w-full">
                             <img src="Copia di DSC_2837.jpg" alt="Lampada" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
@@ -194,19 +221,19 @@
                         <p class="text-muted leading-relaxed text-sm font-light">
                             Un approccio ibrido all'illuminazione da terra. Questo progetto combina la stabilità e la robustezza di una base in acciaio inox con la leggerezza di un tronco tornito in legno. Il braccio orizzontale, stabilizzato da un sistema di tiranti, permette di sospendere il paralume in tessuto esattamente dove serve.
                         </p>
-                        <div class="mt-10 pt-6 border-t border-dark/10">
+                        <div class="mt-10 pt-6 hairline-t">
                             <p class="text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Materiali</p>
                             <p class="text-sm text-dark font-medium">Legno Tornito, Acciaio Inox, Tessuto</p>
                         </div>
                     </div>
-                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-12 md:gap-24">
-                        <div class="img-container hover-target w-full">
+                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-8 md:gap-20">
+                        <div class="img-container image-target w-full">
                             <img src="Copia di DSC_2151.png" alt="Piantana" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=1200'">
                         </div>
-                        <div class="img-container hover-target w-full">
+                        <div class="img-container image-target w-full">
                             <img src="Copia di DSC_2176.png" alt="Piantana" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=80&w=1200'">
                         </div>
-                        <div class="img-container hover-target w-full">
+                        <div class="img-container image-target w-full">
                             <img src="Copia di DSC_2175.png" alt="Piantana" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1523413363574-c30aa1c2a516?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
@@ -219,19 +246,19 @@
                         <p class="text-muted leading-relaxed text-sm font-light">
                             Studio e realizzazione di elementi di arredo modulari. Il focus di questo progetto è la connessione strutturale tra i piani in legno multistrato fenolico e i supporti metallici. L'utilizzo di staffe e viteria a vista celebra l'aspetto tecnico e costruttivo dell'oggetto, senza nascondere la sua natura funzionale.
                         </p>
-                        <div class="mt-10 pt-6 border-t border-dark/10">
+                        <div class="mt-10 pt-6 hairline-t">
                             <p class="text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Materiali</p>
                             <p class="text-sm text-dark font-medium">Legno Multistrato, Lamiera di Acciaio Inox</p>
                         </div>
                     </div>
-                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-12 md:gap-24">
-                        <div class="img-container hover-target w-full">
+                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-8 md:gap-20">
+                        <div class="img-container image-target w-full">
                             <img src="Copia di DSC_2940.jpg" alt="Tavolino" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=1200'">
                         </div>
-                        <div class="img-container hover-target w-full">
+                        <div class="img-container image-target w-full">
                             <img src="Copia di DSC_2933.jpg" alt="Tavolino" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&q=80&w=1200'">
                         </div>
-                        <div class="img-container hover-target w-full">
+                        <div class="img-container image-target w-full">
                             <img src="Copia di DSC_2930.jpg" alt="Tavolino" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1597072689227-8882273e8f6a?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
@@ -244,16 +271,16 @@
                         <p class="text-muted leading-relaxed text-sm font-light">
                             Corpo illuminante minimale progettato per l'aggancio a testiere del letto o mensole. La lampada utilizza un sistema a morsetto con vite di serraggio a vista per un fissaggio sicuro e versatile. Il diffusore semi-sferico orientabile permette di direzionare il fascio luminoso con grande precisione.
                         </p>
-                        <div class="mt-10 pt-6 border-t border-dark/10">
+                        <div class="mt-10 pt-6 hairline-t">
                             <p class="text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Materiali</p>
                             <p class="text-sm text-dark font-medium">Acciaio Inox, Alluminio, Termoplastici</p>
                         </div>
                     </div>
-                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-12 md:gap-24">
-                        <div class="img-container hover-target w-full">
+                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-8 md:gap-20">
+                        <div class="img-container image-target w-full">
                             <img src="Copia di DSC_3095.jpg" alt="Lampada Morsetto" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
                         </div>
-                        <div class="img-container hover-target w-full">
+                        <div class="img-container image-target w-full">
                             <img src="Copia di DSC_3113.jpg" alt="Lampada Morsetto" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1534346850257-2309852b7e0e?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
@@ -266,16 +293,16 @@
                         <p class="text-muted leading-relaxed text-sm font-light">
                             Progetto di micro-meccanica e design del prodotto. La cassa dell'orologio è stata interamente progettata e realizzata in lamiera di acciaio inox piegata per ospitare un modulo elettronico digitale. L'estetica cruda e marcatamente industriale è accentuata dalla viteria a vista e dai pulsanti cilindrici sporgenti.
                         </p>
-                        <div class="mt-10 pt-6 border-t border-dark/10">
+                        <div class="mt-10 pt-6 hairline-t">
                             <p class="text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Materiali</p>
                             <p class="text-sm text-dark font-medium">Acciaio Inox, Vera Pelle</p>
                         </div>
                     </div>
-                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-12 md:gap-24">
-                        <div class="img-container hover-target w-full">
+                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-8 md:gap-20">
+                        <div class="img-container image-target w-full">
                             <img src="Copia di DSC_3217.jpg" alt="Orologio" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&q=80&w=1200'">
                         </div>
-                        <div class="img-container hover-target w-full">
+                        <div class="img-container image-target w-full">
                             <img src="Copia di DSC_3228.jpg" alt="Orologio" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
@@ -285,7 +312,7 @@
         </section>
 
         <!-- SEZIONE RENDER -->
-        <section id="render" class="max-w-[100rem] mx-auto px-6 md:px-12 py-24 md:py-40 border-t border-dark/10">
+        <section id="render" class="max-w-[100rem] mx-auto px-6 md:px-12 py-24 md:py-40 hairline-t">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-20 md:mb-32 items-end section-title-wrapper">
                 <div class="md:col-span-8">
                     <p class="text-[10px] uppercase tracking-[0.2em] text-muted mb-4 font-medium fade-up">02 &mdash; Visualizzazione</p>
@@ -302,55 +329,54 @@
             <div class="columns-1 sm:columns-2 lg:columns-3 gap-8 md:gap-12 space-y-8 md:space-y-12 render-grid">
                 
                 <div class="break-inside-avoid render-item">
-                    <div class="img-container hover-target">
+                    <div class="img-container image-target">
                         <img src="r1.jpg" alt="Concept" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600'">
                     </div>
-                    <div class="py-4 border-b border-dark/5">
+                    <div class="py-4 hairline-b">
                         <p class="text-[9px] tracking-[0.2em] uppercase text-dark font-semibold">Lampada a sospensione</p>
                     </div>
                 </div>
 
                 <div class="break-inside-avoid render-item">
-                    <div class="img-container hover-target">
+                    <div class="img-container image-target">
                         <img src="r2.jpg" alt="Concept" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=600'">
                     </div>
-                    <div class="py-4 border-b border-dark/5">
+                    <div class="py-4 hairline-b">
                         <p class="text-[9px] tracking-[0.2em] uppercase text-dark font-semibold">Lampada a morsetto</p>
                     </div>
                 </div>
 
                 <div class="break-inside-avoid render-item">
-                    <div class="img-container hover-target">
+                    <div class="img-container image-target">
                         <img src="r3.jpg" alt="Concept" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=600'">
                     </div>
-                    <div class="py-4 border-b border-dark/5">
+                    <div class="py-4 hairline-b">
                         <p class="text-[9px] tracking-[0.2em] uppercase text-dark font-semibold">Lampada da tavolo</p>
                     </div>
                 </div>
 
-                <!-- Puoi aggiungere qui gli altri item Render mantenendo la stessa struttura <div class="break-inside-avoid render-item">...</div> -->
-                
             </div>
         </section>
 
         <!-- SEZIONE PROFILO -->
-        <section id="profilo" class="bg-dark text-white py-24 md:py-48 selection:bg-white selection:text-black mt-20">
-            <div class="max-w-[100rem] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-20 lg:gap-8 profile-wrapper">
+        <section id="profilo" class="bg-dark text-white py-24 md:py-48 selection:bg-white selection:text-black mt-20 relative overflow-hidden">
+            <div class="max-w-[100rem] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-20 lg:gap-8 profile-wrapper relative z-10">
                 
                 <div class="lg:col-span-6 flex flex-col">
-                    <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-6 font-medium fade-up-profile">03 &mdash; Info & Contatti</p>
+                    <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-6 font-medium fade-up-profile">03 &mdash; Profilo & Contatti</p>
                     <h3 class="text-4xl md:text-6xl lg:text-7xl font-light mb-4 tracking-tighter fade-up-profile">Alberto Costa</h3>
-                    <h4 class="text-zinc-500 text-sm md:text-base font-medium uppercase tracking-[0.1em] mb-12 fade-up-profile">Industrial Designer & Grafico</h4>
+                    <h4 class="text-zinc-500 text-sm md:text-base font-medium uppercase tracking-[0.1em] mb-12 fade-up-profile">Industrial Designer</h4>
                     
                     <div class="text-zinc-300 text-sm md:text-base leading-loose font-light max-w-lg space-y-6 fade-up-profile">
                         <p>Nato a Schio (Vicenza), ho iniziato la mia attività come grafico e illustratore, appassionandomi in seguito all'architettura e al design industriale.</p>
                         <p>Specializzato nel settore dell'illuminazione, curo l'intero iter progettuale. Sviluppo progetti dall'idea iniziale fino al prodotto finito attraverso lo studio tecnico e la prototipazione, mantenendo un rigoroso equilibrio tra visione estetica e fattibilità produttiva.</p>
                     </div>
                     
-                    <div class="mt-20 fade-up-profile">
-                        <a href="mailto:albeb3b@gmail.com" class="inline-flex flex-col gap-2 group hover-target">
-                            <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-600 font-medium">Email</span>
-                            <span class="text-xl md:text-3xl font-light text-white border-b border-zinc-800 pb-2 group-hover:border-white transition-colors duration-300">albeb3b@gmail.com</span>
+                    <div class="mt-20 fade-up-profile inline-block">
+                        <!-- Bottone Magnetico Email -->
+                        <a href="mailto:albeb3b@gmail.com" class="magnetic-target inline-flex flex-col gap-2 group p-4 -ml-4 rounded-xl">
+                            <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-600 font-medium group-hover:text-zinc-400 transition-colors">Start a project</span>
+                            <span class="text-2xl md:text-4xl font-light text-white relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-full after:h-[1px] after:bg-zinc-800 group-hover:after:bg-white after:transition-colors after:duration-500">albeb3b@gmail.com</span>
                         </a>
                     </div>
                 </div>
@@ -361,7 +387,7 @@
                             <div class="fade-up-profile">
                                 <h4 class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-8 pb-4 border-b border-zinc-800 w-full">Progettazione</h4>
                                 <ul class="text-zinc-300 space-y-4 text-sm font-light">
-                                    <li>Ideazione & Concept Design</li>
+                                    <li>Ideazione & Concept</li>
                                     <li>Modellazione 3D CAD</li>
                                     <li>Rendering fotorealistico</li>
                                     <li>Prototipazione</li>
@@ -370,7 +396,7 @@
                                 </ul>
                             </div>
                             <div class="fade-up-profile">
-                                <h4 class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-8 pb-4 border-b border-zinc-800 w-full">Software</h4>
+                                <h4 class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-8 pb-4 border-b border-zinc-800 w-full">Strumenti</h4>
                                 <ul class="text-zinc-300 space-y-4 text-sm font-light">
                                     <li>Autodesk Inventor</li>
                                     <li>Autodesk AutoCAD</li>
@@ -399,44 +425,49 @@
     </footer>
 
     <script>
-        // 1. Inizializza Lenis per lo Smooth Scroll
+        // 1. Inizializza Lenis (Smooth Scroll Premium)
         const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing fluido
-            direction: 'vertical', 
-            gestureDirection: 'vertical',
+            duration: 1.5,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             smooth: true,
-            mouseMultiplier: 1,
-            smoothTouch: false,
-            touchMultiplier: 2,
-            infinite: false,
         })
-
-        // Connetti Lenis a GSAP ScrollTrigger
         lenis.on('scroll', ScrollTrigger.update)
-        gsap.ticker.add((time)=>{
-            lenis.raf(time * 1000)
-        })
+        gsap.ticker.add((time)=>{ lenis.raf(time * 1000) })
         gsap.ticker.lagSmoothing(0)
 
-        // 2. Custom Cursor Logic
+        // 2. Cursor Logics & Magnetic Effect
         const cursor = document.getElementById('custom-cursor');
-        const hoverTargets = document.querySelectorAll('.hover-target, a, button');
+        const magneticTargets = document.querySelectorAll('.magnetic-target');
+        const imageTargets = document.querySelectorAll('.image-target');
 
         if(window.innerWidth > 768) {
             gsap.set(cursor, { xPercent: -50, yPercent: -50 });
-            
-            let xTo = gsap.quickTo(cursor, "x", {duration: 0.2, ease: "power3"}),
-                yTo = gsap.quickTo(cursor, "y", {duration: 0.2, ease: "power3"});
+            let xTo = gsap.quickTo(cursor, "x", {duration: 0.15, ease: "power3"}),
+                yTo = gsap.quickTo(cursor, "y", {duration: 0.15, ease: "power3"});
 
             window.addEventListener("mousemove", e => {
-                xTo(e.clientX);
-                yTo(e.clientY);
+                xTo(e.clientX); yTo(e.clientY);
             });
 
-            hoverTargets.forEach(target => {
-                target.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
-                target.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+            // Logica Magnetica per i link testuali
+            magneticTargets.forEach(target => {
+                target.addEventListener('mousemove', (e) => {
+                    const bound = target.getBoundingClientRect();
+                    const x = (e.clientX - bound.left - bound.width/2) * 0.3; // Forza magnetica
+                    const y = (e.clientY - bound.top - bound.height/2) * 0.3;
+                    gsap.to(target, {x: x, y: y, duration: 0.4, ease: "power2.out"});
+                    cursor.classList.add('hovered');
+                });
+                target.addEventListener('mouseleave', () => {
+                    gsap.to(target, {x: 0, y: 0, duration: 0.7, ease: "elastic.out(1, 0.3)"});
+                    cursor.classList.remove('hovered');
+                });
+            });
+
+            // Logica Cursore 'View' sulle immagini
+            imageTargets.forEach(target => {
+                target.addEventListener('mouseenter', () => cursor.classList.add('view-mode'));
+                target.addEventListener('mouseleave', () => cursor.classList.remove('view-mode'));
             });
         }
 
@@ -447,117 +478,94 @@
             // Animazione iniziale Hero (Load)
             const heroTl = gsap.timeline();
             heroTl.fromTo('.hero-text', 
-                { y: 50, opacity: 0 },
-                { y: 0, opacity: 1, duration: 1, ease: 'power4.out', delay: 0.2 }
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 }
             )
             .fromTo('.hero-title',
                 { y: 150 },
                 { y: 0, duration: 1.2, ease: 'power4.out', stagger: 0.1 },
+                "-=0.7"
+            )
+            .fromTo('.hero-subtitle',
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1, ease: 'power3.out' },
                 "-=0.8"
             );
+
+            // Scroll indicator infinita
+            gsap.to('.scroll-line', {
+                x: '100%', duration: 1.5, ease: 'power2.inOut', repeat: -1, 
+                onRepeat: function() { gsap.set('.scroll-line', {x: '-100%'}) }
+            });
 
             // Animazione Titoli di Sezione
             gsap.utils.toArray('.section-title-wrapper').forEach(wrapper => {
                 gsap.fromTo(wrapper.querySelectorAll('.fade-up'),
                     { y: 40, opacity: 0 },
                     { 
-                        y: 0, opacity: 1, 
-                        duration: 1, 
-                        stagger: 0.1, 
-                        ease: 'power3.out',
-                        scrollTrigger: {
-                            trigger: wrapper,
-                            start: "top 85%",
-                        }
+                        y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: 'power3.out',
+                        scrollTrigger: { trigger: wrapper, start: "top 85%" }
                     }
                 );
             });
 
-            // Animazione Immagini (Parallax e Scale-down)
+            // Animazione Immagini (Reveal Mask + Parallax inverso)
             gsap.utils.toArray('.img-container').forEach(container => {
                 const img = container.querySelector('img');
-                
-                // Mask reveal del container
                 gsap.fromTo(container,
                     { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
                     { 
                         clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-                        duration: 1.5,
-                        ease: "power4.inOut",
-                        scrollTrigger: {
-                            trigger: container,
-                            start: "top 90%",
-                        }
+                        duration: 1.5, ease: "power4.inOut",
+                        scrollTrigger: { trigger: container, start: "top 90%" }
                     }
                 );
-
-                // Immagine zoom out effetto premium
                 gsap.fromTo(img,
                     { scale: 1.2 },
                     { 
-                        scale: 1,
-                        duration: 1.5,
-                        ease: "power4.inOut",
-                        scrollTrigger: {
-                            trigger: container,
-                            start: "top 90%",
-                        }
+                        scale: 1, duration: 1.5, ease: "power4.inOut",
+                        scrollTrigger: { trigger: container, start: "top 90%" }
                     }
                 );
             });
 
-            // Animazione Testi dei Progetti (Fade + Slide)
+            // Animazione Testi Progetti
             gsap.utils.toArray('.project-info').forEach(info => {
                 gsap.fromTo(info,
                     { y: 30, opacity: 0 },
                     {
-                        y: 0, opacity: 1,
-                        duration: 1,
-                        ease: "power3.out",
-                        scrollTrigger: {
-                            trigger: info,
-                            start: "top 80%",
-                        }
+                        y: 0, opacity: 1, duration: 1, ease: "power3.out",
+                        scrollTrigger: { trigger: info, start: "top 80%" }
                     }
                 );
             });
 
-            // Animazione Elementi Profilo (Staggering)
+            // Animazione Profilo
             gsap.fromTo('.fade-up-profile',
                 { y: 30, opacity: 0 },
                 {
-                    y: 0, opacity: 1,
-                    duration: 1,
-                    stagger: 0.1,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: ".profile-wrapper",
-                        start: "top 80%",
-                    }
+                    y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "power3.out",
+                    scrollTrigger: { trigger: ".profile-wrapper", start: "top 80%" }
                 }
             );
 
-            // Navigazione Menu - Integrazione Lenis ScrollTo
+            // Navigazione Lenis
             const links = document.querySelectorAll('nav a.nav-link');
-            const header = document.getElementById('main-header');
-
             links.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    lenis.scrollTo(targetId, { offset: -100, duration: 1.5 });
+                    lenis.scrollTo(this.getAttribute('href'), { offset: -100, duration: 1.5 });
                 });
             });
 
-            // Effetto Header su Scroll (Aggiunge bordo)
+            // Effetto Header su Scroll (Glass morphing border)
+            const header = document.getElementById('main-header');
             ScrollTrigger.create({
-                start: 'top -50',
-                end: 99999,
-                toggleClass: {className: 'border-dark/10', targets: header}
+                start: 'top -50', end: 99999,
+                toggleClass: {className: 'hairline-b', targets: header}
             });
             ScrollTrigger.create({
-                start: 'top -50',
-                end: 99999,
+                start: 'top -50', end: 99999,
                 toggleClass: {className: 'border-transparent', targets: header},
                 onEnter: () => header.classList.remove('border-transparent'),
                 onLeaveBack: () => header.classList.add('border-transparent')
