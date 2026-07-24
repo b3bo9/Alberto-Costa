@@ -27,7 +27,7 @@
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
                         accent: '#d54026',
-                        surface: '#f5f5f4', /* Un grigio pietra chiarissimo e sofisticato */
+                        surface: '#f5f5f4', 
                         dark: '#0c0c0c',
                         muted: '#8a8a8a'
                     }
@@ -48,7 +48,7 @@
             cursor: none; /* Nascondiamo il cursore di default per PC */
         }
 
-        /* Effetto Grana Fotografica (Tactile feel) */
+        /* Effetto Grana Fotografica */
         .bg-noise {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -57,7 +57,7 @@
             background-image: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
         }
 
-        /* Lenis Smooth Scroll Recommended CSS */
+        /* Lenis Smooth Scroll */
         html.lenis { height: auto; }
         .lenis.lenis-smooth { scroll-behavior: auto; }
         .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
@@ -69,39 +69,45 @@
             width: 8px; height: 8px;
             background-color: #0c0c0c;
             border-radius: 50%;
-            pointer-events: none; z-index: 10000;
+            pointer-events: none; z-index: 100000; /* Sempre sopra tutto */
             transform: translate(-50%, -50%);
-            display: flex; justify-content: center; items-center;
-            color: transparent; font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
-            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), height 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, border 0.4s ease, color 0.4s ease;
+            transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), height 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, border-color 0.4s ease;
         }
-        /* Stato Hover Base */
+        
+        /* Stato Hover Base (link, bottoni) */
         #custom-cursor.hovered {
             width: 48px; height: 48px;
             background-color: transparent;
             border: 1px solid rgba(12, 12, 12, 0.2);
             backdrop-filter: blur(2px);
         }
-        /* Stato Hover su Immagini (Mostra 'VIEW') */
+        
+        /* Stato Hover sulle Immagini (Anello di vetro) */
         #custom-cursor.view-mode {
-            width: 70px; height: 70px;
-            background-color: rgba(245, 245, 244, 0.9);
-            border: none;
-            color: #0c0c0c;
-            align-items: center;
+            width: 64px; height: 64px;
+            background-color: transparent;
+            border: 1px solid rgba(12, 12, 12, 0.3);
+            backdrop-filter: blur(4px);
         }
+
+        /* Inversione Colore Cursore su Sfondi Scuri */
+        #custom-cursor.light-mode {
+            background-color: #f5f5f4;
+        }
+        #custom-cursor.light-mode.hovered, 
+        #custom-cursor.light-mode.view-mode {
+            background-color: transparent;
+            border-color: rgba(245, 245, 244, 0.4);
+        }
+
         @media (max-width: 768px) {
             body { cursor: auto; }
             #custom-cursor { display: none; }
         }
 
         /* Layout & Utilities GSAP */
-        .reveal-mask {
-            overflow: hidden; display: block;
-        }
-        .img-container {
-            overflow: hidden; background-color: #e5e5e4;
-        }
+        .reveal-mask { overflow: hidden; display: block; }
+        .img-container { overflow: hidden; background-color: #e5e5e4; cursor: none; }
         .img-container img {
             width: 100%; height: 100%; object-fit: cover;
             transform: scale(1.15); 
@@ -114,7 +120,6 @@
             -webkit-backdrop-filter: blur(16px);
         }
 
-        /* Linee separartici extra-fini */
         .hairline-b { border-bottom: 1px solid rgba(12, 12, 12, 0.08); }
         .hairline-t { border-top: 1px solid rgba(12, 12, 12, 0.08); }
 
@@ -123,9 +128,11 @@
 </head>
 <body class="font-sans min-h-screen flex flex-col relative">
 
-    <!-- Texture Grana e Cursore -->
+    <!-- Texture Grana -->
     <div class="bg-noise"></div>
-    <div id="custom-cursor"><span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">VIEW</span></div>
+    
+    <!-- Cursore Custom (Senza testo) -->
+    <div id="custom-cursor"></div>
 
     <!-- Header -->
     <header class="fixed top-0 left-0 w-full z-50 transition-all duration-700 glass-header border-b border-transparent" id="main-header">
@@ -144,7 +151,7 @@
 
     <main id="home" class="flex-grow">
         
-        <!-- HERO SECTION: Il Manifesto -->
+        <!-- HERO SECTION -->
         <section class="h-screen min-h-[600px] flex items-center max-w-[100rem] mx-auto px-6 md:px-12 pt-20">
             <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
                 <div class="md:col-span-12 lg:col-span-8">
@@ -165,7 +172,6 @@
                 </div>
             </div>
             
-            <!-- Scroll Indicator -->
             <div class="absolute bottom-12 left-6 md:left-12 flex items-center gap-4 reveal-mask">
                 <span class="hero-text text-[9px] uppercase tracking-[0.2em] text-muted">Scroll</span>
                 <div class="w-12 h-[1px] bg-dark/20 relative overflow-hidden">
@@ -191,11 +197,11 @@
                     <div class="md:col-span-4 lg:col-span-3 md:sticky md:top-40 self-start z-10 project-info">
                         <h3 class="text-xl md:text-2xl font-medium mb-6 tracking-tight text-dark">Lampada da Lettura Orientabile</h3>
                         <p class="text-muted leading-relaxed text-sm font-light">
-                            Lampada da tavolo a luce direzionabile. La struttura è caratterizzata da un'asta snodata in acciaio inox con meccanismi di serraggio a vista in finitura rossa, che fungono sia da elemento funzionale che estetico. Il paralume in lamiera di alluminio piegata direziona la luce in modo preciso, ottimizzando l'illuminazione per la lettura e il lavoro.
+                            Lampada da tavolo a luce direzionabile. La struttura è caratterizzata da un'asta snodata in acciaio inox con meccanismi di serraggio a vista in finitura rossa, che fungono sia da elemento funzionale che estetico.
                         </p>
                         <div class="mt-10 pt-6 hairline-t">
                             <p class="text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Materiali</p>
-                            <p class="text-sm text-dark font-medium">Alluminio, Acciaio Inox, Lamiera Verniciata</p>
+                            <p class="text-sm text-dark font-medium">Alluminio, Acciaio Inox</p>
                         </div>
                     </div>
                     <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-8 md:gap-20">
@@ -208,9 +214,6 @@
                         <div class="img-container image-target w-full">
                             <img src="Copia di DSC_1641.jpg" alt="Lampada" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=1200'">
                         </div>
-                        <div class="img-container image-target w-full">
-                            <img src="Copia di DSC_2837.jpg" alt="Lampada" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=1200'">
-                        </div>
                     </div>
                 </article>
 
@@ -219,7 +222,7 @@
                     <div class="md:col-span-4 lg:col-span-3 md:sticky md:top-40 self-start z-10 project-info">
                         <h3 class="text-xl md:text-2xl font-medium mb-6 tracking-tight text-dark">Piantana con Sospensione</h3>
                         <p class="text-muted leading-relaxed text-sm font-light">
-                            Un approccio ibrido all'illuminazione da terra. Questo progetto combina la stabilità e la robustezza di una base in acciaio inox con la leggerezza di un tronco tornito in legno. Il braccio orizzontale, stabilizzato da un sistema di tiranti, permette di sospendere il paralume in tessuto esattamente dove serve.
+                            Un approccio ibrido all'illuminazione da terra. Questo progetto combina la stabilità di una base in acciaio inox con la leggerezza di un tronco tornito in legno.
                         </p>
                         <div class="mt-10 pt-6 hairline-t">
                             <p class="text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Materiali</p>
@@ -233,9 +236,6 @@
                         <div class="img-container image-target w-full">
                             <img src="Copia di DSC_2176.png" alt="Piantana" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=80&w=1200'">
                         </div>
-                        <div class="img-container image-target w-full">
-                            <img src="Copia di DSC_2175.png" alt="Piantana" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1523413363574-c30aa1c2a516?auto=format&fit=crop&q=80&w=1200'">
-                        </div>
                     </div>
                 </article>
 
@@ -244,11 +244,11 @@
                     <div class="md:col-span-4 lg:col-span-3 md:sticky md:top-40 self-start z-10 project-info">
                         <h3 class="text-xl md:text-2xl font-medium mb-6 tracking-tight text-dark">Tavolino Modulare</h3>
                         <p class="text-muted leading-relaxed text-sm font-light">
-                            Studio e realizzazione di elementi di arredo modulari. Il focus di questo progetto è la connessione strutturale tra i piani in legno multistrato fenolico e i supporti metallici. L'utilizzo di staffe e viteria a vista celebra l'aspetto tecnico e costruttivo dell'oggetto, senza nascondere la sua natura funzionale.
+                            Studio e realizzazione di elementi di arredo modulari. Il focus di questo progetto è la connessione strutturale tra i piani in legno e i supporti metallici.
                         </p>
                         <div class="mt-10 pt-6 hairline-t">
                             <p class="text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Materiali</p>
-                            <p class="text-sm text-dark font-medium">Legno Multistrato, Lamiera di Acciaio Inox</p>
+                            <p class="text-sm text-dark font-medium">Legno Multistrato, Acciaio Inox</p>
                         </div>
                     </div>
                     <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-8 md:gap-20">
@@ -257,53 +257,6 @@
                         </div>
                         <div class="img-container image-target w-full">
                             <img src="Copia di DSC_2933.jpg" alt="Tavolino" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&q=80&w=1200'">
-                        </div>
-                        <div class="img-container image-target w-full">
-                            <img src="Copia di DSC_2930.jpg" alt="Tavolino" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1597072689227-8882273e8f6a?auto=format&fit=crop&q=80&w=1200'">
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Progetto 4 -->
-                <article class="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-16 lg:gap-x-24 project-row">
-                    <div class="md:col-span-4 lg:col-span-3 md:sticky md:top-40 self-start z-10 project-info">
-                        <h3 class="text-xl md:text-2xl font-medium mb-6 tracking-tight text-dark">Lampada a Morsetto</h3>
-                        <p class="text-muted leading-relaxed text-sm font-light">
-                            Corpo illuminante minimale progettato per l'aggancio a testiere del letto o mensole. La lampada utilizza un sistema a morsetto con vite di serraggio a vista per un fissaggio sicuro e versatile. Il diffusore semi-sferico orientabile permette di direzionare il fascio luminoso con grande precisione.
-                        </p>
-                        <div class="mt-10 pt-6 hairline-t">
-                            <p class="text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Materiali</p>
-                            <p class="text-sm text-dark font-medium">Acciaio Inox, Alluminio, Termoplastici</p>
-                        </div>
-                    </div>
-                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-8 md:gap-20">
-                        <div class="img-container image-target w-full">
-                            <img src="Copia di DSC_3095.jpg" alt="Lampada Morsetto" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
-                        </div>
-                        <div class="img-container image-target w-full">
-                            <img src="Copia di DSC_3113.jpg" alt="Lampada Morsetto" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1534346850257-2309852b7e0e?auto=format&fit=crop&q=80&w=1200'">
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Progetto 5 -->
-                <article class="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-16 lg:gap-x-24 project-row">
-                    <div class="md:col-span-4 lg:col-span-3 md:sticky md:top-40 self-start z-10 project-info">
-                        <h3 class="text-xl md:text-2xl font-medium mb-6 tracking-tight text-dark">Orologio Digitale</h3>
-                        <p class="text-muted leading-relaxed text-sm font-light">
-                            Progetto di micro-meccanica e design del prodotto. La cassa dell'orologio è stata interamente progettata e realizzata in lamiera di acciaio inox piegata per ospitare un modulo elettronico digitale. L'estetica cruda e marcatamente industriale è accentuata dalla viteria a vista e dai pulsanti cilindrici sporgenti.
-                        </p>
-                        <div class="mt-10 pt-6 hairline-t">
-                            <p class="text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Materiali</p>
-                            <p class="text-sm text-dark font-medium">Acciaio Inox, Vera Pelle</p>
-                        </div>
-                    </div>
-                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-8 md:gap-20">
-                        <div class="img-container image-target w-full">
-                            <img src="Copia di DSC_3217.jpg" alt="Orologio" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&q=80&w=1200'">
-                        </div>
-                        <div class="img-container image-target w-full">
-                            <img src="Copia di DSC_3228.jpg" alt="Orologio" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
                 </article>
@@ -320,7 +273,7 @@
                 </div>
                 <div class="md:col-span-4 lg:col-start-9 md:pb-2 fade-up">
                     <p class="text-sm text-muted font-light leading-relaxed">
-                        Esplorazioni formali, studi di illuminazione e pre-visualizzazione realistica di concept e progetti futuri.
+                        Esplorazioni formali, studi di illuminazione e pre-visualizzazione realistica di concept.
                     </p>
                 </div>
             </div>
@@ -358,7 +311,7 @@
             </div>
         </section>
 
-        <!-- SEZIONE PROFILO -->
+        <!-- SEZIONE PROFILO (Sfondo Scuro - Inversione Cursore) -->
         <section id="profilo" class="bg-dark text-white py-24 md:py-48 selection:bg-white selection:text-black mt-20 relative overflow-hidden">
             <div class="max-w-[100rem] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-20 lg:gap-8 profile-wrapper relative z-10">
                 
@@ -373,7 +326,6 @@
                     </div>
                     
                     <div class="mt-20 fade-up-profile inline-block">
-                        <!-- Bottone Magnetico Email -->
                         <a href="mailto:albeb3b@gmail.com" class="magnetic-target inline-flex flex-col gap-2 group p-4 -ml-4 rounded-xl">
                             <span class="text-[9px] uppercase tracking-[0.2em] text-zinc-600 font-medium group-hover:text-zinc-400 transition-colors">Start a project</span>
                             <span class="text-2xl md:text-4xl font-light text-white relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:w-full after:h-[1px] after:bg-zinc-800 group-hover:after:bg-white after:transition-colors after:duration-500">albeb3b@gmail.com</span>
@@ -391,7 +343,6 @@
                                     <li>Modellazione 3D CAD</li>
                                     <li>Rendering fotorealistico</li>
                                     <li>Prototipazione</li>
-                                    <li>Calcolo illuminotecnico</li>
                                     <li>Fotografia di prodotto</li>
                                 </ul>
                             </div>
@@ -402,7 +353,6 @@
                                     <li>Autodesk AutoCAD</li>
                                     <li>Autodesk 3DS Max</li>
                                     <li>Adobe Photoshop</li>
-                                    <li>Adobe Illustrator</li>
                                     <li>DiaLux</li>
                                 </ul>
                             </div>
@@ -419,41 +369,60 @@
 
     </main>
 
-    <!-- Footer -->
+    <!-- Footer (Sfondo Scuro - Inversione Cursore) -->
     <footer class="bg-dark text-zinc-600 text-[9px] uppercase tracking-[0.3em] py-12 text-center font-medium border-t border-zinc-900">
         <p>&copy; <span id="year"></span> ALBERTO COSTA. ALL RIGHTS RESERVED.</p>
     </footer>
 
+    <!-- LIGHTBOX / FULLSCREEN VIEWER -->
+    <div id="lightbox" class="fixed inset-0 z-[99999] bg-dark/95 backdrop-blur-md opacity-0 pointer-events-none flex items-center justify-center transition-opacity duration-300">
+        <button id="lightbox-close" class="absolute top-8 right-8 md:top-12 md:right-12 text-[10px] uppercase tracking-[0.2em] text-white hover:text-muted transition-colors magnetic-target p-4 z-10">Chiudi ✕</button>
+        <div class="w-full h-full p-12 md:p-24 flex items-center justify-center">
+            <img id="lightbox-img" src="" alt="Fullscreen View" class="max-w-full max-h-full object-contain scale-95 opacity-0 shadow-2xl">
+        </div>
+    </div>
+
     <script>
-        // 1. Inizializza Lenis (Smooth Scroll Premium)
-        const lenis = new Lenis({
-            duration: 1.5,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smooth: true,
-        })
+        // 1. Lenis Smooth Scroll
+        const lenis = new Lenis({ duration: 1.5, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smooth: true })
         lenis.on('scroll', ScrollTrigger.update)
         gsap.ticker.add((time)=>{ lenis.raf(time * 1000) })
         gsap.ticker.lagSmoothing(0)
 
-        // 2. Cursor Logics & Magnetic Effect
+        // 2. Custom Cursor & Lightbox Logic
         const cursor = document.getElementById('custom-cursor');
         const magneticTargets = document.querySelectorAll('.magnetic-target');
-        const imageTargets = document.querySelectorAll('.image-target');
+        const imageContainers = document.querySelectorAll('.image-target');
+        const images = document.querySelectorAll('.image-target img');
+        
+        // Elementi Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+        
+        // Sezioni Scure (Profilo, Footer, Lightbox) per inversione cursore
+        const darkSections = [document.getElementById('profilo'), document.querySelector('footer'), lightbox];
 
         if(window.innerWidth > 768) {
             gsap.set(cursor, { xPercent: -50, yPercent: -50 });
             let xTo = gsap.quickTo(cursor, "x", {duration: 0.15, ease: "power3"}),
                 yTo = gsap.quickTo(cursor, "y", {duration: 0.15, ease: "power3"});
 
-            window.addEventListener("mousemove", e => {
-                xTo(e.clientX); yTo(e.clientY);
+            window.addEventListener("mousemove", e => { xTo(e.clientX); yTo(e.clientY); });
+
+            // Inversione colore su sfondi neri
+            darkSections.forEach(section => {
+                if(section) {
+                    section.addEventListener('mouseenter', () => cursor.classList.add('light-mode'));
+                    section.addEventListener('mouseleave', () => cursor.classList.remove('light-mode'));
+                }
             });
 
-            // Logica Magnetica per i link testuali
+            // Hover Magnetico base
             magneticTargets.forEach(target => {
                 target.addEventListener('mousemove', (e) => {
                     const bound = target.getBoundingClientRect();
-                    const x = (e.clientX - bound.left - bound.width/2) * 0.3; // Forza magnetica
+                    const x = (e.clientX - bound.left - bound.width/2) * 0.3; 
                     const y = (e.clientY - bound.top - bound.height/2) * 0.3;
                     gsap.to(target, {x: x, y: y, duration: 0.4, ease: "power2.out"});
                     cursor.classList.add('hovered');
@@ -464,112 +433,81 @@
                 });
             });
 
-            // Logica Cursore 'View' sulle immagini
-            imageTargets.forEach(target => {
-                target.addEventListener('mouseenter', () => cursor.classList.add('view-mode'));
-                target.addEventListener('mouseleave', () => cursor.classList.remove('view-mode'));
+            // Hover Immagini (Anello di vetro largo)
+            imageContainers.forEach(container => {
+                container.addEventListener('mouseenter', () => cursor.classList.add('view-mode'));
+                container.addEventListener('mouseleave', () => cursor.classList.remove('view-mode'));
             });
         }
 
-        // 3. GSAP Animations
+        // --- Logica LIGHTBOX (Apertura Ingrandimento) ---
+        images.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src; // Copia la sorgente
+                lenis.stop(); // Blocca lo scroll del sito dietro
+                
+                // Anima il contenitore e poi l'immagine all'interno
+                gsap.to(lightbox, { autoAlpha: 1, duration: 0.4, ease: "power2.out" });
+                gsap.to(lightboxImg, { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out", delay: 0.1 });
+            });
+        });
+
+        const closeLightbox = () => {
+            gsap.to(lightbox, { autoAlpha: 0, duration: 0.4, ease: "power2.in" });
+            gsap.to(lightboxImg, { scale: 0.95, opacity: 0, duration: 0.3 });
+            lenis.start(); // Sblocca lo scroll
+        };
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            // Se clicco sullo sfondo scuro chiude la lightbox
+            if(e.target === lightbox || e.target.parentElement === lightbox) {
+                closeLightbox();
+            }
+        });
+
+
+        // 3. GSAP Animations Base
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            // Animazione iniziale Hero (Load)
+            // Intro
             const heroTl = gsap.timeline();
-            heroTl.fromTo('.hero-text', 
-                { y: 30, opacity: 0 },
-                { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 }
-            )
-            .fromTo('.hero-title',
-                { y: 150 },
-                { y: 0, duration: 1.2, ease: 'power4.out', stagger: 0.1 },
-                "-=0.7"
-            )
-            .fromTo('.hero-subtitle',
-                { y: 30, opacity: 0 },
-                { y: 0, opacity: 1, duration: 1, ease: 'power3.out' },
-                "-=0.8"
-            );
+            heroTl.fromTo('.hero-text', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 })
+                  .fromTo('.hero-title', { y: 150 }, { y: 0, duration: 1.2, ease: 'power4.out', stagger: 0.1 }, "-=0.7")
+                  .fromTo('.hero-subtitle', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, "-=0.8");
 
-            // Scroll indicator infinita
-            gsap.to('.scroll-line', {
-                x: '100%', duration: 1.5, ease: 'power2.inOut', repeat: -1, 
-                onRepeat: function() { gsap.set('.scroll-line', {x: '-100%'}) }
-            });
+            // Scroll indicator animato
+            gsap.to('.scroll-line', { x: '100%', duration: 1.5, ease: 'power2.inOut', repeat: -1, onRepeat: function() { gsap.set('.scroll-line', {x: '-100%'}) } });
 
-            // Animazione Titoli di Sezione
+            // Fade Up generali
             gsap.utils.toArray('.section-title-wrapper').forEach(wrapper => {
-                gsap.fromTo(wrapper.querySelectorAll('.fade-up'),
-                    { y: 40, opacity: 0 },
-                    { 
-                        y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: 'power3.out',
-                        scrollTrigger: { trigger: wrapper, start: "top 85%" }
-                    }
-                );
+                gsap.fromTo(wrapper.querySelectorAll('.fade-up'), { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: 'power3.out', scrollTrigger: { trigger: wrapper, start: "top 85%" } });
             });
 
-            // Animazione Immagini (Reveal Mask + Parallax inverso)
+            // Effetto Mask Reveal Immagini e Parallax Inverso
             gsap.utils.toArray('.img-container').forEach(container => {
                 const img = container.querySelector('img');
-                gsap.fromTo(container,
-                    { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
-                    { 
-                        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-                        duration: 1.5, ease: "power4.inOut",
-                        scrollTrigger: { trigger: container, start: "top 90%" }
-                    }
-                );
-                gsap.fromTo(img,
-                    { scale: 1.2 },
-                    { 
-                        scale: 1, duration: 1.5, ease: "power4.inOut",
-                        scrollTrigger: { trigger: container, start: "top 90%" }
-                    }
-                );
+                gsap.fromTo(container, { clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" }, { clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", duration: 1.5, ease: "power4.inOut", scrollTrigger: { trigger: container, start: "top 90%" } });
+                gsap.fromTo(img, { scale: 1.2 }, { scale: 1, duration: 1.5, ease: "power4.inOut", scrollTrigger: { trigger: container, start: "top 90%" } });
             });
 
-            // Animazione Testi Progetti
+            // Fade Info Progetti
             gsap.utils.toArray('.project-info').forEach(info => {
-                gsap.fromTo(info,
-                    { y: 30, opacity: 0 },
-                    {
-                        y: 0, opacity: 1, duration: 1, ease: "power3.out",
-                        scrollTrigger: { trigger: info, start: "top 80%" }
-                    }
-                );
+                gsap.fromTo(info, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: info, start: "top 80%" } });
             });
 
-            // Animazione Profilo
-            gsap.fromTo('.fade-up-profile',
-                { y: 30, opacity: 0 },
-                {
-                    y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "power3.out",
-                    scrollTrigger: { trigger: ".profile-wrapper", start: "top 80%" }
-                }
-            );
+            // Profilo
+            gsap.fromTo('.fade-up-profile', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "power3.out", scrollTrigger: { trigger: ".profile-wrapper", start: "top 80%" } });
 
-            // Navigazione Lenis
+            // Navigazione Fluida
             const links = document.querySelectorAll('nav a.nav-link');
-            links.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    lenis.scrollTo(this.getAttribute('href'), { offset: -100, duration: 1.5 });
-                });
-            });
+            links.forEach(link => { link.addEventListener('click', function(e) { e.preventDefault(); lenis.scrollTo(this.getAttribute('href'), { offset: -100, duration: 1.5 }); }); });
 
-            // Effetto Header su Scroll (Glass morphing border)
+            // Header Bordi Dinamici
             const header = document.getElementById('main-header');
-            ScrollTrigger.create({
-                start: 'top -50', end: 99999,
-                toggleClass: {className: 'hairline-b', targets: header}
-            });
-            ScrollTrigger.create({
-                start: 'top -50', end: 99999,
-                toggleClass: {className: 'border-transparent', targets: header},
-                onEnter: () => header.classList.remove('border-transparent'),
-                onLeaveBack: () => header.classList.add('border-transparent')
-            });
+            ScrollTrigger.create({ start: 'top -50', end: 99999, toggleClass: {className: 'hairline-b', targets: header} });
+            ScrollTrigger.create({ start: 'top -50', end: 99999, toggleClass: {className: 'border-transparent', targets: header}, onEnter: () => header.classList.remove('border-transparent'), onLeaveBack: () => header.classList.add('border-transparent') });
         });
     </script>
 </body>
