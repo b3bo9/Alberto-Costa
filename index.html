@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alberto Costa | Progettare l'essenziale</title>
     
-    <!-- Google Fonts: Inter & DM Serif Display (per contrasto elegante) -->
+    <!-- Google Fonts: Inter & DM Serif Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -30,9 +30,9 @@
                     },
                     colors: {
                         accent: '#d54026',
-                        surface: '#eaeaea', /* Un grigio più deciso e industriale */
-                        dark: '#1a1a1a', /* Antracite profondo */
-                        muted: '#6b6b6b'
+                        surface: '#f5f5f4', /* Grigio pietra chiarissimo */
+                        dark: '#111111',    /* Nero profondo */
+                        muted: '#8a8a8a'
                     }
                 }
             }
@@ -41,14 +41,13 @@
 
     <style>
         /* Base e Tipografia */
-        ::selection { background-color: #1a1a1a; color: #ffffff; }
+        ::selection { background-color: #111111; color: #ffffff; }
         
         body {
-            background-color: #eaeaea; 
-            color: #1a1a1a;
+            background-color: #f5f5f4; 
+            color: #111111;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
         }
 
         /* Lenis Smooth Scroll */
@@ -57,145 +56,45 @@
         .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
         .lenis.lenis-stopped { overflow: hidden; }
 
-        /* Griglia Orizzontale per Progetti (Effetto Galleria) */
-        .horizontal-scroll-wrapper {
-            width: 100vw;
-            height: 100vh;
+        /* Utilità di layout */
+        .hairline-t { border-top: 1px solid rgba(17, 17, 17, 0.1); }
+        .hairline-b { border-bottom: 1px solid rgba(17, 17, 17, 0.1); }
+        
+        /* Immagini e Lightbox */
+        .img-wrapper {
+            background-color: #e5e5e4;
             overflow: hidden;
-            display: flex;
-            align-items: center;
-            background-color: #1a1a1a; /* Sfondo scuro per dare risalto alle foto */
-            color: #eaeaea;
+            cursor: zoom-in;
         }
-        .horizontal-scroll-container {
-            display: flex;
-            height: 80vh;
-            padding: 0 5vw;
-            gap: 10vw;
+        .img-wrapper img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .project-card {
-            flex: 0 0 70vw; /* Larghezza card su desktop */
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        @media (max-width: 768px) {
-            .project-card { flex: 0 0 85vw; } /* Più larga su mobile */
-        }
+        .img-wrapper:hover img { transform: scale(1.03); }
         
-        .project-image-wrapper {
-            width: 100%;
-            height: 60vh;
-            overflow: hidden;
-            background-color: #2a2a2a;
-            position: relative;
-        }
-        .project-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.8;
-            transition: opacity 0.4s ease;
-        }
-        .project-image-wrapper:hover img { opacity: 1; }
-
-        .project-info-minimal {
-            margin-top: 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            border-top: 1px solid rgba(234, 234, 234, 0.2);
-            padding-top: 1rem;
-        }
-
-        /* Hero Split Screen */
-        .hero-split {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        @media (min-width: 768px) {
-            .hero-split { flex-direction: row; }
-        }
-        .hero-left {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 2rem 5vw;
-            background-color: #eaeaea;
-        }
-        .hero-right {
-            flex: 1;
-            background-image: url('r3.jpg'); /* Uso un render come immagine di copertina */
-            background-size: cover;
-            background-position: center;
-            filter: grayscale(100%) contrast(1.2);
-            position: relative;
-        }
-        .hero-right::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(26, 26, 26, 0.3);
-        }
-
-        /* Render Grid Asimmetrica */
-        .masonry-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 2rem;
-            padding: 5vw;
-        }
-        .grid-item { position: relative; overflow: hidden; background: #d4d4d4;}
-        .grid-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); transition: filter 0.5s ease, transform 0.5s ease; }
-        .grid-item:hover img { filter: grayscale(0%); transform: scale(1.02); }
-        
-        .item-large { grid-column: span 12; height: 60vh; }
-        .item-tall { grid-column: span 6; height: 70vh; }
-        .item-small { grid-column: span 6; height: 33vh; }
-        
-        @media (min-width: 768px) {
-            .item-large { grid-column: span 8; height: 80vh; }
-            .item-tall { grid-column: span 4; height: 80vh; }
-            .item-small { grid-column: span 4; height: 40vh; }
-        }
-
         /* Marquee Text (Testo scorrevole) */
         .marquee {
-            white-space: nowrap;
-            overflow: hidden;
-            padding: 2rem 0;
-            background: #1a1a1a;
-            color: #eaeaea;
-            border-top: 1px solid rgba(234, 234, 234, 0.1);
-            border-bottom: 1px solid rgba(234, 234, 234, 0.1);
+            white-space: nowrap; overflow: hidden;
+            padding: 1.5rem 0;
+            background: #111111; color: #f5f5f4;
         }
         .marquee-content {
             display: inline-block;
-            font-size: 3rem;
-            font-family: 'DM Serif Display', serif;
+            font-size: 2rem; font-family: 'DM Serif Display', serif;
             animation: marquee 25s linear infinite;
         }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         ::-webkit-scrollbar { width: 0px; background: transparent; }
         
-        /* Navbar Verticale su Desktop */
+        /* Navbar Verticale Desktop */
         .side-nav {
-            position: fixed;
-            top: 0; left: 0;
-            height: 100vh;
-            width: 80px;
-            border-right: 1px solid rgba(26, 26, 26, 0.1);
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2rem 0;
-            background: rgba(234, 234, 234, 0.9);
-            backdrop-filter: blur(10px);
+            position: fixed; top: 0; left: 0;
+            height: 100vh; width: 80px;
+            border-right: 1px solid rgba(17, 17, 17, 0.08);
+            display: none; flex-direction: column; justify-content: space-between; align-items: center;
+            padding: 2.5rem 0;
+            background: rgba(245, 245, 244, 0.95); backdrop-filter: blur(10px);
             z-index: 50;
         }
         @media (min-width: 1024px) {
@@ -203,310 +102,446 @@
             .main-content-wrapper { padding-left: 80px; }
         }
         .nav-text-vertical {
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: #6b6b6b;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            margin: 1.5rem 0;
+            writing-mode: vertical-rl; transform: rotate(180deg);
+            font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.25em;
+            color: #8a8a8a; text-decoration: none; font-weight: 500;
+            transition: color 0.3s ease; margin: 1.5rem 0;
         }
-        .nav-text-vertical:hover { color: #1a1a1a; }
+        .nav-text-vertical:hover { color: #111111; }
         
-        /* Navbar Mobile Classica */
+        /* Navbar Mobile */
         .mobile-nav {
             position: fixed; top: 0; left: 0; width: 100%;
-            padding: 1rem 1.5rem;
-            background: rgba(234, 234, 234, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 50;
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid rgba(26, 26, 26, 0.1);
+            padding: 1.25rem 1.5rem;
+            background: rgba(245, 245, 244, 0.95); backdrop-filter: blur(10px);
+            z-index: 50; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid rgba(17, 17, 17, 0.08);
         }
         @media (min-width: 1024px) { .mobile-nav { display: none; } }
     </style>
 </head>
-<body class="font-sans">
+<body class="font-sans relative">
 
     <!-- Navbar Mobile -->
     <nav class="mobile-nav">
-        <span class="font-semibold text-lg">AC.</span>
-        <div class="flex gap-4">
-            <a href="#progetti" class="text-xs uppercase tracking-widest text-dark">Progetti</a>
-            <a href="#profilo" class="text-xs uppercase tracking-widest text-dark">Profilo</a>
+        <a href="#home" class="font-serif text-2xl text-dark">AC.</a>
+        <div class="flex gap-5">
+            <a href="#progetti" class="text-[10px] uppercase tracking-widest text-dark font-medium">Progetti</a>
+            <a href="#profilo" class="text-[10px] uppercase tracking-widest text-dark font-medium">Profilo</a>
         </div>
     </nav>
 
     <!-- Navbar Verticale Desktop -->
     <nav class="side-nav">
-        <a href="#home" class="font-serif text-2xl font-bold">AC</a>
+        <a href="#home" class="font-serif text-3xl text-dark hover:opacity-70 transition-opacity">AC.</a>
         <div class="flex flex-col items-center">
-            <a href="#progetti" class="nav-text-vertical">Progetti</a>
-            <a href="#render" class="nav-text-vertical">Render</a>
-            <a href="#profilo" class="nav-text-vertical">Profilo</a>
+            <a href="#progetti" class="nav-text-vertical nav-link">Progetti</a>
+            <a href="#render" class="nav-text-vertical nav-link">Render</a>
+            <a href="#profilo" class="nav-text-vertical nav-link">Profilo</a>
         </div>
-        <span class="nav-text-vertical" style="transform: rotate(180deg); color: #1a1a1a;">2024</span>
+        <span class="nav-text-vertical" style="transform: rotate(180deg); color: #111; pointer-events: none;">2024</span>
     </nav>
 
     <div class="main-content-wrapper" id="home">
         
-        <!-- HERO SECTION: Split Layout -->
-        <header class="hero-split">
-            <div class="hero-left">
-                <p class="text-xs uppercase tracking-[0.3em] text-muted mb-8">Industrial Designer</p>
-                <h1 class="font-serif text-[12vw] md:text-[6vw] leading-[1] text-dark mb-6">
-                    Alberto <br>Costa<span class="text-accent">.</span>
+        <!-- HERO SECTION: Solo Tipografia Minimal -->
+        <section class="min-h-[100svh] flex flex-col justify-center px-6 md:px-16 pt-24 pb-12 relative">
+            <div class="max-w-[100rem] w-full mx-auto">
+                <p class="text-[10px] md:text-xs uppercase tracking-[0.3em] text-muted mb-8 md:mb-12 font-medium fade-in">Industrial Designer</p>
+                <h1 class="font-serif text-[16vw] leading-[0.9] md:text-[9vw] lg:text-[10rem] text-dark mb-8 tracking-tight ml-[-4px] md:ml-[-8px] fade-in">
+                    Alberto<br>Costa<span class="text-accent">.</span>
                 </h1>
-                <p class="text-base md:text-lg text-dark/70 font-light max-w-md leading-relaxed border-l-2 border-dark pl-6">
-                    Progettare l'essenziale. Esploro l'intersezione tra meccanica e minimalismo, dove ogni dettaglio tecnico diventa manifesto estetico.
-                </p>
+                <div class="max-w-xl md:pl-8 border-l border-dark/20 fade-in">
+                    <p class="text-base md:text-lg text-dark/80 font-light leading-relaxed">
+                        Progettare l'essenziale. Esploro l'intersezione tra meccanica e minimalismo. Progetto apparecchi per l'illuminazione e oggetti d'uso quotidiano dove ogni dettaglio tecnico diventa manifesto estetico.
+                    </p>
+                </div>
             </div>
-            <div class="hero-right"></div>
-        </header>
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-12 left-6 md:left-16 flex items-center gap-4 fade-in">
+                <span class="text-[9px] uppercase tracking-[0.2em] text-muted">Scroll</span>
+                <div class="w-12 h-[1px] bg-dark/20 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-full bg-dark scroll-line"></div>
+                </div>
+            </div>
+        </section>
 
-        <!-- SEZIONE PROGETTI: Scroll Orizzontale -->
-        <section id="progetti" class="bg-dark">
-            <div class="py-20 px-[5vw]">
-                <h2 class="font-serif text-5xl md:text-7xl text-surface">Lavori <br>Selezionati</h2>
-                <p class="text-sm text-surface/60 mt-4 uppercase tracking-widest">Scorri per esplorare</p>
-            </div>
-            
-            <div class="horizontal-scroll-wrapper" id="horizontal-scroll">
-                <div class="horizontal-scroll-container">
+        <!-- SEZIONE PROGETTI -->
+        <section id="progetti" class="px-6 md:px-16 py-24 md:py-40 hairline-t">
+            <div class="max-w-[100rem] mx-auto">
+                
+                <div class="mb-24 md:mb-40">
+                    <p class="text-[10px] uppercase tracking-[0.2em] text-muted mb-4 font-medium">01 &mdash; Lavori Selezionati</p>
+                    <h2 class="font-serif text-5xl md:text-7xl lg:text-8xl text-dark">Progetti e <br>Realizzazioni</h2>
+                </div>
+
+                <div class="space-y-32 md:space-y-64">
                     
                     <!-- Progetto 1 -->
-                    <article class="project-card">
-                        <div class="project-image-wrapper">
-                            <img src="Copia di DSC_2836.jpg" alt="Lampada Lettura" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
-                        </div>
-                        <div class="project-info-minimal">
-                            <div>
-                                <h3 class="text-2xl md:text-3xl font-serif text-surface mb-2">Lampada Orientabile</h3>
-                                <p class="text-xs text-surface/50 uppercase tracking-widest">Alluminio, Acciaio Inox</p>
-                            </div>
-                            <p class="text-sm text-surface/80 max-w-sm hidden md:block font-light">
-                                Asta snodata in acciaio inox con meccanismi a vista. Il paralume in lamiera piegata direziona la luce con precisione.
+                    <article class="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-x-16 xl:gap-x-24">
+                        <!-- Colonna Testo (Sticky) -->
+                        <div class="lg:col-span-4 xl:col-span-3 lg:sticky lg:top-40 self-start z-10 fade-up">
+                            <h3 class="text-2xl md:text-3xl font-serif mb-6 text-dark">Lampada da Lettura Orientabile</h3>
+                            <p class="text-dark/70 leading-relaxed text-sm font-light">
+                                Lampada da tavolo a luce direzionabile. La struttura è caratterizzata da un'asta snodata in acciaio inox con meccanismi di serraggio a vista in finitura rossa, che fungono sia da elemento funzionale che estetico. Il paralume in lamiera di alluminio piegata direziona la luce in modo preciso, ottimizzando l'illuminazione per la lettura e il lavoro.
                             </p>
+                            <div class="mt-10 pt-6 hairline-t">
+                                <p class="text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Materiali</p>
+                                <p class="text-sm text-dark font-medium">Alluminio, Acciaio Inox, Lamiera Verniciata</p>
+                            </div>
+                        </div>
+                        <!-- Colonna Immagini (Scroll) -->
+                        <div class="lg:col-span-8 xl:col-start-5 flex flex-col gap-6 md:gap-16">
+                            <div class="img-wrapper w-full fade-up">
+                                <img src="Copia di DSC_2836.jpg" alt="Lampada da Lettura" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
+                            </div>
+                            <div class="img-wrapper w-full fade-up">
+                                <img src="Copia di DSC_1643.jpg" alt="Lampada Dettaglio" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=1200'">
+                            </div>
+                            <div class="img-wrapper w-full fade-up">
+                                <img src="Copia di DSC_1641.jpg" alt="Lampada Profilo" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=1200'">
+                            </div>
+                            <div class="img-wrapper w-full fade-up">
+                                <img src="Copia di DSC_2837.jpg" alt="Lampada Chiusa" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=1200'">
+                            </div>
                         </div>
                     </article>
 
                     <!-- Progetto 2 -->
-                    <article class="project-card">
-                        <div class="project-image-wrapper">
-                            <img src="Copia di DSC_2151.png" alt="Piantana" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=1200'">
-                        </div>
-                        <div class="project-info-minimal">
-                            <div>
-                                <h3 class="text-2xl md:text-3xl font-serif text-surface mb-2">Piantana con Sospensione</h3>
-                                <p class="text-xs text-surface/50 uppercase tracking-widest">Legno Tornito, Tessuto</p>
-                            </div>
-                            <p class="text-sm text-surface/80 max-w-sm hidden md:block font-light">
-                                Ibrido tra stabilità dell'acciaio e leggerezza del legno. Il braccio orizzontale sospende il paralume esattamente dove serve.
+                    <article class="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-x-16 xl:gap-x-24">
+                        <div class="lg:col-span-4 xl:col-span-3 lg:sticky lg:top-40 self-start z-10 fade-up">
+                            <h3 class="text-2xl md:text-3xl font-serif mb-6 text-dark">Piantana con Sospensione</h3>
+                            <p class="text-dark/70 leading-relaxed text-sm font-light">
+                                Un approccio ibrido all'illuminazione da terra. Questo progetto combina la stabilità e la robustezza di una base in acciaio inox con la leggerezza di un tronco tornito in legno. Il braccio orizzontale, stabilizzato da un sistema di tiranti, permette di sospendere il paralume in tessuto esattamente dove serve.
                             </p>
+                            <div class="mt-10 pt-6 hairline-t">
+                                <p class="text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Materiali</p>
+                                <p class="text-sm text-dark font-medium">Legno Tornito, Acciaio Inox, Tessuto</p>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-8 xl:col-start-5 flex flex-col gap-6 md:gap-16">
+                            <div class="img-wrapper w-full fade-up">
+                                <img src="Copia di DSC_2151.png" alt="Piantana Sospensione" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=1200'">
+                            </div>
+                            <div class="img-wrapper w-full fade-up">
+                                <img src="Copia di DSC_2176.png" alt="Piantana Dettaglio" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=80&w=1200'">
+                            </div>
+                            <div class="img-wrapper w-full fade-up">
+                                <img src="Copia di DSC_2175.png" alt="Piantana Base" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1523413363574-c30aa1c2a516?auto=format&fit=crop&q=80&w=1200'">
+                            </div>
                         </div>
                     </article>
 
                     <!-- Progetto 3 -->
-                    <article class="project-card">
-                        <div class="project-image-wrapper">
-                            <img src="Copia di DSC_2940.jpg" alt="Tavolino" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=1200'">
-                        </div>
-                        <div class="project-info-minimal">
-                            <div>
-                                <h3 class="text-2xl md:text-3xl font-serif text-surface mb-2">Tavolino Modulare</h3>
-                                <p class="text-xs text-surface/50 uppercase tracking-widest">Multistrato, Acciaio</p>
-                            </div>
-                            <p class="text-sm text-surface/80 max-w-sm hidden md:block font-light">
-                                Focus sulla connessione strutturale. Staffe e viteria a vista celebrano l'aspetto tecnico e costruttivo dell'oggetto.
+                    <article class="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-x-16 xl:gap-x-24">
+                        <div class="lg:col-span-4 xl:col-span-3 lg:sticky lg:top-40 self-start z-10 fade-up">
+                            <h3 class="text-2xl md:text-3xl font-serif mb-6 text-dark">Tavolino Modulare</h3>
+                            <p class="text-dark/70 leading-relaxed text-sm font-light">
+                                Studio e realizzazione di elementi di arredo modulari. Il focus di questo progetto è la connessione strutturale tra i piani in legno multistrato fenolico e i supporti metallici. L'utilizzo di staffe e viteria a vista celebra l'aspetto tecnico e costruttivo dell'oggetto, senza nascondere la sua natura funzionale.
                             </p>
+                            <div class="mt-10 pt-6 hairline-t">
+                                <p class="text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Materiali</p>
+                                <p class="text-sm text-dark font-medium">Legno Multistrato, Lamiera di Acciaio Inox</p>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-8 xl:col-start-5 flex flex-col gap-6 md:gap-16">
+                            <div class="img-wrapper w-full fade-up">
+                                <img src="Copia di DSC_2940.jpg" alt="Sistema Giunzione 1" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=1200'">
+                            </div>
+                            <div class="img-wrapper w-full fade-up">
+                                <img src="Copia di DSC_2933.jpg" alt="Sistema Giunzione 2" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&q=80&w=1200'">
+                            </div>
+                            <div class="img-wrapper w-full fade-up">
+                                <img src="Copia di DSC_2930.jpg" alt="Sistema Giunzione 3" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1597072689227-8882273e8f6a?auto=format&fit=crop&q=80&w=1200'">
+                            </div>
                         </div>
                     </article>
 
                     <!-- Progetto 4 -->
-                    <article class="project-card">
-                        <div class="project-image-wrapper">
-                            <img src="Copia di DSC_3095.jpg" alt="Morsetto" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
-                        </div>
-                        <div class="project-info-minimal">
-                            <div>
-                                <h3 class="text-2xl md:text-3xl font-serif text-surface mb-2">Lampada a Morsetto</h3>
-                                <p class="text-xs text-surface/50 uppercase tracking-widest">Termoplastici, Alluminio</p>
-                            </div>
-                            <p class="text-sm text-surface/80 max-w-sm hidden md:block font-light">
-                                Corpo minimale con aggancio a testiere o mensole. Diffusore semi-sferico orientabile per direzionare il fascio luminoso.
+                    <article class="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-x-16 xl:gap-x-24">
+                        <div class="lg:col-span-4 xl:col-span-3 lg:sticky lg:top-40 self-start z-10 fade-up">
+                            <h3 class="text-2xl md:text-3xl font-serif mb-6 text-dark">Lampada a Morsetto</h3>
+                            <p class="text-dark/70 leading-relaxed text-sm font-light">
+                                Corpo illuminante minimale progettato per l'aggancio a testiere del letto o mensole. La lampada utilizza un sistema a morsetto con vite di serraggio a vista per un fissaggio sicuro e versatile. Il diffusore semi-sferico orientabile permette di direzionare il fascio luminoso con grande precisione.
                             </p>
+                            <div class="mt-10 pt-6 hairline-t">
+                                <p class="text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Materiali</p>
+                                <p class="text-sm text-dark font-medium">Acciaio Inox, Alluminio, Termoplastici</p>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-8 xl:col-start-5 flex flex-col gap-6 md:gap-16">
+                            <div class="img-wrapper w-full fade-up">
+                                <img src="Copia di DSC_3095.jpg" alt="Lampada Morsetto 1" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
+                            </div>
+                            <div class="img-wrapper w-full fade-up">
+                                <img src="Copia di DSC_3113.jpg" alt="Lampada Morsetto 2" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1534346850257-2309852b7e0e?auto=format&fit=crop&q=80&w=1200'">
+                            </div>
                         </div>
                     </article>
 
-                     <!-- Progetto 5 -->
-                     <article class="project-card">
-                        <div class="project-image-wrapper">
-                            <img src="Copia di DSC_3217.jpg" alt="Orologio" onerror="this.src='https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&q=80&w=1200'">
-                        </div>
-                        <div class="project-info-minimal">
-                            <div>
-                                <h3 class="text-2xl md:text-3xl font-serif text-surface mb-2">Orologio Digitale</h3>
-                                <p class="text-xs text-surface/50 uppercase tracking-widest">Acciaio Inox, Pelle</p>
-                            </div>
-                            <p class="text-sm text-surface/80 max-w-sm hidden md:block font-light">
-                                Micro-meccanica. Cassa in lamiera piegata. Estetica cruda accentuata dalla viteria a vista e pulsanti cilindrici.
+                    <!-- Progetto 5 -->
+                    <article class="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-x-16 xl:gap-x-24">
+                        <div class="lg:col-span-4 xl:col-span-3 lg:sticky lg:top-40 self-start z-10 fade-up">
+                            <h3 class="text-2xl md:text-3xl font-serif mb-6 text-dark">Orologio Digitale</h3>
+                            <p class="text-dark/70 leading-relaxed text-sm font-light">
+                                Progetto di micro-meccanica e design del prodotto. La cassa dell'orologio è stata interamente progettata e realizzata in lamiera di acciaio inox piegata per ospitare un modulo elettronico digitale. L'estetica cruda e marcatamente industriale è accentuata dalla viteria a vista e dai pulsanti cilindrici sporgenti.
                             </p>
+                            <div class="mt-10 pt-6 hairline-t">
+                                <p class="text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Materiali</p>
+                                <p class="text-sm text-dark font-medium">Acciaio Inox, Vera Pelle</p>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-8 xl:col-start-5 flex flex-col gap-6 md:gap-16">
+                            <div class="img-wrapper w-full fade-up">
+                                <img src="Copia di DSC_3217.jpg" alt="Orologio Custom 1" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&q=80&w=1200'">
+                            </div>
+                            <div class="img-wrapper w-full fade-up">
+                                <img src="Copia di DSC_3228.jpg" alt="Orologio Custom 2" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&q=80&w=1200'">
+                            </div>
                         </div>
                     </article>
-                    
-                    <!-- Spazio finale vuoto per far scorrere l'ultima card -->
-                    <div style="flex: 0 0 10vw;"></div>
 
                 </div>
             </div>
         </section>
 
         <!-- SEZIONE TESTO SCORREVOLE -->
-        <div class="marquee">
+        <div class="marquee hairline-t hairline-b">
             <div class="marquee-content">
                 &nbsp; MODELLAZIONE 3D &mdash; PROTOTIPAZIONE &mdash; ILLUMINOTECNICA &mdash; CONCEPT DESIGN &mdash; MODELLAZIONE 3D &mdash; PROTOTIPAZIONE &mdash; ILLUMINOTECNICA &mdash; CONCEPT DESIGN &mdash;
             </div>
         </div>
 
-        <!-- SEZIONE RENDER: Griglia Asimmetrica -->
-        <section id="render" class="py-24">
-            <div class="px-[5vw] mb-12">
-                <h2 class="font-serif text-5xl md:text-7xl text-dark mb-4">Rendering</h2>
-                <p class="text-sm text-muted font-light max-w-lg">
-                    Esplorazioni formali, studi di illuminazione e pre-visualizzazione realistica di concept e progetti futuri.
-                </p>
-            </div>
-
-            <div class="masonry-grid">
-                
-                <div class="grid-item item-large">
-                    <img src="r3.jpg" alt="Render Ambientato" onerror="this.src='https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=1200'">
-                    <div class="absolute bottom-4 left-4 bg-surface/90 px-3 py-1 text-[10px] uppercase tracking-widest backdrop-blur-sm">Lampada da tavolo</div>
+        <!-- SEZIONE RENDER -->
+        <section id="render" class="px-6 md:px-16 py-24 md:py-40">
+            <div class="max-w-[100rem] mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-16 md:mb-24 items-end">
+                    <div class="md:col-span-8 fade-up">
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-muted mb-4 font-medium">02 &mdash; Visualizzazione</p>
+                        <h2 class="font-serif text-5xl md:text-7xl lg:text-8xl text-dark">Modellazione 3D <br>& Rendering</h2>
+                    </div>
+                    <div class="md:col-span-4 lg:col-start-9 md:pb-3 fade-up">
+                        <p class="text-sm text-dark/70 font-light leading-relaxed">
+                            Esplorazioni formali, studi di illuminazione e pre-visualizzazione realistica di concept e progetti futuri.
+                        </p>
+                    </div>
                 </div>
 
-                <div class="grid-item item-tall">
-                    <img src="r1.jpg" alt="Sospensione" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute bottom-4 left-4 bg-surface/90 px-3 py-1 text-[10px] uppercase tracking-widest backdrop-blur-sm">Sospensione</div>
-                </div>
+                <!-- Griglia Masonry Verticale -->
+                <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+                    
+                    <div class="break-inside-avoid">
+                        <div class="img-wrapper fade-up">
+                            <img src="r1.jpg" alt="Concept Ninfea" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600'">
+                        </div>
+                        <div class="py-3 hairline-b"><p class="text-[9px] tracking-[0.2em] uppercase text-dark font-medium">Lampada a sospensione</p></div>
+                    </div>
 
-                <div class="grid-item item-small">
-                    <img src="r2.jpg" alt="Morsetto" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute bottom-4 left-4 bg-surface/90 px-3 py-1 text-[10px] uppercase tracking-widest backdrop-blur-sm">Morsetto</div>
-                </div>
+                    <div class="break-inside-avoid">
+                        <div class="img-wrapper fade-up">
+                            <img src="r2.jpg" alt="Concept Lampada Tavolo" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=600'">
+                        </div>
+                        <div class="py-3 hairline-b"><p class="text-[9px] tracking-[0.2em] uppercase text-dark font-medium">Lampada a morsetto</p></div>
+                    </div>
 
-                <div class="grid-item item-small">
-                    <img src="r4.jpg" alt="Tavolo 2" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute bottom-4 left-4 bg-surface/90 px-3 py-1 text-[10px] uppercase tracking-widest backdrop-blur-sm">Variante Tavolo</div>
-                </div>
+                    <div class="break-inside-avoid">
+                        <div class="img-wrapper fade-up">
+                            <img src="r3.jpg" alt="Render Ambientato Camera" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=600'">
+                        </div>
+                        <div class="py-3 hairline-b"><p class="text-[9px] tracking-[0.2em] uppercase text-dark font-medium">Lampada da tavolo</p></div>
+                    </div>
 
-                <div class="grid-item item-large">
-                    <img src="r5.jpg" alt="Ambientato Living" onerror="this.src='https://images.unsplash.com/photo-1597072689227-8882273e8f6a?auto=format&fit=crop&q=80&w=1200'">
-                    <div class="absolute bottom-4 left-4 bg-surface/90 px-3 py-1 text-[10px] uppercase tracking-widest backdrop-blur-sm">Studio Living</div>
-                </div>
-                
-                 <!-- Aggiungo alcuni degli altri render per popolare la griglia -->
-                 <div class="grid-item item-small">
-                    <img src="r6.jpg" alt="Binario" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
-                </div>
-                <div class="grid-item item-small">
-                    <img src="r8.jpg" alt="Tavolino" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
-                </div>
+                    <div class="break-inside-avoid">
+                        <div class="img-wrapper fade-up">
+                            <img src="r4.jpg" alt="Concept Sospensione" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=600'">
+                        </div>
+                        <div class="py-3 hairline-b"><p class="text-[9px] tracking-[0.2em] uppercase text-dark font-medium">Lampada da tavolo/2</p></div>
+                    </div>
 
+                    <div class="break-inside-avoid">
+                        <div class="img-wrapper fade-up">
+                            <img src="r5.jpg" alt="Render Ambientato Living" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1597072689227-8882273e8f6a?auto=format&fit=crop&q=80&w=600'">
+                        </div>
+                        <div class="py-3 hairline-b"><p class="text-[9px] tracking-[0.2em] uppercase text-dark font-medium">Lampada da tavolo/3</p></div>
+                    </div>
+
+                    <div class="break-inside-avoid">
+                        <div class="img-wrapper fade-up">
+                            <img src="r6.jpg" alt="Lampada a scorrimento" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
+                        </div>
+                        <div class="py-3 hairline-b"><p class="text-[9px] tracking-[0.2em] uppercase text-dark font-medium">Sistema a Binari</p></div>
+                    </div>
+                    
+                    <div class="break-inside-avoid">
+                        <div class="img-wrapper fade-up">
+                            <img src="r7.jpg" alt="Lampada da terra" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
+                        </div>
+                        <div class="py-3 hairline-b"><p class="text-[9px] tracking-[0.2em] uppercase text-dark font-medium">Lampada da terra</p></div>
+                    </div>
+
+                    <div class="break-inside-avoid">
+                        <div class="img-wrapper fade-up">
+                            <img src="r8.jpg" alt="Tavolino da caffè" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
+                        </div>
+                        <div class="py-3 hairline-b"><p class="text-[9px] tracking-[0.2em] uppercase text-dark font-medium">Tavolino da caffè & Sospensione</p></div>
+                    </div>
+
+                    <div class="break-inside-avoid">
+                        <div class="img-wrapper fade-up">
+                            <img src="r9.jpg" alt="Lampada da tavolo" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
+                        </div>
+                        <div class="py-3 hairline-b"><p class="text-[9px] tracking-[0.2em] uppercase text-dark font-medium">Lampada da tavolo</p></div>
+                    </div>
+
+                    <div class="break-inside-avoid">
+                        <div class="img-wrapper fade-up">
+                            <img src="r10.jpg" alt="Lampada a sospensione" class="mix-blend-multiply" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
+                        </div>
+                        <div class="py-3 hairline-b"><p class="text-[9px] tracking-[0.2em] uppercase text-dark font-medium">Lampada a sospensione</p></div>
+                    </div>
+
+                </div>
             </div>
         </section>
 
-        <!-- SEZIONE PROFILO (Stile Tipografico) -->
-        <section id="profilo" class="py-24 px-[5vw] border-t border-dark/10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8">
+        <!-- SEZIONE PROFILO (Sfondo scuro) -->
+        <section id="profilo" class="bg-dark text-white px-6 md:px-16 py-24 md:py-40 selection:bg-white selection:text-black">
+            <div class="max-w-[100rem] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
                 
-                <div>
-                    <h2 class="font-serif text-5xl md:text-7xl text-dark mb-12">Bio.</h2>
-                    <div class="text-base leading-relaxed text-dark/80 font-light max-w-md space-y-6">
+                <div class="lg:col-span-5 flex flex-col fade-up">
+                    <p class="text-[10px] uppercase tracking-[0.2em] text-white/50 mb-6 font-medium">03 &mdash; Profilo & Contatti</p>
+                    <h2 class="font-serif text-6xl md:text-8xl mb-8">Bio.</h2>
+                    
+                    <div class="text-white/70 text-sm md:text-base leading-relaxed font-light max-w-lg space-y-6">
                         <p>Nato a Schio (Vicenza), ho iniziato la mia attività come grafico e illustratore, appassionandomi in seguito all'architettura e al design industriale.</p>
                         <p>Specializzato nel settore dell'illuminazione, curo l'intero iter progettuale. Sviluppo progetti dall'idea iniziale fino al prodotto finito attraverso lo studio tecnico e la prototipazione, mantenendo un rigoroso equilibrio tra visione estetica e fattibilità produttiva.</p>
                     </div>
                     
                     <div class="mt-16">
-                        <p class="text-xs uppercase tracking-[0.2em] text-muted mb-2">Let's talk</p>
-                        <a href="mailto:albeb3b@gmail.com" class="font-serif text-3xl md:text-4xl text-dark hover:text-accent transition-colors border-b-2 border-dark hover:border-accent inline-block pb-1">albeb3b@gmail.com</a>
+                        <p class="text-[9px] uppercase tracking-[0.2em] text-white/50 mb-3">Let's talk</p>
+                        <a href="mailto:albeb3b@gmail.com" class="font-serif text-3xl md:text-5xl hover:opacity-70 transition-opacity border-b border-white pb-2 inline-block">albeb3b@gmail.com</a>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-8 pt-4">
+                <div class="lg:col-span-5 lg:col-start-8 grid grid-cols-1 sm:grid-cols-2 gap-12 sm:gap-8 lg:pt-16 fade-up">
                     <div>
-                        <h4 class="text-xs uppercase tracking-[0.2em] text-dark font-semibold mb-6 border-b border-dark/10 pb-4">Progettazione</h4>
-                        <ul class="text-dark/70 space-y-3 text-sm font-light">
+                        <h4 class="text-[10px] uppercase tracking-[0.2em] text-white/50 mb-6 border-b border-white/10 pb-4">Progettazione</h4>
+                        <ul class="text-white/80 space-y-3 text-sm font-light">
                             <li>Ideazione & Concept</li>
                             <li>Modellazione 3D CAD</li>
-                            <li>Rendering</li>
+                            <li>Rendering fotorealistico</li>
                             <li>Prototipazione</li>
                             <li>Calcolo illuminotecnico</li>
+                            <li>Fotografia di prodotto</li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="text-xs uppercase tracking-[0.2em] text-dark font-semibold mb-6 border-b border-dark/10 pb-4">Software</h4>
-                        <ul class="text-dark/70 space-y-3 text-sm font-light">
+                        <h4 class="text-[10px] uppercase tracking-[0.2em] text-white/50 mb-6 border-b border-white/10 pb-4">Software</h4>
+                        <ul class="text-white/80 space-y-3 text-sm font-light">
                             <li>Autodesk Inventor</li>
-                            <li>AutoCAD / 3DS Max</li>
-                            <li>Photoshop / Illustrator</li>
+                            <li>Autodesk AutoCAD</li>
+                            <li>Autodesk 3DS Max</li>
+                            <li>Adobe Photoshop</li>
+                            <li>Adobe Illustrator</li>
                             <li>DiaLux</li>
                         </ul>
                     </div>
                     
-                    <div class="col-span-2 mt-12 bg-dark p-8 text-surface">
-                         <p class="font-serif text-3xl mb-4">"Less, but better."</p>
-                         <p class="text-xs uppercase tracking-[0.2em] text-surface/50">— Dieter Rams</p>
-                    </div>
+                    <blockquote class="col-span-1 sm:col-span-2 mt-8 md:mt-12">
+                        <p class="font-serif text-3xl md:text-4xl text-white/70 mb-4 tracking-wide">"Less, but better."</p>
+                        <footer class="text-[9px] uppercase tracking-[0.3em] text-white/40 font-medium">&mdash; Dieter Rams</footer>
+                    </blockquote>
                 </div>
+
             </div>
         </section>
 
-        <footer class="py-8 text-center border-t border-dark/10">
-             <p class="text-[10px] uppercase tracking-[0.3em] text-muted">&copy; <span id="year"></span> ALBERTO COSTA.</p>
+        <!-- Footer -->
+        <footer class="bg-dark text-white/40 text-[9px] uppercase tracking-[0.3em] py-10 text-center font-medium border-t border-white/10">
+            <p>&copy; <span id="year"></span> ALBERTO COSTA.</p>
         </footer>
     </div>
 
-    <script>
-        // 1. Lenis Smooth Scroll
-        const lenis = new Lenis({ duration: 1.2, smooth: true })
-        lenis.on('scroll', ScrollTrigger.update)
-        gsap.ticker.add((time)=>{ lenis.raf(time * 1000) })
-        gsap.ticker.lagSmoothing(0)
+    <!-- LIGHTBOX / FULLSCREEN VIEWER -->
+    <div id="lightbox" class="fixed inset-0 z-[99999] bg-[#111111]/95 backdrop-blur-md invisible opacity-0 flex items-center justify-center">
+        <!-- Tasto "Chiudi" ottimizzato -->
+        <button id="lightbox-close" class="absolute top-6 right-6 md:top-10 md:right-10 text-[10px] md:text-xs uppercase tracking-[0.2em] text-white hover:text-white/60 transition-colors p-3 md:p-4 z-10 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm cursor-pointer">Chiudi ✕</button>
+        <div class="w-full h-full p-6 md:p-20 flex items-center justify-center">
+            <img id="lightbox-img" src="" alt="Fullscreen View" class="max-w-full max-h-full object-contain scale-95 opacity-0 drop-shadow-2xl">
+        </div>
+    </div>
 
+    <script>
+        // 1. Inizializzazione Lenis (Smooth Scroll)
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smooth: true,
+        });
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => { lenis.raf(time * 1000) });
+        gsap.ticker.lagSmoothing(0);
+
+        // 2. Logica Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const imageWrappers = document.querySelectorAll('.img-wrapper');
+
+        imageWrappers.forEach(wrapper => {
+            const img = wrapper.querySelector('img');
+            wrapper.addEventListener('click', () => {
+                lightboxImg.src = img.src; 
+                lenis.stop(); // Blocca lo scroll del sito in background
+                
+                // Anima apertura
+                gsap.to(lightbox, { autoAlpha: 1, duration: 0.3, ease: "power2.out" });
+                gsap.to(lightboxImg, { scale: 1, opacity: 1, duration: 0.5, ease: "power3.out", delay: 0.1 });
+            });
+        });
+
+        const closeLightbox = () => {
+            gsap.to(lightbox, { autoAlpha: 0, duration: 0.3, ease: "power2.in" });
+            gsap.to(lightboxImg, { scale: 0.95, opacity: 0, duration: 0.2 });
+            lenis.start(); // Sblocca lo scroll
+        };
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if(e.target === lightbox || e.target.parentElement === lightbox) closeLightbox();
+        });
+
+        // 3. Animazioni GSAP Base
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            // 2. Animazione Scroll Orizzontale per la sezione Progetti
-            // Funziona solo su schermi larghi, su mobile lasciamo lo scroll nativo se preferibile, 
-            // ma l'effetto orizzontale agganciato allo scroll verticale è molto d'impatto.
-            let scrollTween;
-            const container = document.querySelector(".horizontal-scroll-container");
-            const wrapper = document.querySelector(".horizontal-scroll-wrapper");
-            
-            // Calcolo dinamicamente di quanto deve scorrere a sinistra
-            function getScrollAmount() {
-                let containerWidth = container.scrollWidth;
-                return -(containerWidth - window.innerWidth + (window.innerWidth * 0.1)); 
-            }
+            // Animazione di caricamento Hero
+            gsap.fromTo('.fade-in', 
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: 'power3.out', delay: 0.2 }
+            );
 
-            const tween = gsap.to(container, {
-                x: getScrollAmount,
-                ease: "none"
+            // Scroll indicator animato
+            gsap.to('.scroll-line', {
+                x: '100%', duration: 1.5, ease: 'power2.inOut', repeat: -1, 
+                onRepeat: () => gsap.set('.scroll-line', {x: '-100%'})
             });
 
-            ScrollTrigger.create({
-                trigger: wrapper,
-                start: "top top",
-                end: () => `+=${getScrollAmount() * -1}`, // La durata dello scroll è pari alla larghezza
-                pin: true,
-                animation: tween,
-                scrub: 1, // Lega l'animazione allo scroll in modo fluido
-                invalidateOnRefresh: true
+            // Animazioni Fade-Up per testi e immagini durante lo scroll
+            gsap.utils.toArray('.fade-up').forEach(element => {
+                gsap.fromTo(element, 
+                    { y: 50, opacity: 0 },
+                    { 
+                        y: 0, opacity: 1, duration: 1, ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: element,
+                            start: "top 85%", // Inizia l'animazione quando l'elemento entra nell'85% dello schermo
+                        }
+                    }
+                );
             });
-            
-            // Link scroll fluido
+
+            // Navigazione Lenis (Click sui link fluidi)
             const links = document.querySelectorAll('a[href^="#"]');
             links.forEach(link => {
                 link.addEventListener('click', function(e) {
