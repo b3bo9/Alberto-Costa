@@ -152,34 +152,35 @@
     <main id="home" class="flex-grow">
         
        <!-- HERO SECTION -->
-        <section class="min-h-[100svh] flex items-center max-w-[100rem] mx-auto px-5 md:px-12 pt-24 md:pt-20 relative">
-            <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-end pb-20 md:pb-0">
-                <div class="md:col-span-12 lg:col-span-8">
-                    <div class="reveal-mask mb-6 md:mb-10">
-                        <p class="hero-text text-[10px] md:text-xs uppercase tracking-[0.3em] text-muted font-medium">Manifesto</p>
-                    </div>
-                    <h1 class="text-[14vw] leading-[0.95] md:text-8xl lg:text-[8.5rem] font-light tracking-tighter text-dark md:leading-[0.9] ml-[-2px] md:ml-[-8px]">
-                        <div class="reveal-mask"><span class="hero-title block">Progettare</span></div>
-                        <div class="reveal-mask"><span class="hero-title block">l'essenziale<span class="text-accent">.</span></span></div>
-                    </h1>
-                </div>
-                <div class="md:col-span-8 lg:col-span-4 lg:pb-4">
-                    <div class="reveal-mask">
-                        <p class="hero-subtitle text-sm text-dark/70 font-light leading-relaxed max-w-sm">
-                            Esploro l'intersezione tra meccanica e minimalismo. Progetto apparecchi per l'illuminazione e oggetti d'uso quotidiano dove ogni dettaglio tecnico diventa manifesto estetico.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="absolute bottom-12 left-6 md:left-12 flex items-center gap-4 reveal-mask">
-                <span class="hero-text text-[9px] uppercase tracking-[0.2em] text-muted">Scroll</span>
-                <div class="w-12 h-[1px] bg-dark/20 relative overflow-hidden">
-                    <div class="absolute top-0 left-0 w-full h-full bg-dark scroll-line"></div>
-                </div>
-            </div>
-        </section>
-
+       <section class="min-h-[100svh] flex items-center max-w-[100rem] mx-auto px-5 md:px-12 pt-24 md:pt-20 relative">
+           <!-- Modifica: aggiunto -mt-16 md:-mt-24 per spingere il blocco più in alto e ridurre il vuoto -->
+           <div class="w-full grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-end pb-20 md:pb-0 -mt-16 md:-mt-24">
+               <div class="md:col-span-12 lg:col-span-8">
+                   <div class="reveal-mask mb-6 md:mb-10">
+                       <p class="hero-text text-[10px] md:text-xs uppercase tracking-[0.3em] text-muted font-medium">Manifesto</p>
+                   </div>
+                   <h1 class="text-[14vw] leading-[0.95] md:text-8xl lg:text-[8.5rem] font-light tracking-tighter text-dark md:leading-[0.9] ml-[-2px] md:ml-[-8px]">
+                       <!-- Modifica: aggiunto pb-6 e -mb-6 alle reveal-mask per non tagliare la "g" di Progettare -->
+                       <div class="reveal-mask pb-6 -mb-6"><span class="hero-title block">Progettare</span></div>
+                       <div class="reveal-mask pb-6 -mb-6"><span class="hero-title block">l'essenziale<span class="text-accent">.</span></span></div>
+                   </h1>
+               </div>
+               <div class="md:col-span-8 lg:col-span-4 lg:pb-4">
+                   <div class="reveal-mask">
+                       <p class="hero-subtitle text-sm text-dark/70 font-light leading-relaxed max-w-sm">
+                           Esploro l'intersezione tra meccanica e minimalismo. Progetto apparecchi per l'illuminazione e oggetti d'uso quotidiano dove ogni dettaglio tecnico diventa manifesto estetico.
+                       </p>
+                   </div>
+               </div>
+           </div>
+           
+           <div class="absolute bottom-12 left-6 md:left-12 flex items-center gap-4 reveal-mask">
+               <span class="hero-text text-[9px] uppercase tracking-[0.2em] text-muted">Scroll</span>
+               <div class="w-12 h-[1px] bg-dark/20 relative overflow-hidden">
+                   <div class="absolute top-0 left-0 w-full h-full bg-dark scroll-line"></div>
+               </div>
+           </div>
+       </section>
         <!-- SEZIONE PROGETTI -->
         <section id="progetti" class="max-w-[100rem] mx-auto px-5 md:px-12 py-16 md:py-40">
             
@@ -423,7 +424,7 @@
                 <div class="lg:col-span-6 flex flex-col">
                     <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-6 font-medium fade-up-profile">03 &mdash; Profilo & Contatti</p>
                     <h3 class="text-[13vw] leading-[1.1] md:text-6xl lg:text-7xl font-light mb-4 md:mb-6 tracking-tighter fade-up-profile ml-[-2px]">Alberto Costa</h3>
-                    <h4 class="text-zinc-500 text-sm md:text-base font-medium uppercase tracking-[0.1em] mb-12 fade-up-profile">Industrial Designer</h4>
+                    <h4 class="text-zinc-500 text-sm md:text-base font-medium uppercase tracking-[0.1em] mb-12 fade-up-profile">Industrial Designer e Grafico</h4>
                     
                     <div class="text-zinc-300 text-sm md:text-base leading-loose font-light max-w-lg space-y-6 fade-up-profile">
                         <p>Nato a Schio (Vicenza), ho iniziato la mia attività come grafico e illustratore, appassionandomi in seguito all'architettura e al design industriale.</p>
