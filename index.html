@@ -374,8 +374,8 @@
         <p>&copy; <span id="year"></span> ALBERTO COSTA. ALL RIGHTS RESERVED.</p>
     </footer>
 
-    <!-- LIGHTBOX / FULLSCREEN VIEWER -->
-    <div id="lightbox" class="fixed inset-0 z-[99999] bg-dark/95 backdrop-blur-md opacity-0 pointer-events-none flex items-center justify-center transition-opacity duration-300">
+   <!-- LIGHTBOX / FULLSCREEN VIEWER -->
+    <div id="lightbox" class="fixed inset-0 z-[99999] bg-dark/95 backdrop-blur-md invisible opacity-0 flex items-center justify-center">
         <button id="lightbox-close" class="absolute top-8 right-8 md:top-12 md:right-12 text-[10px] uppercase tracking-[0.2em] text-white hover:text-muted transition-colors magnetic-target p-4 z-10">Chiudi ✕</button>
         <div class="w-full h-full p-12 md:p-24 flex items-center justify-center">
             <img id="lightbox-img" src="" alt="Fullscreen View" class="max-w-full max-h-full object-contain scale-95 opacity-0 shadow-2xl">
@@ -446,6 +446,12 @@
                 lightboxImg.src = img.src; // Copia la sorgente
                 lenis.stop(); // Blocca lo scroll del sito dietro
                 
+                // Forza il cursore in modalità bianca per lo sfondo scuro
+                if(cursor) {
+                    cursor.classList.remove('view-mode'); // Rimuove l'anello di vetro
+                    cursor.classList.add('light-mode');   // Applica il cursore bianco
+                }
+                
                 // Anima il contenitore e poi l'immagine all'interno
                 gsap.to(lightbox, { autoAlpha: 1, duration: 0.4, ease: "power2.out" });
                 gsap.to(lightboxImg, { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out", delay: 0.1 });
@@ -456,6 +462,11 @@
             gsap.to(lightbox, { autoAlpha: 0, duration: 0.4, ease: "power2.in" });
             gsap.to(lightboxImg, { scale: 0.95, opacity: 0, duration: 0.3 });
             lenis.start(); // Sblocca lo scroll
+            
+            // Ripristina il cursore nero alla chiusura
+            if(cursor) {
+                cursor.classList.remove('light-mode');
+            }
         };
 
         lightboxClose.addEventListener('click', closeLightbox);
