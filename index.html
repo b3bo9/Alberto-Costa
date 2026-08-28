@@ -105,8 +105,12 @@
             #custom-cursor { display: none; }
         }
 
-        /* Layout & Utilities GSAP */
+       /* Layout & Utilities GSAP */
         .reveal-mask { overflow: hidden; display: block; }
+
+        /* Nascondi scrollbar per il menu orizzontale su smartphone */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .img-container { overflow: hidden; background-color: #e5e5e4; cursor: none; }
         .img-container img {
             width: 100%; height: 100%; object-fit: cover;
@@ -154,19 +158,22 @@
     <div id="custom-cursor"></div>
 
    <!-- Header -->
-    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-700 glass-header border-b border-transparent" id="main-header">
-        <div class="max-w-[100rem] mx-auto px-5 md:px-12 h-16 md:h-24 flex justify-between items-center">
-            <a href="#home" class="magnetic-target text-base font-medium tracking-tight text-dark flex items-center gap-3 group">
+   <header class="fixed top-0 left-0 w-full z-50 transition-all duration-700 glass-header border-b border-transparent" id="main-header">
+        <div class="max-w-[100rem] mx-auto px-5 md:px-12 h-16 md:h-24 flex justify-between items-center gap-4">
+            
+            <a href="#home" class="magnetic-target font-medium tracking-tight text-dark flex items-center gap-2 md:gap-3 group shrink-0">
                 <img src="aa2ac9_f9a421c68d3246a4853336b643c7e006~mv2.jpg" alt="Logo" class="h-4 md:h-5 w-auto block object-contain grayscale opacity-80 group-hover:opacity-100 transition-opacity" onerror="this.outerHTML='<span class=\'font-semibold text-lg\'>AC</span>'">
-                <span class="group-hover:opacity-60 transition-opacity hidden sm:block">Alberto Costa<span class="text-accent">.</span></span>
+                <span class="group-hover:opacity-60 transition-opacity whitespace-nowrap text-sm md:text-base">Alberto Costa<span class="text-accent">.</span></span>
             </a>
-           <nav class="flex space-x-4 md:space-x-8 lg:space-x-12">
-                <a href="#progetti" class="nav-link magnetic-target text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted hover:text-dark transition-colors">Progetti</a>
-                <a href="#render" class="nav-link magnetic-target text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted hover:text-dark transition-colors">Render</a>
-                <a href="#fotografia" class="nav-link magnetic-target text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted hover:text-dark transition-colors">Fotografia</a>
-                <a href="#illustrazioni" class="nav-link magnetic-target text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted hover:text-dark transition-colors">Illustrazioni</a>
-                <a href="#profilo" class="nav-link magnetic-target text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted hover:text-dark transition-colors">Profilo</a>
+            
+            <nav class="flex space-x-5 md:space-x-8 lg:space-x-12 overflow-x-auto no-scrollbar py-2 items-center">
+                <a href="#progetti" class="nav-link magnetic-target text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted hover:text-dark transition-colors shrink-0">Progetti</a>
+                <a href="#render" class="nav-link magnetic-target text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted hover:text-dark transition-colors shrink-0">Render</a>
+                <a href="#fotografia" class="nav-link magnetic-target text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted hover:text-dark transition-colors shrink-0">Fotografia</a>
+                <a href="#illustrazioni" class="nav-link magnetic-target text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted hover:text-dark transition-colors shrink-0">Illustrazioni</a>
+                <a href="#profilo" class="nav-link magnetic-target text-[10px] md:text-xs uppercase tracking-[0.2em] text-muted hover:text-dark transition-colors shrink-0">Profilo</a>
             </nav>
+            
         </div>
     </header>
 
@@ -731,10 +738,41 @@
             // Profilo
             gsap.fromTo('.fade-up-profile', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "power3.out", scrollTrigger: { trigger: ".profile-wrapper", start: "top 80%" } });
 
-            // Navigazione Fluida
-            const links = document.querySelectorAll('nav a.nav-link');
-            links.forEach(link => { link.addEventListener('click', function(e) { e.preventDefault(); lenis.scrollTo(this.getAttribute('href'), { offset: -100, duration: 1.5 }); }); });
+            // Navigazione Fluida (ora include anche il click sul logo)
+            const links = document.querySelectorAll('a[href^="#"]');
+            links.forEach(link => { 
+                link.addEventListener('click', function(e) { 
+                    e.preventDefault(); 
+                    lenis.scrollTo(this.getAttribute('href'), { offset: -100, duration: 1.5 }); 
+                }); 
+            });
 
+            // Logica Swipe/Tasto Indietro su Mobile
+            let isTrapSet = false;
+            
+            lenis.on('scroll', (e) => {
+                const y = window.scrollY;
+                // Se l'utente scorre giù, creiamo una "trappola" per il tasto indietro
+                if (y > 200 && !isTrapSet) {
+                    history.pushState({ trap: true }, "");
+                    isTrapSet = true;
+                } 
+                // Se l'utente torna su manualmente, togliamo la trappola silenziosamente
+                else if (y <= 50 && isTrapSet) {
+                    history.back();
+                    isTrapSet = false;
+                }
+            });
+
+            // Intercettiamo l'evento nativo dello swipe indietro / tasto indietro
+            window.addEventListener('popstate', () => {
+                if (isTrapSet) {
+                    isTrapSet = false; // La trappola è scattata
+                    if (window.scrollY > 50) {
+                        lenis.scrollTo(0, { duration: 1.2 }); // Riporta l'utente all'inizio
+                    }
+                }
+            });
             // Header Bordi Dinamici
             const header = document.getElementById('main-header');
             ScrollTrigger.create({ start: 'top -50', end: 99999, toggleClass: {className: 'hairline-b', targets: header} });
