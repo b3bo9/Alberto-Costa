@@ -123,7 +123,26 @@
         .hairline-b { border-bottom: 1px solid rgba(12, 12, 12, 0.08); }
         .hairline-t { border-top: 1px solid rgba(12, 12, 12, 0.08); }
 
+        /* Scrollbar nascosta su mobile */
         ::-webkit-scrollbar { width: 0px; background: transparent; }
+
+        /* Scrollbar minimale per PC (schermi > 768px) */
+        @media (min-width: 768px) {
+            ::-webkit-scrollbar { 
+                width: 6px; /* Larghezza molto sottile */
+                background: transparent; 
+            }
+            ::-webkit-scrollbar-track { 
+                background: transparent; 
+            }
+            ::-webkit-scrollbar-thumb {
+                background-color: #cccccc; /* Un grigio chiaro non invasivo */
+                border-radius: 10px; /* Bordi arrotondati (effetto pillola) */
+            }
+            ::-webkit-scrollbar-thumb:hover { 
+                background-color: #8a8a8a; /* Diventa più scura al passaggio del mouse (colore muted) */
+            }
+        }
     </style>
 </head>
 <body class="font-sans min-h-screen flex flex-col relative">
@@ -337,7 +356,7 @@
             </div>
 
            <!-- Griglia Masonry -->
-            <div class="columns-1 sm:columns-2 lg:columns-3 gap-8 md:gap-12 space-y-8 md:space-y-12 render-grid">
+            <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-6 space-y-4 md:space-y-6 render-grid">
                 
                 <div class="break-inside-avoid render-item">
                     <div class="img-container image-target">
