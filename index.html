@@ -45,7 +45,7 @@
             color: #0c0c0c;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            cursor: none; /* Nascondiamo il cursore di default per PC */
+            cursor: none;
         }
 
         /* Effetto Grana Fotografica */
@@ -69,12 +69,12 @@
             width: 8px; height: 8px;
             background-color: #0c0c0c;
             border-radius: 50%;
-            pointer-events: none; z-index: 100000; /* Sempre sopra tutto */
+            pointer-events: none; z-index: 100000;
             transform: translate(-50%, -50%);
             transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), height 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, border-color 0.4s ease;
         }
         
-        /* Stato Hover Base (link, bottoni) */
+        /* Stato Hover Base */
         #custom-cursor.hovered {
             width: 48px; height: 48px;
             background-color: transparent;
@@ -82,7 +82,7 @@
             backdrop-filter: blur(2px);
         }
         
-        /* Stato Hover sulle Immagini (Anello di vetro) */
+        /* Stato Hover sulle Immagini */
         #custom-cursor.view-mode {
             width: 64px; height: 64px;
             background-color: transparent;
@@ -105,10 +105,9 @@
             #custom-cursor { display: none; }
         }
 
-       /* Layout & Utilities GSAP */
+        /* Layout & Utilities GSAP */
         .reveal-mask { overflow: hidden; display: block; }
 
-        /* Nascondi scrollbar per il menu orizzontale su smartphone */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .img-container { overflow: hidden; background-color: #e5e5e4; cursor: none; }
@@ -127,24 +126,22 @@
         .hairline-b { border-bottom: 1px solid rgba(12, 12, 12, 0.08); }
         .hairline-t { border-top: 1px solid rgba(12, 12, 12, 0.08); }
 
-        /* Scrollbar nascosta su mobile */
         ::-webkit-scrollbar { width: 0px; background: transparent; }
 
-        /* Scrollbar minimale per PC (schermi > 768px) */
         @media (min-width: 768px) {
             ::-webkit-scrollbar { 
-                width: 6px; /* Larghezza molto sottile */
+                width: 6px; 
                 background: transparent; 
             }
             ::-webkit-scrollbar-track { 
                 background: transparent; 
             }
-            ::-webkit-scrollbar-thumb {
-                background-color: #cccccc; /* Un grigio chiaro non invasivo */
-                border-radius: 10px; /* Bordi arrotondati (effetto pillola) */
+            ::-webkit-scrollbar-thumb { 
+                background-color: #cccccc; 
+                border-radius: 10px; 
             }
             ::-webkit-scrollbar-thumb:hover { 
-                background-color: #8a8a8a; /* Diventa più scura al passaggio del mouse (colore muted) */
+                background-color: #8a8a8a; 
             }
         }
     </style>
@@ -154,11 +151,11 @@
     <!-- Texture Grana -->
     <div class="bg-noise"></div>
     
-    <!-- Cursore Custom (Senza testo) -->
+    <!-- Cursore Custom -->
     <div id="custom-cursor"></div>
 
-   <!-- Header -->
-  <header class="fixed top-0 left-0 w-full z-50 transition-all duration-700 glass-header border-b border-transparent" id="main-header">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full z-50 transition-all duration-700 glass-header border-b border-transparent" id="main-header">
         <div class="max-w-[100rem] mx-auto pl-5 pr-0 md:px-12 h-16 md:h-24 flex justify-between items-center gap-4">
             
             <a href="#home" class="magnetic-target font-medium tracking-tight text-dark flex items-center gap-2 md:gap-3 group shrink-0">
@@ -179,7 +176,7 @@
 
     <main id="home" class="flex-grow">
         
-      <!-- HERO SECTION -->
+        <!-- HERO SECTION -->
         <section class="min-h-[100svh] flex flex-col justify-center max-w-[100rem] mx-auto px-5 md:px-12 pt-28 md:pt-20 relative">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-16 items-center w-full z-10 mt-10 md:mt-0">
                 
@@ -204,21 +201,16 @@
                     </div>
                 </div>
 
-                <!-- Immagine Hero & Badge (Destra) -->
+                <!-- Immagine Hero (Destra) -->
                 <div class="lg:col-span-5 relative mt-12 lg:mt-0 hero-image-wrapper">
-                   
-
-                    <!-- Immagine Principale -->
                     <div class="img-container image-target aspect-[3/4] md:aspect-[4/5] w-full relative overflow-hidden">
-                        <!-- Usa una tua immagine qui, ho messo r1.jpg come default -->
                         <img src="r1.jpg" alt="Design Concept" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
                 
             </div>
-
-       
         </section>
+
         <!-- SEZIONE PROGETTI -->
         <section id="progetti" class="max-w-[100rem] mx-auto px-5 md:px-12 py-16 md:py-40">
             
@@ -243,15 +235,15 @@
                             <p class="text-sm text-dark font-medium">Alluminio, Acciaio Inox</p>
                         </div>
                     </div>
-                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-8 md:gap-20">
+                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-4 md:gap-8">
                         <div class="img-container image-target w-full">
-                            <img src="Copia di DSC_2836.jpg" alt="Lampada" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_2836.jpg" alt="Lampada" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                         <div class="img-container image-target w-full">
-                            <img src="Copia di DSC_1643.jpg" alt="Lampada" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_1643.jpg" alt="Lampada" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                         <div class="img-container image-target w-full">
-                            <img src="Copia di DSC_1641.jpg" alt="Lampada" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_1641.jpg" alt="Lampada" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
                 </article>
@@ -268,12 +260,12 @@
                             <p class="text-sm text-dark font-medium">Legno Tornito, Acciaio Inox, Tessuto</p>
                         </div>
                     </div>
-                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-8 md:gap-20">
+                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-4 md:gap-8">
                         <div class="img-container image-target w-full">
                             <img src="Copia di DSC_2151.png" alt="Piantana" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                         <div class="img-container image-target w-full">
-                            <img src="Copia di DSC_2176.png" alt="Piantana" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_2176.png" alt="Piantana" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
                 </article>
@@ -290,16 +282,17 @@
                             <p class="text-sm text-dark font-medium">Legno Multistrato, Acciaio Inox</p>
                         </div>
                     </div>
-                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-8 md:gap-20">
+                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-4 md:gap-8">
                         <div class="img-container image-target w-full">
-                            <img src="Copia di DSC_2940.jpg" alt="Tavolino" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_2940.jpg" alt="Tavolino" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                         <div class="img-container image-target w-full">
-                            <img src="Copia di DSC_2933.jpg" alt="Tavolino" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_2933.jpg" alt="Tavolino" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
                 </article>
-<!-- Progetto 4 -->
+
+                <!-- Progetto 4 -->
                 <article class="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-16 lg:gap-x-24 project-row">
                     <div class="md:col-span-4 lg:col-span-3 md:sticky md:top-40 self-start z-10 project-info">
                         <h3 class="text-xl md:text-2xl font-medium mb-6 tracking-tight text-dark">Lampada a sospensione</h3>
@@ -311,16 +304,17 @@
                             <p class="text-sm text-dark font-medium">Acciaio Inox, Alluminio</p>
                         </div>
                     </div>
-                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-8 md:gap-20">
+                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-4 md:gap-8">
                         <div class="img-container image-target w-full">
-                            <img src="DSC_4333.jpg" alt="Lampada Sospesa" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="DSC_4333.jpg" alt="Lampada Sospesa" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                         <div class="img-container image-target w-full">
                             <img src="DSC_4331.jpg" alt="Lampada Sospesa" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1534346850257-2309852b7e0e?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
                 </article>
-<!-- Progetto 5 -->
+
+                <!-- Progetto 5 -->
                 <article class="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-16 lg:gap-x-24 project-row">
                     <div class="md:col-span-4 lg:col-span-3 md:sticky md:top-40 self-start z-10 project-info">
                         <h3 class="text-xl md:text-2xl font-medium mb-6 tracking-tight text-dark">Lampada a morsetto</h3>
@@ -332,15 +326,16 @@
                             <p class="text-sm text-dark font-medium">Acciaio Inox, Alluminio, Termoplastici</p>
                         </div>
                     </div>
-                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-8 md:gap-20">
+                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-4 md:gap-8">
                         <div class="img-container image-target w-full">
-                            <img src="Copia di DSC_3095.jpg" alt="Lampada Morsetto" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_3095.jpg" alt="Lampada Morsetto" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                         <div class="img-container image-target w-full">
                             <img src="Copia di DSC_3113.jpg" alt="Lampada Morsetto" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1534346850257-2309852b7e0e?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
                 </article>
+
                 <!-- Progetto 6 -->
                 <article class="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-16 lg:gap-x-24 project-row">
                     <div class="md:col-span-4 lg:col-span-3 md:sticky md:top-40 self-start z-10 project-info">
@@ -353,12 +348,12 @@
                             <p class="text-sm text-dark font-medium">Acciaio Inox, Vera Pelle</p>
                         </div>
                     </div>
-                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-8 md:gap-20">
+                    <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-4 md:gap-8">
                         <div class="img-container image-target w-full">
-                            <img src="Copia di DSC_3217.jpg" alt="Orologio" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_3217.jpg" alt="Orologio" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                         <div class="img-container image-target w-full">
-                            <img src="Copia di DSC_3228.jpg" alt="Orologio" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_3228.jpg" alt="Orologio" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
                 </article>
@@ -379,66 +374,66 @@
                 </div>
             </div>
 
-           <!-- Griglia Masonry -->
-           <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-6 render-grid">
+            <!-- Griglia Masonry -->
+            <div class="columns-1 sm:columns-2 lg:columns-3 gap-3 md:gap-4 render-grid">
                 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="r1.jpg" alt="Concept Ninfea" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r1.jpg" alt="Concept Ninfea" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="r2.jpg" alt="Concept Lampada Tavolo" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r2.jpg" alt="Concept Lampada Tavolo" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="r3.jpg" alt="Render Ambientato Camera" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r3.jpg" alt="Render Ambientato Camera" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="r4.jpg" alt="Concept Sospensione" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r4.jpg" alt="Concept Sospensione" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="r5.jpg" alt="Render Ambientato Living" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1597072689227-8882273e8f6a?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r5.jpg" alt="Render Ambientato Living" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1597072689227-8882273e8f6a?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="r6.jpg" alt="Lampada a scorrimento" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r6.jpg" alt="Lampada a scorrimento" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
                 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="r7.jpg" alt="Lampada da terra" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r7.jpg" alt="Lampada da terra" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="r8.jpg" alt="Tavolino da caffè" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r8.jpg" alt="Tavolino da caffè" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="r9.jpg" alt="Lampada da tavolo" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r9.jpg" alt="Lampada da tavolo" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="r10.jpg" alt="Lampada a sospensione" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r10.jpg" alt="Lampada a sospensione" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
@@ -450,7 +445,7 @@
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-20 md:mb-32 items-end section-title-wrapper">
                 <div class="md:col-span-8">
                     <p class="text-[10px] uppercase tracking-[0.2em] text-muted mb-4 font-medium fade-up">03 &mdash; Osservazione</p>
-                   <h2 class="text-4xl md:text-5xl font-light tracking-tight text-dark leading-tight fade-up">Fotografia </h2>
+                    <h2 class="text-4xl md:text-5xl font-light tracking-tight text-dark leading-tight fade-up">Fotografia</h2>
                 </div>
                 <div class="md:col-span-4 lg:col-start-9 md:pb-2 fade-up">
                     <p class="text-sm text-muted font-light leading-relaxed">
@@ -460,74 +455,76 @@
             </div>
 
             <!-- Griglia Masonry per Foto -->
-           <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-6 render-grid">
+            <div class="columns-1 sm:columns-2 lg:columns-3 gap-3 md:gap-4 render-grid">
                 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="foto_1.jpg" alt="Dettaglio natura" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_1.jpg" alt="Dettaglio natura" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="foto_2.jpg" alt="Dettaglio natura" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_2.jpg" alt="Dettaglio natura" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="foto_3.jpg" alt="Dettaglio natura" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_3.jpg" alt="Dettaglio natura" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="foto_4.jpg" alt="Dettaglio natura" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_4.jpg" alt="Dettaglio natura" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
                 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="foto_5.jpg" alt="Dettaglio natura" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_5.jpg" alt="Dettaglio natura" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
-                 <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="foto_6.jpg" alt="Dettaglio natura" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_6.jpg" alt="Dettaglio natura" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="foto_7.jpg" alt="Dettaglio natura" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_7.jpg" alt="Dettaglio natura" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="foto_8.jpg" alt="Dettaglio natura" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_8.jpg" alt="Dettaglio natura" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
-               <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="foto_9.jpg" alt="Dettaglio natura" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_9.jpg" alt="Dettaglio natura" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
-               <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="foto_10.jpg" alt="Dettaglio natura" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_10.jpg" alt="Dettaglio natura" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
-               <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="foto_11.jpg" alt="Dettaglio natura" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_11.jpg" alt="Dettaglio natura" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- SEZIONE ILLUSTRAZIONI -->
         <section id="illustrazioni" class="max-w-[100rem] mx-auto px-6 md:px-12 py-24 md:py-40 hairline-t">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-20 md:mb-32 items-end section-title-wrapper">
                 <div class="md:col-span-8">
                     <p class="text-[10px] uppercase tracking-[0.2em] text-muted mb-4 font-medium fade-up">04 &mdash; Disegno</p>
-                   <h2 class="text-4xl md:text-5xl font-light tracking-tight text-dark leading-tight fade-up">Illustrazioni</h2>
+                    <h2 class="text-4xl md:text-5xl font-light tracking-tight text-dark leading-tight fade-up">Illustrazioni</h2>
                 </div>
                 <div class="md:col-span-4 lg:col-start-9 md:pb-2 fade-up">
                     <p class="text-sm text-muted font-light leading-relaxed">
@@ -536,56 +533,57 @@
                 </div>
             </div>
 
-           <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-6 render-grid">
+            <div class="columns-1 sm:columns-2 lg:columns-3 gap-3 md:gap-4 render-grid">
                 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="illustrazione_1.jpg" alt="Illustrazione" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=800'">
+                        <img src="illustrazione_1.jpg" alt="Illustrazione" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="illustrazione_2.jpg" alt="Illustrazione" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&q=80&w=800'">
+                        <img src="illustrazione_2.jpg" alt="Illustrazione" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
 
-                <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="illustrazione_3.jpg" alt="Illustrazione" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=800'">
+                        <img src="illustrazione_3.jpg" alt="Illustrazione" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
-                 <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="illustrazione_4.jpg" alt="Illustrazione" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=800'">
+                        <img src="illustrazione_4.jpg" alt="Illustrazione" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
-               <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="illustrazione_5.jpg" alt="Illustrazione" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=800'">
+                        <img src="illustrazione_5.jpg" alt="Illustrazione" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
-               <div class="break-inside-avoid render-item mb-4 md:mb-6">
+                <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target">
-                        <img src="illustrazione_6.jpg" alt="Illustrazione" class="mix-blend-multiply"  onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=800'">
+                        <img src="illustrazione_6.jpg" alt="Illustrazione" class="mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
                 
             </div>
         </section>
 
-       <section id="profilo" class="bg-dark text-white py-16 md:py-48 selection:bg-white selection:text-black mt-16 md:mt-20 relative overflow-hidden">
+        <!-- SEZIONE PROFILO -->
+        <section id="profilo" class="bg-dark text-white py-16 md:py-48 selection:bg-white selection:text-black mt-16 md:mt-20 relative overflow-hidden">
             <div class="max-w-[100rem] mx-auto px-5 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 profile-wrapper relative z-10">
                 
                 <div class="lg:col-span-6 flex flex-col">
-                   <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-6 font-medium fade-up-profile">05 &mdash; Profilo & Contatti</p>
+                    <p class="text-[10px] uppercase tracking-[0.2em] text-zinc-500 mb-6 font-medium fade-up-profile">05 &mdash; Profilo & Contatti</p>
                     <h3 class="text-[13vw] leading-[1.1] md:text-6xl lg:text-7xl font-light mb-4 md:mb-6 tracking-tighter fade-up-profile ml-[-2px]">Alberto Costa</h3>
                     <h4 class="text-zinc-500 text-sm md:text-base font-medium uppercase tracking-[0.1em] mb-12 fade-up-profile">Industrial Designer e Grafico</h4>
                     
-                    <!-- FOTO PROFILO AGGIUNTA -->
+                    <!-- FOTO PROFILO A COLORI -->
                     <div class="fade-up-profile mb-12">
                         <div class="w-48 md:w-56 aspect-[3/4] overflow-hidden bg-zinc-800 rounded-sm">
-                            <img src="profilo.jpg" alt="Alberto Costa" class="w-full h-full object-cover grayscale hover:grayscale-0 scale-105 hover:scale-100 transition-all duration-700" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400'">
+                            <img src="profilo.jpg" alt="Alberto Costa" class="w-full h-full object-cover scale-105 hover:scale-100 transition-all duration-700" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400'">
                         </div>
                     </div>
                     
@@ -644,14 +642,13 @@
 
     </main>
 
-    <!-- Footer (Sfondo Scuro - Inversione Cursore) -->
+    <!-- Footer -->
     <footer class="bg-dark text-zinc-600 text-[9px] uppercase tracking-[0.3em] py-12 text-center font-medium border-t border-zinc-900">
         <p>&copy; <span id="year"></span> ALBERTO COSTA. ALL RIGHTS RESERVED.</p>
     </footer>
 
- <!-- LIGHTBOX / FULLSCREEN VIEWER -->
+    <!-- LIGHTBOX / FULLSCREEN VIEWER -->
     <div id="lightbox" class="fixed inset-0 z-[99999] bg-dark/95 backdrop-blur-md invisible opacity-0 flex items-center justify-center">
-        <!-- Tasto "Chiudi" ottimizzato per il tocco su smartphone -->
         <button id="lightbox-close" class="absolute top-4 right-4 md:top-12 md:right-12 text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-white hover:text-muted transition-colors magnetic-target p-3 md:p-4 z-10 bg-black/40 md:bg-transparent rounded-full md:rounded-none backdrop-blur-sm md:backdrop-blur-none border border-white/10 md:border-transparent">Chiudi ✕</button>
         <div class="w-full h-full p-4 md:p-24 flex items-center justify-center">
             <img id="lightbox-img" src="" alt="Fullscreen View" class="max-w-full max-h-full object-contain scale-95 opacity-0 shadow-2xl">
@@ -671,12 +668,10 @@
         const imageContainers = document.querySelectorAll('.image-target');
         const images = document.querySelectorAll('.image-target img');
         
-        // Elementi Lightbox
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxClose = document.getElementById('lightbox-close');
         
-        // Sezioni Scure (Profilo, Footer, Lightbox) per inversione cursore
         const darkSections = [document.getElementById('profilo'), document.querySelector('footer'), lightbox];
 
         if(window.innerWidth > 768) {
@@ -686,7 +681,6 @@
 
             window.addEventListener("mousemove", e => { xTo(e.clientX); yTo(e.clientY); });
 
-            // Inversione colore su sfondi neri
             darkSections.forEach(section => {
                 if(section) {
                     section.addEventListener('mouseenter', () => cursor.classList.add('light-mode'));
@@ -694,41 +688,37 @@
                 }
             });
 
-            // Hover Magnetico base
             magneticTargets.forEach(target => {
                 target.addEventListener('mousemove', (e) => {
                     const bound = target.getBoundingClientRect();
-                   const x = (e.clientX - bound.left - bound.width/2) * 0.15; // Movimento dimezzato
-                    const y = (e.clientY - bound.top - bound.height/2) * 0.15; // Movimento dimezzato
-                    gsap.to(target, {x: x, y: y, duration: 0.6, ease: "power3.out"}); // Più fluido all'andata
+                    const x = (e.clientX - bound.left - bound.width/2) * 0.15;
+                    const y = (e.clientY - bound.top - bound.height/2) * 0.15;
+                    gsap.to(target, {x: x, y: y, duration: 0.6, ease: "power3.out"});
                     cursor.classList.add('hovered');
                 });
                 target.addEventListener('mouseleave', () => {
-                    gsap.to(target, {x: 0, y: 0, duration: 0.8, ease: "power3.out"}); // Niente rimbalzo, ritorno elegante
+                    gsap.to(target, {x: 0, y: 0, duration: 0.8, ease: "power3.out"});
                     cursor.classList.remove('hovered');
                 });
             });
 
-            // Hover Immagini (Anello di vetro largo)
             imageContainers.forEach(container => {
                 container.addEventListener('mouseenter', () => cursor.classList.add('view-mode'));
                 container.addEventListener('mouseleave', () => cursor.classList.remove('view-mode'));
             });
         }
 
-        // --- Logica LIGHTBOX (Apertura Ingrandimento) ---
+        // Lightbox
         images.forEach(img => {
             img.addEventListener('click', () => {
-                lightboxImg.src = img.src; // Copia la sorgente
-                lenis.stop(); // Blocca lo scroll del sito dietro
+                lightboxImg.src = img.src;
+                lenis.stop();
                 
-                // Forza il cursore in modalità bianca per lo sfondo scuro
                 if(cursor) {
-                    cursor.classList.remove('view-mode'); // Rimuove l'anello di vetro
-                    cursor.classList.add('light-mode');   // Applica il cursore bianco
+                    cursor.classList.remove('view-mode');
+                    cursor.classList.add('light-mode');
                 }
                 
-                // Anima il contenitore e poi l'immagine all'interno
                 gsap.to(lightbox, { autoAlpha: 1, duration: 0.4, ease: "power2.out" });
                 gsap.to(lightboxImg, { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out", delay: 0.1 });
             });
@@ -737,9 +727,8 @@
         const closeLightbox = () => {
             gsap.to(lightbox, { autoAlpha: 0, duration: 0.4, ease: "power2.in" });
             gsap.to(lightboxImg, { scale: 0.95, opacity: 0, duration: 0.3 });
-            lenis.start(); // Sblocca lo scroll
+            lenis.start();
             
-            // Ripristina il cursore nero alla chiusura
             if(cursor) {
                 cursor.classList.remove('light-mode');
             }
@@ -747,47 +736,37 @@
 
         lightboxClose.addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', (e) => {
-            // Se clicco sullo sfondo scuro chiude la lightbox
             if(e.target === lightbox || e.target.parentElement === lightbox) {
                 closeLightbox();
             }
         });
 
-
-        // 3. GSAP Animations Base
+        // 3. GSAP Animations
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('year').textContent = new Date().getFullYear();
 
-            // Intro
             const heroTl = gsap.timeline();
             heroTl.fromTo('.hero-text', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 })
                   .fromTo('.hero-title', { y: 150 }, { y: 0, duration: 1.2, ease: 'power4.out', stagger: 0.1 }, "-=0.7")
                   .fromTo('.hero-subtitle', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, "-=0.8")
                   .fromTo('.hero-image-wrapper', { y: 50, opacity: 0, scale: 0.95 }, { y: 0, opacity: 1, scale: 1, duration: 1.5, ease: 'power3.out' }, "-=1");
 
-
-
-            // Fade Up generali
             gsap.utils.toArray('.section-title-wrapper').forEach(wrapper => {
                 gsap.fromTo(wrapper.querySelectorAll('.fade-up'), { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: 'power3.out', scrollTrigger: { trigger: wrapper, start: "top 85%" } });
             });
 
-            // Elegante Fade-in e leggero de-zoom Immagini
             gsap.utils.toArray('.img-container').forEach(container => {
                 const img = container.querySelector('img');
                 gsap.fromTo(container, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: container, start: "top 85%" } });
                 gsap.fromTo(img, { scale: 1.05 }, { scale: 1, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: container, start: "top 85%" } });
             });
 
-            // Fade Info Progetti
             gsap.utils.toArray('.project-info').forEach(info => {
                 gsap.fromTo(info, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: info, start: "top 80%" } });
             });
 
-            // Profilo
             gsap.fromTo('.fade-up-profile', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "power3.out", scrollTrigger: { trigger: ".profile-wrapper", start: "top 80%" } });
 
-            // Navigazione Fluida (ora include anche il click sul logo)
             const links = document.querySelectorAll('a[href^="#"]');
             links.forEach(link => { 
                 link.addEventListener('click', function(e) { 
@@ -796,33 +775,27 @@
                 }); 
             });
 
-            // Logica Swipe/Tasto Indietro su Mobile
             let isTrapSet = false;
-            
             lenis.on('scroll', (e) => {
                 const y = window.scrollY;
-                // Se l'utente scorre giù, creiamo una "trappola" per il tasto indietro
                 if (y > 200 && !isTrapSet) {
                     history.pushState({ trap: true }, "");
                     isTrapSet = true;
-                } 
-                // Se l'utente torna su manualmente, togliamo la trappola silenziosamente
-                else if (y <= 50 && isTrapSet) {
+                } else if (y <= 50 && isTrapSet) {
                     history.back();
                     isTrapSet = false;
                 }
             });
 
-            // Intercettiamo l'evento nativo dello swipe indietro / tasto indietro
             window.addEventListener('popstate', () => {
                 if (isTrapSet) {
-                    isTrapSet = false; // La trappola è scattata
+                    isTrapSet = false;
                     if (window.scrollY > 50) {
-                        lenis.scrollTo(0, { duration: 1.2 }); // Riporta l'utente all'inizio
+                        lenis.scrollTo(0, { duration: 1.2 });
                     }
                 }
             });
-            // Header Bordi Dinamici
+
             const header = document.getElementById('main-header');
             ScrollTrigger.create({ start: 'top -50', end: 99999, toggleClass: {className: 'hairline-b', targets: header} });
             ScrollTrigger.create({ start: 'top -50', end: 99999, toggleClass: {className: 'border-transparent', targets: header}, onEnter: () => header.classList.remove('border-transparent'), onLeaveBack: () => header.classList.add('border-transparent') });
