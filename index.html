@@ -64,7 +64,7 @@
         .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
         .lenis.lenis-stopped { overflow: hidden; }
 
-        /* Custom Cursor con Testo Dinamico */
+        /* Custom Cursor */
         #custom-cursor {
             position: fixed; top: 0; left: 0;
             width: 8px; height: 8px;
@@ -146,13 +146,13 @@
 </head>
 <body class="font-sans min-h-screen flex flex-col relative">
 
-    <!-- PRELOADER -->
-    <div id="preloader" class="fixed inset-0 z-[999999] bg-dark flex flex-col items-center justify-center text-surface transition-opacity duration-700 select-none">
+    <!-- PRELOADER REALE (Attende il reale caricamento delle immagini) -->
+    <div id="preloader" class="fixed inset-0 z-[999999] bg-dark flex flex-col items-center justify-center text-surface transition-opacity duration-500 select-none">
         <div class="flex flex-col items-center gap-5">
             <span class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-medium">Alberto Costa</span>
-            <div id="preloader-counter" class="text-5xl md:text-6xl font-light tracking-tighter text-white">0%</div>
-            <div class="w-36 h-[1.5px] bg-zinc-800 relative overflow-hidden mt-2">
-                <div id="preloader-bar" class="absolute top-0 left-0 h-full w-0 bg-accent transition-all duration-300"></div>
+            <div id="preloader-counter" class="text-5xl md:text-6xl font-light tracking-tighter text-white font-mono">0%</div>
+            <div class="w-40 h-[2px] bg-zinc-800 relative overflow-hidden mt-2 rounded-full">
+                <div id="preloader-bar" class="absolute top-0 left-0 h-full w-0 bg-accent transition-all duration-200"></div>
             </div>
         </div>
     </div>
@@ -160,7 +160,7 @@
     <!-- Texture Grana -->
     <div class="bg-noise"></div>
     
-    <!-- Cursore Custom con Label -->
+    <!-- Cursore Custom -->
     <div id="custom-cursor">
         <span id="cursor-label" class="opacity-0 transition-opacity duration-300 text-[8px] font-semibold tracking-widest uppercase text-dark pointer-events-none"></span>
     </div>
@@ -187,14 +187,13 @@
 
     <main id="home" class="flex-grow">
         
-        <!-- HERO SECTION: FULL-WIDTH SCREEN COVER -->
-        <section class="w-full pt-28 md:pt-36 pb-12 md:pb-24 relative overflow-hidden">
+        <!-- HERO SECTION: FULL SCREEN SIDE-TO-SIDE (PC & MOBILE) -->
+        <section class="w-full pt-28 md:pt-36 pb-12 md:pb-24 relative">
             
-            <!-- Parte Testuale (Incorniciata con margini eleganti) -->
-            <div class="max-w-[100rem] mx-auto px-5 md:px-12 mb-6 md:mb-10">
+            <!-- Testo Allineato al Layout -->
+            <div class="max-w-[100rem] mx-auto px-5 md:px-12 mb-6 md:mb-12">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-end">
                     
-                    <!-- Titolo (Sinistra) -->
                     <div class="lg:col-span-7">
                         <div class="reveal-mask mb-3 md:mb-4">
                             <span class="hero-text text-[9px] md:text-xs uppercase tracking-[0.3em] text-muted font-medium border-b border-dark/10 pb-2 inline-block">
@@ -207,7 +206,6 @@
                         </h1>
                     </div>
 
-                    <!-- Testo / Filosofia (Destra) -->
                     <div class="lg:col-span-5 reveal-mask pb-1">
                         <div class="hero-subtitle text-sm md:text-[15px] text-dark/75 font-light leading-relaxed space-y-3 border-l border-accent/60 pl-5 md:pl-6">
                             <p>
@@ -222,15 +220,15 @@
                 </div>
             </div>
 
-            <!-- Immagine di Copertina 1920x1080 Trasparente: 100% Larghezza Schermo su PC / Taglio Morbido su Mobile -->
-            <div class="hero-image-wrapper w-full relative overflow-hidden flex justify-center items-center">
-                <div class="img-container image-target w-full flex justify-center items-center bg-transparent">
+            <!-- Immagine Copertina: 100% Side-to-Side da bordo a bordo senza tagli -->
+            <div class="hero-image-wrapper w-full relative">
+                <div class="img-container image-target w-full bg-transparent">
                     <img 
                         src="Copertina2.png" 
                         alt="Copertina &mdash; Alberto Costa" 
                         loading="eager" 
                         decoding="async" 
-                        class="w-full aspect-[16/11] sm:aspect-[16/9] md:aspect-auto md:h-auto object-cover md:object-contain object-center block select-none pointer-events-auto"
+                        class="w-full h-auto block object-contain select-none"
                         onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1600'"
                     >
                 </div>
@@ -253,14 +251,11 @@
                 <!-- Progetto 1 -->
                 <article class="grid grid-cols-1 md:grid-cols-12 gap-y-6 md:gap-y-12 md:gap-x-16 lg:gap-x-24 project-row border-b border-dark/10 pb-16 md:pb-0 md:border-b-0">
                     <div class="md:col-span-4 lg:col-span-3 md:sticky md:top-40 self-start z-10 project-info">
-                        
-                        <!-- Tag Informativi -->
                         <div class="flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-accent font-medium mb-3">
                             <span>2024</span>
                             <span class="inline-block w-1 h-1 rounded-full bg-accent/40"></span>
                             <span>Lighting Design</span>
                         </div>
-
                         <h3 class="text-xl md:text-2xl font-medium mb-4 md:mb-6 tracking-tight text-dark">Lampada da Lettura Orientabile</h3>
                         <p class="text-muted leading-relaxed text-sm font-light">
                             Lampada da tavolo a luce direzionabile. La struttura è caratterizzata da un'asta snodata in acciaio inox con meccanismi di serraggio a vista in finitura rossa, che fungono sia da elemento funzionale che estetico.
@@ -272,13 +267,13 @@
                     </div>
                     <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-4 md:gap-8">
                         <div class="img-container image-target w-full bg-[#e5e5e4]">
-                            <img src="Copia di DSC_2836.jpg" alt="Lampada da Lettura - Vista D'insieme" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_2836.jpg" alt="Lampada da Lettura - Vista D'insieme" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                         <div class="img-container image-target w-full bg-[#e5e5e4]">
-                            <img src="Copia di DSC_1643.jpg" alt="Lampada da Lettura - Dettaglio Snodo" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_1643.jpg" alt="Lampada da Lettura - Dettaglio Snodo" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                         <div class="img-container image-target w-full bg-[#e5e5e4]">
-                            <img src="Copia di DSC_1641.jpg" alt="Lampada da Lettura - Meccanica e Serraggi" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_1641.jpg" alt="Lampada da Lettura - Meccanica e Serraggi" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
                 </article>
@@ -286,14 +281,11 @@
                 <!-- Progetto 2 -->
                 <article class="grid grid-cols-1 md:grid-cols-12 gap-y-6 md:gap-y-12 md:gap-x-16 lg:gap-x-24 project-row border-b border-dark/10 pb-16 md:pb-0 md:border-b-0">
                     <div class="md:col-span-4 lg:col-span-3 md:sticky md:top-40 self-start z-10 project-info">
-                        
-                        <!-- Tag Informativi -->
                         <div class="flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-accent font-medium mb-3">
                             <span>2023</span>
                             <span class="inline-block w-1 h-1 rounded-full bg-accent/40"></span>
                             <span>Lighting & Furniture</span>
                         </div>
-
                         <h3 class="text-xl md:text-2xl font-medium mb-4 md:mb-6 tracking-tight text-dark">Piantana con Sospensione</h3>
                         <p class="text-muted leading-relaxed text-sm font-light">
                             Un approccio ibrido all'illuminazione da terra. Questo progetto combina la stabilità di una base in acciaio inox con la leggerezza di un tronco tornito in legno.
@@ -305,10 +297,10 @@
                     </div>
                     <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-4 md:gap-8">
                         <div class="img-container image-target w-full bg-[#e5e5e4]">
-                            <img src="Copia di DSC_2151.png" alt="Piantana con Sospensione - Figura Intera" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_2151.png" alt="Piantana con Sospensione - Figura Intera" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                         <div class="img-container image-target w-full bg-[#e5e5e4]">
-                            <img src="Copia di DSC_2176.png" alt="Piantana con Sospensione - Dettaglio Incastro" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_2176.png" alt="Piantana con Sospensione - Dettaglio Incastro" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
                 </article>
@@ -316,14 +308,11 @@
                 <!-- Progetto 3 -->
                 <article class="grid grid-cols-1 md:grid-cols-12 gap-y-6 md:gap-y-12 md:gap-x-16 lg:gap-x-24 project-row border-b border-dark/10 pb-16 md:pb-0 md:border-b-0">
                     <div class="md:col-span-4 lg:col-span-3 md:sticky md:top-40 self-start z-10 project-info">
-                        
-                        <!-- Tag Informativi -->
                         <div class="flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-accent font-medium mb-3">
                             <span>2023</span>
                             <span class="inline-block w-1 h-1 rounded-full bg-accent/40"></span>
                             <span>System & Furniture</span>
                         </div>
-
                         <h3 class="text-xl md:text-2xl font-medium mb-4 md:mb-6 tracking-tight text-dark">Tavolino Modulare</h3>
                         <p class="text-muted leading-relaxed text-sm font-light">
                             Studio e realizzazione di elementi di arredo modulari. Il focus di questo progetto è la connessione strutturale tra i piani in legno e i supporti metallici.
@@ -335,10 +324,10 @@
                     </div>
                     <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-4 md:gap-8">
                         <div class="img-container image-target w-full bg-[#e5e5e4]">
-                            <img src="Copia di DSC_2940.jpg" alt="Tavolino Modulare - Vista Superiore" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_2940.jpg" alt="Tavolino Modulare - Vista Superiore" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                         <div class="img-container image-target w-full bg-[#e5e5e4]">
-                            <img src="Copia di DSC_2933.jpg" alt="Tavolino Modulare - Giunzione Meccanica" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_2933.jpg" alt="Tavolino Modulare - Giunzione Meccanica" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
                 </article>
@@ -346,14 +335,11 @@
                 <!-- Progetto 4 -->
                 <article class="grid grid-cols-1 md:grid-cols-12 gap-y-6 md:gap-y-12 md:gap-x-16 lg:gap-x-24 project-row border-b border-dark/10 pb-16 md:pb-0 md:border-b-0">
                     <div class="md:col-span-4 lg:col-span-3 md:sticky md:top-40 self-start z-10 project-info">
-                        
-                        <!-- Tag Informativi -->
                         <div class="flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-accent font-medium mb-3">
                             <span>2022</span>
                             <span class="inline-block w-1 h-1 rounded-full bg-accent/40"></span>
                             <span>Lighting Design</span>
                         </div>
-
                         <h3 class="text-xl md:text-2xl font-medium mb-4 md:mb-6 tracking-tight text-dark">Lampada a sospensione</h3>
                         <p class="text-muted leading-relaxed text-sm font-light">
                             Tubo in alluminio grezzo sospeso grazie ad un morsetto portalampada interamente realizzato in lamiera di acciaio Inox piegata. E' possibile utilizzare un tubo di materiali o lunghezze diverse.
@@ -365,10 +351,10 @@
                     </div>
                     <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-4 md:gap-8">
                         <div class="img-container image-target w-full bg-[#e5e5e4]">
-                            <img src="DSC_4333.jpg" alt="Lampada Sospesa - Vista Ambientata" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="DSC_4333.jpg" alt="Lampada Sospesa - Vista Ambientata" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                         <div class="img-container image-target w-full bg-[#e5e5e4]">
-                            <img src="DSC_4331.jpg" alt="Lampada Sospesa - Dettaglio Morsetto Piegato" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1534346850257-2309852b7e0e?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="DSC_4331.jpg" alt="Lampada Sospesa - Dettaglio Morsetto Piegato" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1534346850257-2309852b7e0e?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
                 </article>
@@ -376,14 +362,11 @@
                 <!-- Progetto 5 -->
                 <article class="grid grid-cols-1 md:grid-cols-12 gap-y-6 md:gap-y-12 md:gap-x-16 lg:gap-x-24 project-row border-b border-dark/10 pb-16 md:pb-0 md:border-b-0">
                     <div class="md:col-span-4 lg:col-span-3 md:sticky md:top-40 self-start z-10 project-info">
-                        
-                        <!-- Tag Informativi -->
                         <div class="flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-accent font-medium mb-3">
                             <span>2024</span>
                             <span class="inline-block w-1 h-1 rounded-full bg-accent/40"></span>
                             <span>Product & Hardware</span>
                         </div>
-
                         <h3 class="text-xl md:text-2xl font-medium mb-4 md:mb-6 tracking-tight text-dark">Lampada a morsetto</h3>
                         <p class="text-muted leading-relaxed text-sm font-light">
                             Corpo illuminante minimale progettato per l'aggancio a testiere del letto o mensole. La lampada utilizza un sistema a morsetto con vite di serraggio a vista per un fissaggio sicuro e versatile. Il diffusore semi-sferico orientabile permette di direzionare il fascio luminoso con grande precisione.
@@ -395,10 +378,10 @@
                     </div>
                     <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-4 md:gap-8">
                         <div class="img-container image-target w-full bg-[#e5e5e4]">
-                            <img src="Copia di DSC_3095.jpg" alt="Lampada a Morsetto - Fissaggio a Mensola" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_3095.jpg" alt="Lampada a Morsetto - Fissaggio a Mensola" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                         <div class="img-container image-target w-full bg-[#e5e5e4]">
-                            <img src="Copia di DSC_3113.jpg" alt="Lampada a Morsetto - Diffusore Semi-sferico" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1534346850257-2309852b7e0e?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_3113.jpg" alt="Lampada a Morsetto - Diffusore Semi-sferico" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1534346850257-2309852b7e0e?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
                 </article>
@@ -406,14 +389,11 @@
                 <!-- Progetto 6 -->
                 <article class="grid grid-cols-1 md:grid-cols-12 gap-y-6 md:gap-y-12 md:gap-x-16 lg:gap-x-24 project-row border-b-0 pb-0">
                     <div class="md:col-span-4 lg:col-span-3 md:sticky md:top-40 self-start z-10 project-info">
-                        
-                        <!-- Tag Informativi -->
                         <div class="flex items-center gap-2 text-[9px] uppercase tracking-[0.2em] text-accent font-medium mb-3">
                             <span>2023</span>
                             <span class="inline-block w-1 h-1 rounded-full bg-accent/40"></span>
                             <span>Micro-Mechanics & Watch</span>
                         </div>
-
                         <h3 class="text-xl md:text-2xl font-medium mb-4 md:mb-6 tracking-tight text-dark">Orologio Digitale</h3>
                         <p class="text-muted leading-relaxed text-sm font-light">
                             Progetto di micro-meccanica e design del prodotto. La cassa dell'orologio è stata interamente progettata e realizzata in lamiera di acciaio inox piegata per ospitare un modulo elettronico digitale. L'estetica cruda e marcatamente industriale è accentuata dalla viteria a vista e dai pulsanti cilindrici sporgenti.
@@ -425,10 +405,10 @@
                     </div>
                     <div class="md:col-span-8 lg:col-start-5 flex flex-col gap-4 md:gap-8">
                         <div class="img-container image-target w-full bg-[#e5e5e4]">
-                            <img src="Copia di DSC_3217.jpg" alt="Orologio Digitale - Cassa Acciaio Inox" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_3217.jpg" alt="Orologio Digitale - Cassa Acciaio Inox" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                         <div class="img-container image-target w-full bg-[#e5e5e4]">
-                            <img src="Copia di DSC_3228.jpg" alt="Orologio Digitale - Pulsanti e Dettagli" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&q=80&w=1200'">
+                            <img src="Copia di DSC_3228.jpg" alt="Orologio Digitale - Pulsanti e Dettagli" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
                 </article>
@@ -454,61 +434,61 @@
                 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="r1.jpg" alt="Concept Ninfea" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r1.jpg" alt="Concept Ninfea" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="r2.jpg" alt="Concept Lampada Tavolo" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r2.jpg" alt="Concept Lampada Tavolo" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="r3.jpg" alt="Render Ambientato Camera" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r3.jpg" alt="Render Ambientato Camera" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="r4.jpg" alt="Concept Sospensione" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r4.jpg" alt="Concept Sospensione" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="r5.jpg" alt="Render Ambientato Living" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1597072689227-8882273e8f6a?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r5.jpg" alt="Render Ambientato Living" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1597072689227-8882273e8f6a?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="r6.jpg" alt="Lampada a scorrimento" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r6.jpg" alt="Lampada a scorrimento" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
                 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="r7.jpg" alt="Lampada da terra" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r7.jpg" alt="Lampada da terra" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="r8.jpg" alt="Tavolino da caffè" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r8.jpg" alt="Tavolino da caffè" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="r9.jpg" alt="Lampada da tavolo" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r9.jpg" alt="Lampada da tavolo" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="r10.jpg" alt="Lampada a sospensione" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
+                        <img src="r10.jpg" alt="Lampada a sospensione" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
                     </div>
                 </div>
 
@@ -534,61 +514,61 @@
                 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="foto_1.jpg" alt="Dettaglio natura - Texture Organica" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_1.jpg" alt="Dettaglio natura - Texture Organica" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="foto_2.jpg" alt="Dettaglio natura - Luce e Ombra" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_2.jpg" alt="Dettaglio natura - Luce e Ombra" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="foto_3.jpg" alt="Dettaglio natura - Paesaggio" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_3.jpg" alt="Dettaglio natura - Paesaggio" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="foto_4.jpg" alt="Dettaglio natura - Geometrie Botaniche" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_4.jpg" alt="Dettaglio natura - Geometrie Botaniche" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
                 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="foto_5.jpg" alt="Dettaglio natura - Riflessi" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_5.jpg" alt="Dettaglio natura - Riflessi" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="foto_6.jpg" alt="Dettaglio natura - Contrasti" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_6.jpg" alt="Dettaglio natura - Contrasti" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="foto_7.jpg" alt="Dettaglio natura - Orizzonti" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_7.jpg" alt="Dettaglio natura - Orizzonti" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="foto_8.jpg" alt="Dettaglio natura - Superfici" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_8.jpg" alt="Dettaglio natura - Superfici" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="foto_9.jpg" alt="Dettaglio natura - Rocce e Pietre" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_9.jpg" alt="Dettaglio natura - Rocce e Pietre" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="foto_10.jpg" alt="Dettaglio natura - Linee Naturali" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_10.jpg" alt="Dettaglio natura - Linee Naturali" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="foto_11.jpg" alt="Dettaglio natura - Atmosfera" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
+                        <img src="foto_11.jpg" alt="Dettaglio natura - Atmosfera" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
             </div>
@@ -612,34 +592,34 @@
                 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="illustrazione_1.jpg" alt="Illustrazione - Composizione Formale I" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=800'">
+                        <img src="illustrazione_1.jpg" alt="Illustrazione - Composizione Formale I" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="illustrazione_2.jpg" alt="Illustrazione - Studio Astratto II" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&q=80&w=800'">
+                        <img src="illustrazione_2.jpg" alt="Illustrazione - Studio Astratto II" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
 
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="illustrazione_3.jpg" alt="Illustrazione - Linee e Spazio III" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=800'">
+                        <img src="illustrazione_3.jpg" alt="Illustrazione - Linee e Spazio III" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="illustrazione_4.jpg" alt="Illustrazione - Studio Prospettico IV" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=800'">
+                        <img src="illustrazione_4.jpg" alt="Illustrazione - Studio Prospettico IV" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="illustrazione_5.jpg" alt="Illustrazione - Geometrie Pure V" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=800'">
+                        <img src="illustrazione_5.jpg" alt="Illustrazione - Geometrie Pure V" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
                 <div class="break-inside-avoid render-item mb-3 md:mb-4">
                     <div class="img-container image-target bg-[#e5e5e4]">
-                        <img src="illustrazione_6.jpg" alt="Illustrazione - Texture e Segno VI" loading="lazy" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=800'">
+                        <img src="illustrazione_6.jpg" alt="Illustrazione - Texture e Segno VI" decoding="async" class="w-full h-full object-cover mix-blend-multiply" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=800'">
                     </div>
                 </div>
                 
@@ -658,7 +638,7 @@
                     <!-- FOTO PROFILO A COLORI -->
                     <div class="fade-up-profile mb-12">
                         <div class="w-48 md:w-56 aspect-[3/4] overflow-hidden bg-zinc-800 rounded-sm">
-                            <img src="profilo.jpg" alt="Alberto Costa" loading="lazy" decoding="async" class="w-full h-full object-cover scale-105 hover:scale-100 transition-all duration-700" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400'">
+                            <img src="profilo.jpg" alt="Alberto Costa" decoding="async" class="w-full h-full object-cover scale-105 hover:scale-100 transition-all duration-700" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400'">
                         </div>
                     </div>
                     
@@ -771,36 +751,66 @@
         gsap.ticker.add((time) => { lenis.raf(time * 1000); });
         gsap.ticker.lagSmoothing(0);
 
-        // 2. Preloader Logic
+        // 2. Preloader Reale (Attende il reale caricamento delle immagini)
         const preloader = document.getElementById('preloader');
         const preloaderCounter = document.getElementById('preloader-counter');
         const preloaderBar = document.getElementById('preloader-bar');
         lenis.stop();
 
-        let progress = { value: 0 };
-        gsap.to(progress, {
-            value: 100,
-            duration: 1.5,
-            ease: "power2.inOut",
-            onUpdate: () => {
-                const current = Math.floor(progress.value);
-                preloaderCounter.textContent = `${current}%`;
-                preloaderBar.style.width = `${current}%`;
-            },
-            onComplete: () => {
-                gsap.to(preloader, {
-                    opacity: 0,
-                    duration: 0.8,
-                    ease: "power2.out",
-                    onComplete: () => {
-                        preloader.style.display = 'none';
-                        lenis.start();
-                        initHeroAnimations();
-                        ScrollTrigger.refresh();
-                    }
-                });
+        const allImages = Array.from(document.querySelectorAll('img'));
+        let loadedCount = 0;
+        const totalImages = allImages.length;
+        let isPreloadDone = false;
+
+        function updateProgress(percent) {
+            const rounded = Math.floor(percent);
+            preloaderCounter.textContent = `${rounded}%`;
+            preloaderBar.style.width = `${percent}%`;
+        }
+
+        function finishPreloader() {
+            if (isPreloadDone) return;
+            isPreloadDone = true;
+            
+            updateProgress(100);
+            gsap.to(preloader, {
+                opacity: 0,
+                duration: 0.5,
+                ease: "power2.out",
+                delay: 0.2,
+                onComplete: () => {
+                    preloader.style.display = 'none';
+                    lenis.start();
+                    initHeroAnimations();
+                    ScrollTrigger.refresh();
+                }
+            });
+        }
+
+        if (totalImages === 0) {
+            finishPreloader();
+        } else {
+            allImages.forEach(img => {
+                if (img.complete) {
+                    incrementLoad();
+                } else {
+                    img.addEventListener('load', incrementLoad, { once: true });
+                    img.addEventListener('error', incrementLoad, { once: true });
+                }
+            });
+        }
+
+        function incrementLoad() {
+            loadedCount++;
+            const pct = Math.min(100, (loadedCount / totalImages) * 100);
+            updateProgress(pct);
+            if (loadedCount >= totalImages) {
+                finishPreloader();
             }
-        });
+        }
+
+        // Timeout di sicurezza (massimo 3.5 secondi se la connessione è molto lenta)
+        setTimeout(finishPreloader, 3500);
 
         // 3. Custom Cursor & Interazioni
         const cursor = document.getElementById('custom-cursor');
@@ -876,13 +886,13 @@
             gsap.to(lightboxImg, { 
                 opacity: 0, 
                 scale: 0.95, 
-                duration: 0.2, 
+                duration: 0.15, 
                 onComplete: () => {
                     lightboxImg.src = targetImg.src;
                     lightboxCaption.textContent = targetImg.alt || "Opera";
                     lightboxCounter.textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${String(galleryImages.length).padStart(2, '0')}`;
                     
-                    gsap.to(lightboxImg, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" });
+                    gsap.to(lightboxImg, { opacity: 1, scale: 1, duration: 0.35, ease: "power3.out" });
                 }
             });
         }
@@ -901,13 +911,13 @@
                 }
                 
                 gsap.to(lightbox, { autoAlpha: 1, duration: 0.4, ease: "power2.out" });
-                gsap.to(lightboxImg, { scale: 1, opacity: 1, duration: 0.5, delay: 0.1, ease: "power3.out" });
+                gsap.to(lightboxImg, { scale: 1, opacity: 1, duration: 0.4, delay: 0.05, ease: "power3.out" });
             });
         });
 
         const closeLightbox = () => {
-            gsap.to(lightbox, { autoAlpha: 0, duration: 0.35, ease: "power2.in" });
-            gsap.to(lightboxImg, { scale: 0.95, opacity: 0, duration: 0.25 });
+            gsap.to(lightbox, { autoAlpha: 0, duration: 0.3, ease: "power2.in" });
+            gsap.to(lightboxImg, { scale: 0.95, opacity: 0, duration: 0.2 });
             lenis.start();
             if (cursor) cursor.classList.remove('light-mode');
         };
@@ -941,10 +951,10 @@
         // 5. Animazioni Hero & GSAP
         function initHeroAnimations() {
             const heroTl = gsap.timeline();
-            heroTl.fromTo('.hero-text', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.1 })
-                  .fromTo('.hero-title', { y: 150 }, { y: 0, duration: 1.2, ease: 'power4.out', stagger: 0.1 }, "-=0.7")
-                  .fromTo('.hero-subtitle', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, "-=0.8")
-                  .fromTo('.hero-image-wrapper', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.4, ease: 'power3.out' }, "-=0.9");
+            heroTl.fromTo('.hero-text', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: 0.1 })
+                  .fromTo('.hero-title', { y: 150 }, { y: 0, duration: 1.1, ease: 'power4.out', stagger: 0.1 }, "-=0.7")
+                  .fromTo('.hero-subtitle', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' }, "-=0.8")
+                  .fromTo('.hero-image-wrapper', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, ease: 'power3.out' }, "-=0.8");
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -953,26 +963,26 @@
             // Fade Up generali titoli sezione
             gsap.utils.toArray('.section-title-wrapper').forEach(wrapper => {
                 gsap.fromTo(wrapper.querySelectorAll('.fade-up'), 
-                    { y: 40, opacity: 0 }, 
-                    { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: 'power3.out', scrollTrigger: { trigger: wrapper, start: "top 85%" } }
+                    { y: 30, opacity: 0 }, 
+                    { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power3.out', scrollTrigger: { trigger: wrapper, start: "top 88%" } }
                 );
             });
 
-            // Fade in pulito per le immagini delle gallery
+            // Fade in rapido e reattivo per le immagini (nessun lag visivo)
             gsap.utils.toArray('.img-container').forEach(container => {
                 gsap.fromTo(container, 
-                    { opacity: 0, y: 30 }, 
-                    { opacity: 1, y: 0, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: container, start: "top 88%" } }
+                    { opacity: 0, y: 20 }, 
+                    { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", scrollTrigger: { trigger: container, start: "top 95%" } }
                 );
             });
 
             // Info Progetti
             gsap.utils.toArray('.project-info').forEach(info => {
-                gsap.fromTo(info, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power3.out", scrollTrigger: { trigger: info, start: "top 80%" } });
+                gsap.fromTo(info, { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: info, start: "top 85%" } });
             });
 
             // Profilo
-            gsap.fromTo('.fade-up-profile', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "power3.out", scrollTrigger: { trigger: ".profile-wrapper", start: "top 80%" } });
+            gsap.fromTo('.fade-up-profile', { y: 25, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.08, ease: "power3.out", scrollTrigger: { trigger: ".profile-wrapper", start: "top 85%" } });
 
             // 6. Scrollspy nella Navbar
             const navLinks = document.querySelectorAll('.nav-link');
