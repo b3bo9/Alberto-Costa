@@ -146,7 +146,7 @@
 </head>
 <body class="font-sans min-h-screen flex flex-col relative">
 
-    <!-- PRELOADER REALE (Attende il reale caricamento delle immagini) -->
+    <!-- PRELOADER REALE -->
     <div id="preloader" class="fixed inset-0 z-[999999] bg-dark flex flex-col items-center justify-center text-surface transition-opacity duration-500 select-none">
         <div class="flex flex-col items-center gap-5">
             <span class="text-[10px] uppercase tracking-[0.3em] text-zinc-500 font-medium">Alberto Costa</span>
@@ -187,10 +187,10 @@
 
     <main id="home" class="flex-grow">
         
-        <!-- HERO SECTION: FULL SCREEN SIDE-TO-SIDE (PC & MOBILE) -->
+        <!-- HERO SECTION -->
         <section class="w-full pt-28 md:pt-36 pb-12 md:pb-24 relative">
             
-            <!-- Testo Allineato al Layout -->
+            <!-- Testo Allineato -->
             <div class="max-w-[100rem] mx-auto px-5 md:px-12 mb-6 md:mb-12">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-end">
                     
@@ -220,8 +220,8 @@
                 </div>
             </div>
 
-            <!-- Immagine Copertina: 100% Side-to-Side da bordo a bordo senza tagli -->
-            <div class="hero-image-wrapper w-full relative">
+            <!-- Immagine Copertina: Elegante su mobile (px-4), 100% Side-to-Side su PC (md:px-0) -->
+            <div class="hero-image-wrapper w-full relative px-4 sm:px-6 md:px-0 flex justify-center">
                 <div class="img-container image-target w-full bg-transparent">
                     <img 
                         src="Copertina2.png" 
@@ -236,11 +236,11 @@
 
         </section>
 
-        <!-- SEZIONE PROGETTI -->
+        <!-- SEZIONE PROGETTI (Con una sola linea divisoria pulita) -->
         <section id="progetti" class="max-w-[100rem] mx-auto px-5 md:px-12 py-16 md:py-40 hairline-t">
             
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-16 md:mb-48">
-                <div class="md:col-span-12 lg:col-span-10 hairline-t pt-8 section-title-wrapper">
+                <div class="md:col-span-12 lg:col-span-10 pt-4 section-title-wrapper">
                     <p class="text-[10px] uppercase tracking-[0.2em] text-muted mb-4 font-medium fade-up">01 &mdash; Lavori Selezionati</p>
                     <h2 class="text-4xl md:text-5xl font-light tracking-tight text-dark leading-tight fade-up">Progetti e <br/>Realizzazioni</h2>
                 </div>
@@ -751,7 +751,7 @@
         gsap.ticker.add((time) => { lenis.raf(time * 1000); });
         gsap.ticker.lagSmoothing(0);
 
-        // 2. Preloader Reale (Attende il reale caricamento delle immagini)
+        // 2. Preloader Reale
         const preloader = document.getElementById('preloader');
         const preloaderCounter = document.getElementById('preloader-counter');
         const preloaderBar = document.getElementById('preloader-bar');
@@ -809,7 +809,7 @@
             }
         }
 
-        // Timeout di sicurezza (massimo 3.5 secondi se la connessione è molto lenta)
+        // Timeout di sicurezza
         setTimeout(finishPreloader, 3500);
 
         // 3. Custom Cursor & Interazioni
@@ -968,7 +968,7 @@
                 );
             });
 
-            // Fade in rapido e reattivo per le immagini (nessun lag visivo)
+            // Fade in rapido per le immagini
             gsap.utils.toArray('.img-container').forEach(container => {
                 gsap.fromTo(container, 
                     { opacity: 0, y: 20 }, 
