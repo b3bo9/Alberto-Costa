@@ -57,10 +57,10 @@
 
         @media (min-width: 768px) {
             .work-card img {
-                transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             }
             .work-card:hover img {
-                transform: scale(1.02);
+                transform: scale(1.025);
             }
         }
     </style>
@@ -175,11 +175,11 @@
 
 
         <!-- ======================================================== -->
-        <!-- 3. PROGETTI DI PRODOTTO (TUTTI E 6 INTEGRATI)           -->
+        <!-- 3. PROGETTI DI PRODOTTO (DISPOSIZIONE FOTOGRAFICA CURATA) -->
         <!-- ======================================================== -->
         <section id="progetti" class="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 py-16 md:py-20 hairline-t">
             
-            <!-- Intestazione pulita senza "4 progetti" -->
+            <!-- Intestazione pulita senza etichette numeriche grigie -->
             <div class="mb-14 md:mb-16">
                 <span class="font-mono text-xs uppercase tracking-widest text-accent font-medium">01 / Lavori Selezionati</span>
                 <h2 class="text-2xl md:text-3xl font-light tracking-tight text-dark mt-1">
@@ -187,11 +187,11 @@
                 </h2>
             </div>
 
-            <div class="space-y-24 md:space-y-32">
+            <div class="space-y-24 md:space-y-36">
 
-                <!-- PROGETTO 1: Lampada da Lettura -->
+                <!-- PROGETTO 1: Lampada da Lettura (Layout con scatto principale + 2 dettagli) -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
-                    <div class="lg:col-span-4 lg:sticky lg:top-24 space-y-5">
+                    <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
                             <span class="font-mono text-xs text-muted">2024 &bull; Lighting</span>
                             <h3 class="text-xl md:text-2xl font-normal text-dark mt-1">
@@ -215,24 +215,24 @@
                         </div>
                     </div>
 
-                    <div class="lg:col-span-8 space-y-4">
-                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2836.jpg', 'Lampada da Lettura — Vista generale')">
-                            <img src="Copia di DSC_2836.jpg" alt="Lampada da Lettura Orientabile" class="w-full h-auto object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
+                    <div class="lg:col-span-8 space-y-4 md:space-y-5">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[16/10] cursor-pointer" onclick="openLightbox('Copia di DSC_2836.jpg', 'Lampada da Lettura — Vista d\'insieme')">
+                            <img src="Copia di DSC_2836.jpg" alt="Lampada da Lettura Orientabile" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/3] cursor-pointer" onclick="openLightbox('Copia di DSC_1643.jpg', 'Lampada da Lettura — Meccanismo di snodo')">
-                                <img src="Copia di DSC_1643.jpg" alt="Dettaglio Meccanismo" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600'">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+                            <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/5] cursor-pointer" onclick="openLightbox('Copia di DSC_1643.jpg', 'Lampada da Lettura — Meccanismo di snodo')">
+                                <img src="Copia di DSC_1643.jpg" alt="Dettaglio Meccanismo Snodo" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=800'">
                             </div>
-                            <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/3] cursor-pointer" onclick="openLightbox('Copia di DSC_1641.jpg', 'Lampada da Lettura — Dettaglio serraggi')">
-                                <img src="Copia di DSC_1641.jpg" alt="Dettaglio Serraggi" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=600'">
+                            <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/5] cursor-pointer" onclick="openLightbox('Copia di DSC_1641.jpg', 'Lampada da Lettura — Dettaglio serraggi')">
+                                <img src="Copia di DSC_1641.jpg" alt="Dettaglio Serraggi e Meccanica" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=800'">
                             </div>
                         </div>
                     </div>
                 </article>
 
-                <!-- PROGETTO 2: Piantana Cantilever -->
+                <!-- PROGETTO 2: Piantana Cantilever (Duo bilanciato: Silhouette intera + Macro incastro) -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
-                    <div class="lg:col-span-4 lg:sticky lg:top-24 space-y-5">
+                    <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
                             <span class="font-mono text-xs text-muted">2023 &bull; Arredo & Luce</span>
                             <h3 class="text-xl md:text-2xl font-normal text-dark mt-1">
@@ -256,19 +256,19 @@
                         </div>
                     </div>
 
-                    <div class="lg:col-span-8 space-y-4">
-                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2151.png', 'Piantana con Sospensione — Assetto completo')">
-                            <img src="Copia di DSC_2151.png" alt="Piantana con Sospensione" class="w-full h-auto object-cover block" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=1200'">
+                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/5] cursor-pointer" onclick="openLightbox('Copia di DSC_2151.png', 'Piantana con Sospensione — Assetto completo')">
+                            <img src="Copia di DSC_2151.png" alt="Piantana con Sospensione" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=1200'">
                         </div>
-                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2176.png', 'Piantana con Sospensione — Innesto legno-metallo')">
-                            <img src="Copia di DSC_2176.png" alt="Giunzione Legno Acciaio" class="w-full h-auto object-cover block" onerror="this.src='https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=80&w=1200'">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/5] cursor-pointer" onclick="openLightbox('Copia di DSC_2176.png', 'Piantana con Sospensione — Giunzione legno-metallo')">
+                            <img src="Copia di DSC_2176.png" alt="Giunzione Legno Acciaio" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=80&w=800'">
                         </div>
                     </div>
                 </article>
 
-                <!-- PROGETTO 3: Tavolino Modulare (REINTEGRATO) -->
+                <!-- PROGETTO 3: Tavolino Modulare (Duo: Vista d'insieme + Giunzione meccanica) -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
-                    <div class="lg:col-span-4 lg:sticky lg:top-24 space-y-5">
+                    <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
                             <span class="font-mono text-xs text-muted">2023 &bull; System & Furniture</span>
                             <h3 class="text-xl md:text-2xl font-normal text-dark mt-1">
@@ -292,19 +292,19 @@
                         </div>
                     </div>
 
-                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/3] cursor-pointer" onclick="openLightbox('Copia di DSC_2940.jpg', 'Tavolino Modulare — Vista superiore')">
+                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/5] cursor-pointer" onclick="openLightbox('Copia di DSC_2940.jpg', 'Tavolino Modulare — Vista superiore')">
                             <img src="Copia di DSC_2940.jpg" alt="Tavolino Modulare - Vista Superiore" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=800'">
                         </div>
-                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/3] cursor-pointer" onclick="openLightbox('Copia di DSC_2933.jpg', 'Tavolino Modulare — Giunzione meccanica')">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/5] cursor-pointer" onclick="openLightbox('Copia di DSC_2933.jpg', 'Tavolino Modulare — Giunzione meccanica')">
                             <img src="Copia di DSC_2933.jpg" alt="Tavolino Modulare - Giunzione Meccanica" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&q=80&w=800'">
                         </div>
                     </div>
                 </article>
 
-                <!-- PROGETTO 4: Lampada a Sospensione (REINTEGRATA) -->
+                <!-- PROGETTO 4: Lampada a Sospensione (Duo: Vista ambientata + Dettaglio morsetto) -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
-                    <div class="lg:col-span-4 lg:sticky lg:top-24 space-y-5">
+                    <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
                             <span class="font-mono text-xs text-muted">2022 &bull; Lighting Design</span>
                             <h3 class="text-xl md:text-2xl font-normal text-dark mt-1">
@@ -328,19 +328,19 @@
                         </div>
                     </div>
 
-                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/3] cursor-pointer" onclick="openLightbox('DSC_4333.jpg', 'Lampada Sospesa — Vista ambientata')">
+                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/5] cursor-pointer" onclick="openLightbox('DSC_4333.jpg', 'Lampada a Sospensione — Vista ambientata')">
                             <img src="DSC_4333.jpg" alt="Lampada Sospesa" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=800'">
                         </div>
-                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/3] cursor-pointer" onclick="openLightbox('DSC_4331.jpg', 'Lampada Sospesa — Dettaglio morsetto piegato')">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/5] cursor-pointer" onclick="openLightbox('DSC_4331.jpg', 'Lampada a Sospensione — Dettaglio morsetto')">
                             <img src="DSC_4331.jpg" alt="Dettaglio Morsetto Piegato" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1534346850257-2309852b7e0e?auto=format&fit=crop&q=80&w=800'">
                         </div>
                     </div>
                 </article>
 
-                <!-- PROGETTO 5: Lampada a Morsetto -->
+                <!-- PROGETTO 5: Lampada a Morsetto (Duo: Ancoraggio mensola + Diffusore orientabile) -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
-                    <div class="lg:col-span-4 lg:sticky lg:top-24 space-y-5">
+                    <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
                             <span class="font-mono text-xs text-muted">2024 &bull; Modular Lighting</span>
                             <h3 class="text-xl md:text-2xl font-normal text-dark mt-1">
@@ -364,19 +364,19 @@
                         </div>
                     </div>
 
-                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/3] cursor-pointer" onclick="openLightbox('Copia di DSC_3095.jpg', 'Lampada Morsetto — Ancoraggio a mensola')">
+                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/5] cursor-pointer" onclick="openLightbox('Copia di DSC_3095.jpg', 'Lampada a Morsetto — Fissaggio a mensola')">
                             <img src="Copia di DSC_3095.jpg" alt="Morsetto su mensola" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=800'">
                         </div>
-                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/3] cursor-pointer" onclick="openLightbox('Copia di DSC_3113.jpg', 'Lampada Morsetto — Diffusore orientabile')">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/5] cursor-pointer" onclick="openLightbox('Copia di DSC_3113.jpg', 'Lampada a Morsetto — Diffusore orientabile')">
                             <img src="Copia di DSC_3113.jpg" alt="Diffusore" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1534346850257-2309852b7e0e?auto=format&fit=crop&q=80&w=800'">
                         </div>
                     </div>
                 </article>
 
-                <!-- PROGETTO 6: Orologio Digitale Lamellare -->
+                <!-- PROGETTO 6: Orologio Digitale (Duo: Cassa & quadrante + Profilo pulsanti) -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
-                    <div class="lg:col-span-4 lg:sticky lg:top-24 space-y-5">
+                    <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
                             <span class="font-mono text-xs text-muted">2023 &bull; Micro-Mechanics & Watch</span>
                             <h3 class="text-xl md:text-2xl font-normal text-dark mt-1">
@@ -400,11 +400,11 @@
                         </div>
                     </div>
 
-                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/3] cursor-pointer" onclick="openLightbox('Copia di DSC_3217.jpg', 'Orologio Digitale — Cassa Acciaio Inox')">
+                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/5] cursor-pointer" onclick="openLightbox('Copia di DSC_3217.jpg', 'Orologio Digitale — Cassa in acciaio inox')">
                             <img src="Copia di DSC_3217.jpg" alt="Cassa Orologio" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&q=80&w=800'">
                         </div>
-                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/3] cursor-pointer" onclick="openLightbox('Copia di DSC_3228.jpg', 'Orologio Digitale — Pulsanti e dettagli')">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone aspect-[4/5] cursor-pointer" onclick="openLightbox('Copia di DSC_3228.jpg', 'Orologio Digitale — Dettaglio pulsanti')">
                             <img src="Copia di DSC_3228.jpg" alt="Dettaglio Pulsanti" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&q=80&w=800'">
                         </div>
                     </div>
@@ -637,7 +637,7 @@
     <div id="lightbox" class="fixed inset-0 z-[9999] bg-dark/95 hidden opacity-0 transition-opacity duration-200 flex flex-col justify-between p-4 md:p-8 select-none">
         <div class="w-full flex justify-between items-center text-white/80 font-mono text-xs max-w-6xl mx-auto">
             <span id="lb-caption" class="truncate font-light text-stone">Dettaglio</span>
-            <button onclick="closeLightbox()" class="text-white hover:text-accent font-mono text-xs p-1">✕ Chiudi (ESC)</button>
+            <button onclick="closeLightbox()" class="text-white hover:text-accent font-mono text-xs p-2">✕ Chiudi (ESC)</button>
         </div>
 
         <div class="flex-grow flex items-center justify-center max-h-[85vh] p-2">
