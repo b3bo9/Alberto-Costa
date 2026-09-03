@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alberto Costa — Multidisciplinary & Graphic Designer</title>
-    <meta name="description" content="Portfolio di Alberto Costa: Graphic Design, Product Design, 3D CGI, Fotografia e Ricerca Visiva.">
+    <meta name="description" content="Portfolio di Alberto Costa: Graphic Design, Product & Lighting Design, 3D CGI, Fotografia e Ricerca Visiva.">
     
-    <!-- Google Fonts: Inter (Tipografia pulita) + JetBrains Mono (Metadati tecnici) -->
+    <!-- Google Fonts: Inter per i testi di lettura + JetBrains Mono per metadati e schede tecniche -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- GSAP per micro-interazioni fluide -->
+    <!-- GSAP per micro-animazioni fluide -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     <script>
@@ -47,6 +47,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Micro-grana materica di sottofondo */
         .bg-grain {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -58,17 +59,21 @@
         .hairline-b { border-bottom: 1px solid rgba(17, 17, 17, 0.08); }
         .hairline-t { border-top: 1px solid rgba(17, 17, 17, 0.08); }
 
+        /* Filtri Media */
         .tab-btn.active {
             background-color: #111111;
             color: #ffffff;
             border-color: #111111;
         }
 
-        .work-card img {
-            transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .work-card:hover img {
-            transform: scale(1.025);
+        /* Micro-zoom elegante su hover desktop */
+        @media (min-width: 768px) {
+            .work-card img {
+                transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .work-card:hover img {
+                transform: scale(1.025);
+            }
         }
     </style>
 </head>
@@ -77,11 +82,12 @@
     <div class="bg-grain"></div>
 
     <!-- ======================================================== -->
-    <!-- 1. HEADER                                                -->
+    <!-- 1. HEADER FISSO CON PULSANTE MENU RESPONSIVE            -->
     <!-- ======================================================== -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-[#f8f8f6]/85 backdrop-blur-md hairline-b transition-all">
-        <div class="max-w-7xl mx-auto px-6 md:px-10 h-16 md:h-20 flex justify-between items-center">
+    <header class="fixed top-0 left-0 w-full z-40 bg-[#f8f8f6]/90 backdrop-blur-md hairline-b transition-all">
+        <div class="max-w-7xl mx-auto px-5 md:px-10 h-16 md:h-20 flex justify-between items-center">
             
+            <!-- Logo / Nome -->
             <div class="flex items-center gap-3">
                 <a href="#home" class="font-medium text-sm md:text-base tracking-tight flex items-center gap-2 group">
                     <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
@@ -90,6 +96,7 @@
                 </a>
             </div>
 
+            <!-- Navigazione Desktop -->
             <nav class="hidden md:flex items-center gap-8 text-xs uppercase tracking-widest text-muted font-mono">
                 <a href="#progetti" class="hover:text-dark transition-colors">Progetti</a>
                 <a href="#archivio" class="hover:text-dark transition-colors">Media & Arti Visive</a>
@@ -97,30 +104,100 @@
                 <a href="#profilo" class="hover:text-dark transition-colors">Profilo</a>
             </nav>
 
-            <div class="flex items-center gap-3">
+            <!-- CTA Desktop & Tasto Menu Mobile -->
+            <div class="flex items-center gap-2.5 sm:gap-3">
                 <a href="Alberto_Costa_CV.pdf" download class="hidden sm:inline-flex text-[11px] font-mono uppercase tracking-wider py-2 px-3.5 rounded-full border border-dark/20 hover:border-dark text-dark transition-all">
                     CV (PDF)
                 </a>
-                <a href="#profilo" class="text-[11px] font-mono uppercase tracking-wider py-2 px-4 rounded-full bg-dark text-white hover:bg-accent transition-colors">
+                <a href="#profilo" class="hidden sm:inline-flex text-[11px] font-mono uppercase tracking-wider py-2 px-4 rounded-full bg-dark text-white hover:bg-accent transition-colors">
                     Contatti
                 </a>
+                
+                <!-- TASTO MENU RAPIDO SMARTPHONE -->
+                <button 
+                    id="mobile-menu-open-btn" 
+                    onclick="openMobileMenu()" 
+                    class="md:hidden inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider py-2 px-3.5 rounded-full border border-dark/20 bg-white text-dark shadow-sm active:scale-95 transition-all"
+                    aria-label="Apri menu di navigazione"
+                >
+                    <span>Menu</span>
+                    <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                </button>
             </div>
 
         </div>
     </header>
+
+    <!-- ======================================================== -->
+    <!-- OVERLAY MENU A TUTTO SCHERMO PER SMARTPHONE             -->
+    <!-- ======================================================== -->
+    <div 
+        id="mobile-menu-overlay" 
+        class="fixed inset-0 z-50 bg-[#f8f8f6] -translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:hidden flex flex-col justify-between p-6 overflow-y-auto"
+        aria-hidden="true"
+    >
+        <!-- Barra Superiore del Menu -->
+        <div class="flex justify-between items-center pb-6 border-b border-border">
+            <span class="font-mono text-xs uppercase tracking-widest text-muted">Indice Navigazione</span>
+            <button 
+                onclick="closeMobileMenu()" 
+                class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider py-2 px-3.5 rounded-full bg-stone text-dark border border-border active:scale-95 transition-all"
+                aria-label="Chiudi menu"
+            >
+                <span>Chiudi</span>
+                <span class="text-sm font-semibold">✕</span>
+            </button>
+        </div>
+
+        <!-- Voci di Navigazione Rapida -->
+        <nav class="flex flex-col py-8 space-y-4">
+            <a href="#progetti" onclick="closeMobileMenu()" class="group flex items-baseline justify-between py-2 border-b border-stone">
+                <span class="text-2xl font-light text-dark group-hover:text-accent transition-colors">Progetti & Lighting</span>
+                <span class="font-mono text-xs text-muted">01</span>
+            </a>
+            <a href="#archivio" onclick="closeMobileMenu()" class="group flex items-baseline justify-between py-2 border-b border-stone">
+                <span class="text-2xl font-light text-dark group-hover:text-accent transition-colors">Media & Arti Visive</span>
+                <span class="font-mono text-xs text-muted">02</span>
+            </a>
+            <a href="#metodo" onclick="closeMobileMenu()" class="group flex items-baseline justify-between py-2 border-b border-stone">
+                <span class="text-2xl font-light text-dark group-hover:text-accent transition-colors">Metodo Progettuale</span>
+                <span class="font-mono text-xs text-muted">03</span>
+            </a>
+            <a href="#profilo" onclick="closeMobileMenu()" class="group flex items-baseline justify-between py-2 border-b border-stone">
+                <span class="text-2xl font-light text-dark group-hover:text-accent transition-colors">Profilo & Contatti</span>
+                <span class="font-mono text-xs text-muted">04</span>
+            </a>
+        </nav>
+
+        <!-- Azioni Rapide a Portata di Pollice -->
+        <div class="space-y-4 pt-6 border-t border-border">
+            <div class="grid grid-cols-2 gap-3">
+                <a href="Alberto_Costa_CV.pdf" download class="text-center py-3.5 rounded-lg border border-dark text-dark font-mono text-xs uppercase tracking-wider bg-white">
+                    Scarica CV (PDF)
+                </a>
+                <a href="mailto:albeb3b@gmail.com" class="text-center py-3.5 rounded-lg bg-dark text-white font-mono text-xs uppercase tracking-wider">
+                    Scrivi Email
+                </a>
+            </div>
+            <p class="font-mono text-[10px] text-muted text-center uppercase tracking-widest pt-2">
+                Alberto Costa &bull; Multidisciplinary Portfolio
+            </p>
+        </div>
+    </div>
+
 
     <main id="home" class="flex-grow pt-24 md:pt-32">
 
         <!-- ======================================================== -->
         <!-- 2. HERO: VISIONE MULTIDISCIPLINARE                      -->
         <!-- ======================================================== -->
-        <section class="max-w-7xl mx-auto px-6 md:px-10 py-12 md:py-20">
+        <section class="max-w-7xl mx-auto px-5 md:px-10 py-10 md:py-20">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
                 
-                <div class="lg:col-span-8 space-y-6">
+                <div class="lg:col-span-8 space-y-5 md:space-y-6">
                     <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted bg-stone px-3 py-1 rounded-full">
                         <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                        Disponibile per collaborazioni & posizioni continuative
+                        Disponibile per opportunità & progetti
                     </div>
                     
                     <h1 class="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.08] text-dark">
@@ -132,11 +209,11 @@
 
                 <div class="lg:col-span-4 space-y-4 pb-2">
                     <p class="text-sm md:text-[15px] text-muted font-light leading-relaxed">
-                        Designer con background nelle arti visive e nella grafica editoriale, specializzato nel mettere in dialogo industrial design, illuminazione, modellazione 3D e fotografia per dare vita a narrazioni visive coerenti e funzionali.
+                        Designer con background nelle arti visive e nella grafica editoriale, specializzato nel coordinare industrial design, illuminazione, modellazione 3D e fotografia per costruire narrazioni visive coerenti e funzionali.
                     </p>
                     
-                    <!-- Tag Competenze Chiave -->
-                    <div class="flex flex-wrap gap-1.5 pt-2 font-mono text-[10px] uppercase text-dark/70">
+                    <!-- Tag Competenze -->
+                    <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[10px] uppercase text-dark/70">
                         <span class="bg-white border border-border px-2.5 py-1 rounded">Graphic & Brand Design</span>
                         <span class="bg-white border border-border px-2.5 py-1 rounded">Product & Lighting</span>
                         <span class="bg-white border border-border px-2.5 py-1 rounded">3D CGI & Visual</span>
@@ -147,8 +224,8 @@
 
             </div>
 
-            <!-- Immagine d'impatto principale (Cover) -->
-            <div class="mt-12 md:mt-20 overflow-hidden rounded-xl border border-border bg-stone">
+            <!-- Immagine di Copertina -->
+            <div class="mt-10 md:mt-20 overflow-hidden rounded-xl border border-border bg-stone">
                 <img 
                     src="Copertina2.png" 
                     alt="Alberto Costa — Progettare l'Essenziale" 
@@ -160,9 +237,9 @@
 
 
         <!-- ======================================================== -->
-        <!-- 3. PROGETTI SELEZIONATI (SCHEDE STANDARDIZZATE)         -->
+        <!-- 3. PROGETTI (SCHEDE STANDARDIZZATE E COERENTI)           -->
         <!-- ======================================================== -->
-        <section id="progetti" class="max-w-7xl mx-auto px-6 md:px-10 py-20 hairline-t">
+        <section id="progetti" class="max-w-7xl mx-auto px-5 md:px-10 py-16 md:py-24 hairline-t">
             
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16">
                 <div>
@@ -170,13 +247,13 @@
                     <h2 class="text-3xl md:text-4xl font-light tracking-tight text-dark mt-2">Design del Prodotto & Lighting</h2>
                 </div>
                 <p class="text-sm text-muted max-w-md font-light">
-                    Progetti guidati dall'equilibrio tra essenzialità estetica, cura del dettaglio visivo e coerenza strutturale.
+                    Progetti guidati dall'equilibrio tra essenzialità visiva, cura del dettaglio formale e rigore funzionale.
                 </p>
             </div>
 
-            <div class="space-y-28 md:space-y-36">
+            <div class="space-y-24 md:space-y-36">
 
-                <!-- PROGETTO 1 -->
+                <!-- PROGETTO 1: Lampada da Lettura -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-start">
                     <div class="lg:col-span-5 lg:sticky lg:top-28 space-y-6">
                         <div class="flex items-center gap-3 font-mono text-xs text-muted">
@@ -190,11 +267,11 @@
                         </h3>
                         
                         <p class="text-sm text-muted font-light leading-relaxed">
-                            Corpo illuminante da tavolo a luce direzionabile. La linearità dell'asta snodata è bilanciata da componenti di regolazione a contrasto visivo che trasformano la funzione ergonomica nel fulcro estetico del progetto.
+                            Corpo illuminante da tavolo a fascio direzionabile. La linearità dell'asta snodata è bilanciata da componenti di regolazione a contrasto cromatico che trasformano il gesto ergonomico nel fulcro visivo del progetto.
                         </p>
 
-                        <!-- SCHEDA STANDARDIZZATA -->
-                        <div class="bg-white p-5 rounded-lg border border-border font-mono text-xs space-y-2.5">
+                        <!-- Scheda Standardizzata -->
+                        <div class="bg-white p-5 rounded-lg border border-border font-mono text-xs space-y-2.5 shadow-sm">
                             <div class="text-[10px] uppercase tracking-wider text-muted font-medium border-b border-border pb-2">Scheda di Progetto</div>
                             <div class="flex justify-between py-1 border-b border-stone">
                                 <span class="text-muted">Ambito:</span>
@@ -202,20 +279,20 @@
                             </div>
                             <div class="flex justify-between py-1 border-b border-stone">
                                 <span class="text-muted">Materiali:</span>
-                                <span class="text-dark font-medium">Alluminio, Acciaio Inox AISI 304</span>
+                                <span class="text-dark font-medium">Alluminio anodizzato, Acciaio Inox AISI 304</span>
                             </div>
                             <div class="flex justify-between py-1 border-b border-stone">
                                 <span class="text-muted">Strumenti:</span>
-                                <span class="text-dark font-medium">Sketching, CAD 3D, Prototipazione</span>
+                                <span class="text-dark font-medium">Disegno geometrico, CAD 3D, Mock-up</span>
                             </div>
                             <div class="flex justify-between py-1">
                                 <span class="text-muted">Output:</span>
-                                <span class="text-dark font-medium">Modello 1:1 & Studio illuminotecnico</span>
+                                <span class="text-dark font-medium">Prototipo 1:1 & Studio illuminotecnico</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="lg:col-span-7 space-y-6">
+                    <div class="lg:col-span-7 space-y-5">
                         <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2836.jpg', 'Lampada da Lettura — Vista d\'insieme')">
                             <img src="Copia di DSC_2836.jpg" alt="Lampada da Lettura Orientabile" class="w-full h-auto object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
                         </div>
@@ -224,13 +301,13 @@
                                 <img src="Copia di DSC_1643.jpg" alt="Dettaglio Snodo Meccanico" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600'">
                             </div>
                             <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_1641.jpg', 'Lampada da Lettura — Meccanica e finiture')">
-                                <img src="Copia di DSC_1641.jpg" alt="Dettaglio Meccanica" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=600'">
+                                <img src="Copia di DSC_1641.jpg" alt="Dettaglio Meccanica e serraggi" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=600'">
                             </div>
                         </div>
                     </div>
                 </article>
 
-                <!-- PROGETTO 2 -->
+                <!-- PROGETTO 2: Piantana Cantilever -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-start">
                     <div class="lg:col-span-5 lg:sticky lg:top-28 space-y-6">
                         <div class="flex items-center gap-3 font-mono text-xs text-muted">
@@ -244,11 +321,11 @@
                         </h3>
                         
                         <p class="text-sm text-muted font-light leading-relaxed">
-                            Un'esplorazione sull'armonia dei contrasti: la stabilità monolitica della base metallica sostiene lo slancio organico del fusto in legno, lasciando cadere la luce in modo naturale e discreto nello spazio abitativo.
+                            Un'indagine sull'equilibrio dei contrasti materici: la massa solida della base metallica sostiene l'asse verticale in legno, permettendo al diffusore di scendere a sbalzo nello spazio con leggerezza discreta.
                         </p>
 
-                        <!-- SCHEDA STANDARDIZZATA -->
-                        <div class="bg-white p-5 rounded-lg border border-border font-mono text-xs space-y-2.5">
+                        <!-- Scheda Standardizzata -->
+                        <div class="bg-white p-5 rounded-lg border border-border font-mono text-xs space-y-2.5 shadow-sm">
                             <div class="text-[10px] uppercase tracking-wider text-muted font-medium border-b border-border pb-2">Scheda di Progetto</div>
                             <div class="flex justify-between py-1 border-b border-stone">
                                 <span class="text-muted">Ambito:</span>
@@ -256,30 +333,30 @@
                             </div>
                             <div class="flex justify-between py-1 border-b border-stone">
                                 <span class="text-muted">Materiali:</span>
-                                <span class="text-dark font-medium">Legno di Frassino, Acciaio Inox satinato</span>
+                                <span class="text-dark font-medium">Frassino naturale, Acciaio Inox satinato</span>
                             </div>
                             <div class="flex justify-between py-1 border-b border-stone">
                                 <span class="text-muted">Strumenti:</span>
-                                <span class="text-dark font-medium">Modellazione 3D, Disegno tecnico, Finitura</span>
+                                <span class="text-dark font-medium">Modellazione 3D, Tavole tecniche, Finiture</span>
                             </div>
                             <div class="flex justify-between py-1">
                                 <span class="text-muted">Output:</span>
-                                <span class="text-dark font-medium">Prototipo reale & Studio dei volumi</span>
+                                <span class="text-dark font-medium">Prototipo reale & Studio volumetrico</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="lg:col-span-7 space-y-6">
-                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2151.png', 'Piantana Cantilever — Assetto completo')">
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2151.png', 'Piantana Cantilever — Assetto complessivo')">
                             <img src="Copia di DSC_2151.png" alt="Piantana con Sospensione" class="w-full h-auto object-cover block" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=1200'">
                         </div>
-                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2176.png', 'Piantana Cantilever — Dettaglio d\'innesto')">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2176.png', 'Piantana Cantilever — Dettaglio innesto')">
                             <img src="Copia di DSC_2176.png" alt="Dettaglio Giunzione Legno Acciaio" class="w-full h-auto object-cover block" onerror="this.src='https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
                 </article>
 
-                <!-- PROGETTO 3 -->
+                <!-- PROGETTO 3: Orologio Digitale -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-start">
                     <div class="lg:col-span-5 lg:sticky lg:top-28 space-y-6">
                         <div class="flex items-center gap-3 font-mono text-xs text-muted">
@@ -293,11 +370,11 @@
                         </h3>
                         
                         <p class="text-sm text-muted font-light leading-relaxed">
-                            Progetto che unisce disegno tipografico dell'interfaccia e design del prodotto. La cassa è concepita attraverso un ritmo di pieghe geometriche rigorose, celebrando una grafica sobria e un'architettura formale senza ornamenti superflui.
+                            Incontro tra grafica dell'interfaccia e product design. La cassa nasce da pieghe geometriche rigorose, valorizzando una leggibilità immediata e un'architettura formale priva di decorazioni superflue.
                         </p>
 
-                        <!-- SCHEDA STANDARDIZZATA -->
-                        <div class="bg-white p-5 rounded-lg border border-border font-mono text-xs space-y-2.5">
+                        <!-- Scheda Standardizzata -->
+                        <div class="bg-white p-5 rounded-lg border border-border font-mono text-xs space-y-2.5 shadow-sm">
                             <div class="text-[10px] uppercase tracking-wider text-muted font-medium border-b border-border pb-2">Scheda di Progetto</div>
                             <div class="flex justify-between py-1 border-b border-stone">
                                 <span class="text-muted">Ambito:</span>
@@ -328,13 +405,13 @@
                     </div>
                 </article>
 
-                <!-- PROGETTO 4 -->
+                <!-- PROGETTO 4: Lampada a Morsetto -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-14 items-start">
                     <div class="lg:col-span-5 lg:sticky lg:top-28 space-y-6">
                         <div class="flex items-center gap-3 font-mono text-xs text-muted">
                             <span class="text-accent font-medium">2024</span>
                             <span>/</span>
-                            <span>System & Accessory Design</span>
+                            <span>System & Modular Design</span>
                         </div>
                         
                         <h3 class="text-2xl md:text-3xl font-normal tracking-tight text-dark">
@@ -342,11 +419,11 @@
                         </h3>
                         
                         <p class="text-sm text-muted font-light leading-relaxed">
-                            Progettata per integrarsi con discrezione in librerie, piani d'appoggio e ambienti di lavoro contemporanei. Un dispositivo minimale che permette di orientare puntualmente la sorgente luminosa attraverso geometrie pure.
+                            Progettata per inserirsi con naturalezza in librerie, montanti e postazioni di lavoro contemporanee. Un dispositivo compatto che orienta il fascio luminoso con precisione millimetrica attraverso geometrie essenziali.
                         </p>
 
-                        <!-- SCHEDA STANDARDIZZATA -->
-                        <div class="bg-white p-5 rounded-lg border border-border font-mono text-xs space-y-2.5">
+                        <!-- Scheda Standardizzata -->
+                        <div class="bg-white p-5 rounded-lg border border-border font-mono text-xs space-y-2.5 shadow-sm">
                             <div class="text-[10px] uppercase tracking-wider text-muted font-medium border-b border-border pb-2">Scheda di Progetto</div>
                             <div class="flex justify-between py-1 border-b border-stone">
                                 <span class="text-muted">Ambito:</span>
@@ -358,20 +435,20 @@
                             </div>
                             <div class="flex justify-between py-1 border-b border-stone">
                                 <span class="text-muted">Strumenti:</span>
-                                <span class="text-dark font-medium">Modellazione 3D, Prototipazione rapida, Ottica</span>
+                                <span class="text-dark font-medium">Modellazione 3D, Stampa di verifica, Ottica</span>
                             </div>
                             <div class="flex justify-between py-1">
                                 <span class="text-muted">Output:</span>
-                                <span class="text-dark font-medium">Prototipo collaudato & Studio di packaging</span>
+                                <span class="text-dark font-medium">Prototipo testato & Packaging concept</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_3095.jpg', 'Lampada Morsetto — Ancoraggio a mensola')">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_3095.jpg', 'Lampada Morsetto — Fissaggio a mensola')">
                             <img src="Copia di DSC_3095.jpg" alt="Lampada a Morsetto" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=800'">
                         </div>
-                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_3113.jpg', 'Lampada Morsetto — Diffusore')">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_3113.jpg', 'Lampada Morsetto — Diffusore orientabile')">
                             <img src="Copia di DSC_3113.jpg" alt="Diffusore Orientabile" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1534346850257-2309852b7e0e?auto=format&fit=crop&q=80&w=800'">
                         </div>
                     </div>
@@ -382,20 +459,20 @@
 
 
         <!-- ======================================================== -->
-        <!-- 4. HUB MULTIDISCIPLINARE: GRAFICA, CGI, FOTO, ARTI      -->
+        <!-- 4. HUB MULTIDISCIPLINARE: CGI, FOTO, ARTI VISIVE        -->
         <!-- ======================================================== -->
-        <section id="archivio" class="max-w-7xl mx-auto px-6 md:px-10 py-20 hairline-t">
+        <section id="archivio" class="max-w-7xl mx-auto px-5 md:px-10 py-16 md:py-24 hairline-t">
             
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
                 <div>
-                    <span class="font-mono text-xs uppercase tracking-widest text-accent font-medium">02 / Esplorazione Visiva</span>
+                    <span class="font-mono text-xs uppercase tracking-widest text-accent font-medium">02 / Ricerca Visiva</span>
                     <h2 class="text-3xl md:text-4xl font-light tracking-tight text-dark mt-2">Media & Arti Visive</h2>
                     <p class="text-sm text-muted font-light mt-2 max-w-xl">
-                        La forma nasce dall'osservazione e si traduce in diversi registri: rendering 3D fotorealistico, fotografia di ricerca, disegno e composizione grafica.
+                        La forma nasce dall'osservazione e si declina in molteplici registri espressivi: rendering 3D fotorealistico, fotografia di ricerca, disegno e composizione grafica.
                     </p>
                 </div>
 
-                <!-- Filtri -->
+                <!-- Filtri Dinamici -->
                 <div class="flex flex-wrap gap-2 font-mono text-xs">
                     <button onclick="filterMedia('all')" class="tab-btn active px-4 py-2 rounded-full border border-border bg-white hover:border-dark transition-all">Tutti</button>
                     <button onclick="filterMedia('render')" class="tab-btn px-4 py-2 rounded-full border border-border bg-white hover:border-dark transition-all">3D CGI & Concept</button>
@@ -404,8 +481,8 @@
                 </div>
             </div>
 
-            <!-- Griglia Unificata -->
-            <div id="media-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <!-- Griglia Archivio -->
+            <div id="media-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
 
                 <!-- 3D CGI -->
                 <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r1.jpg', 'Concept Ninfea — Studio volumetrico 3D')">
@@ -456,46 +533,46 @@
         <!-- ======================================================== -->
         <!-- 5. METODO PROGETTUALE A 360°                             -->
         <!-- ======================================================== -->
-        <section id="metodo" class="bg-stone py-20 hairline-t hairline-b">
-            <div class="max-w-7xl mx-auto px-6 md:px-10">
+        <section id="metodo" class="bg-stone py-16 md:py-24 hairline-t hairline-b">
+            <div class="max-w-7xl mx-auto px-5 md:px-10">
                 <div class="max-w-2xl mb-14">
                     <span class="font-mono text-xs uppercase tracking-widest text-accent font-medium">03 / Visione & Processo</span>
                     <h2 class="text-3xl md:text-4xl font-light tracking-tight text-dark mt-2">Come affronto ogni incarico</h2>
                     <p class="text-sm text-muted font-light mt-3">
-                        Dall'intuizione grafica alla produzione di un volume, integro sensibilità artistica e rigore esecutivo in 4 passaggi sequenziali.
+                        Dall'intuizione concettuale alla forma finale, unisco sensibilità artistica e rigore esecutivo in 4 momenti chiave.
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div class="bg-white p-6 rounded-lg border border-border space-y-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-lg border border-border space-y-3 shadow-sm">
                         <div class="font-mono text-xs text-accent">01. RICERCA & VISIONE</div>
                         <h3 class="font-medium text-base text-dark">Osservazione Visiva</h3>
                         <p class="text-xs text-muted leading-relaxed font-light">
-                            Fotografia, moodboard materici e schizzi a mano libera per individuare l'anima compositiva e le proporzioni ideali del concept.
+                            Fotografia, tavole materiche e schizzi preliminari per individuare l'anima compositiva e le proporzioni ideali del concept.
                         </p>
                     </div>
 
-                    <div class="bg-white p-6 rounded-lg border border-border space-y-3">
+                    <div class="bg-white p-6 rounded-lg border border-border space-y-3 shadow-sm">
                         <div class="font-mono text-xs text-accent">02. IDENTITÀ & SEGNO</div>
                         <h3 class="font-medium text-base text-dark">Sintesi Grafica</h3>
                         <p class="text-xs text-muted leading-relaxed font-light">
-                            Definizione dell'apparato grafico, equilibrio tipografico, studio del colore e della coerenza comunicativa del progetto.
+                            Definizione del linguaggio visivo, ritmo tipografico, pesi compositivi e coerenza identitaria del progetto.
                         </p>
                     </div>
 
-                    <div class="bg-white p-6 rounded-lg border border-border space-y-3">
+                    <div class="bg-white p-6 rounded-lg border border-border space-y-3 shadow-sm">
                         <div class="font-mono text-xs text-accent">03. MODELLAZIONE 3D</div>
                         <h3 class="font-medium text-base text-dark">Sviluppo Spaziale</h3>
                         <p class="text-xs text-muted leading-relaxed font-light">
-                            Progettazione tridimensionale parametrica e poligonale (Inventor, Rhino, Blender), definendo spessori, tolleranze e assiemi.
+                            Progettazione tridimensionale parametrica e poligonale, definendo ingombri reali, spessori, raccordi e assiemi.
                         </p>
                     </div>
 
-                    <div class="bg-white p-6 rounded-lg border border-border space-y-3">
+                    <div class="bg-white p-6 rounded-lg border border-border space-y-3 shadow-sm">
                         <div class="font-mono text-xs text-accent">04. CGI & COMUNICAZIONE</div>
                         <h3 class="font-medium text-base text-dark">Restituzione Finale</h3>
                         <p class="text-xs text-muted leading-relaxed font-light">
-                            Rendering fotorealistico, visual storytelling per cataloghi e prototipazione di verifica per testare ingombri e usabilità.
+                            Rendering fotorealistico per cataloghi, studi di texture, illuminotecnica applicata e verifiche di prototipazione.
                         </p>
                     </div>
                 </div>
@@ -506,8 +583,8 @@
         <!-- ======================================================== -->
         <!-- 6. PROFILO, MATRICE SOFTWARE & CONTATTI                  -->
         <!-- ======================================================== -->
-        <section id="profilo" class="max-w-7xl mx-auto px-6 md:px-10 py-24">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <section id="profilo" class="max-w-7xl mx-auto px-5 md:px-10 py-20 md:py-28">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-14">
                 
                 <!-- Colonna Bio & Contatti -->
                 <div class="lg:col-span-6 space-y-8">
@@ -530,17 +607,17 @@
                     <div class="space-y-4 pt-4 border-t border-border">
                         <div class="text-xs font-mono uppercase text-muted">Contatto Diretto</div>
                         <div class="flex flex-col sm:flex-row gap-3">
-                            <button onclick="copyEmail()" class="inline-flex items-center justify-between gap-3 bg-white border border-border hover:border-dark px-4 py-3 rounded-lg text-xs font-mono text-dark transition-all group">
+                            <button onclick="copyEmail()" class="inline-flex items-center justify-between gap-3 bg-white border border-border hover:border-dark px-4 py-3 rounded-lg text-xs font-mono text-dark transition-all group shadow-sm">
                                 <span id="email-text">albeb3b@gmail.com</span>
                                 <span class="text-[10px] text-muted group-hover:text-dark uppercase tracking-wider">(Copia)</span>
                             </button>
-                            <a href="mailto:albeb3b@gmail.com" class="inline-flex items-center justify-center gap-2 bg-dark text-white px-5 py-3 rounded-lg text-xs font-mono uppercase tracking-wider hover:bg-accent transition-colors">
+                            <a href="mailto:albeb3b@gmail.com" class="inline-flex items-center justify-center gap-2 bg-dark text-white px-5 py-3 rounded-lg text-xs font-mono uppercase tracking-wider hover:bg-accent transition-colors shadow-sm">
                                 Scrivi un'email &rarr;
                             </a>
                         </div>
                     </div>
 
-                    <!-- Download Documenti per HR / Recruiter -->
+                    <!-- Download Documenti -->
                     <div class="flex flex-wrap gap-3 pt-2">
                         <a href="Alberto_Costa_CV.pdf" download class="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-dark text-dark font-mono text-xs uppercase tracking-wider hover:bg-dark hover:text-white transition-all">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
@@ -553,17 +630,17 @@
                     </div>
                 </div>
 
-                <!-- Matrice delle Competenze Equilibrata (4 Aree) -->
-                <div class="lg:col-span-6 bg-white p-8 rounded-xl border border-border flex flex-col justify-between">
+                <!-- Matrice delle Competenze (4 Quadranti Bilanciati) -->
+                <div class="lg:col-span-6 bg-white p-7 md:p-8 rounded-xl border border-border flex flex-col justify-between shadow-sm">
                     <div>
                         <h3 class="text-xs font-mono uppercase tracking-widest text-muted mb-6 pb-2 border-b border-border">Aree di Competenza & Strumenti</h3>
                         
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 font-mono text-xs">
                             <div>
-                                <h4 class="text-dark font-medium mb-3 uppercase tracking-wider text-[11px] text-accent">Grafica & Comunicazione</h4>
+                                <h4 class="text-dark font-medium mb-3 uppercase tracking-wider text-[11px] text-accent">Grafica & Brand</h4>
                                 <ul class="space-y-2 text-muted font-light">
                                     <li>&bull; Brand Identity & Logotipi</li>
-                                    <li>&bull; Grafica editoriale & Impaginazione</li>
+                                    <li>&bull; Grafica editoriale & Layout</li>
                                     <li>&bull; Adobe Illustrator</li>
                                     <li>&bull; Adobe InDesign & Photoshop</li>
                                 </ul>
@@ -574,28 +651,28 @@
                                 <ul class="space-y-2 text-muted font-light">
                                     <li>&bull; Concept design & Ergonomia</li>
                                     <li>&bull; Autodesk Inventor & Rhino 3D</li>
-                                    <li>&bull; AutoCAD (Disegni tecnici 2D)</li>
-                                    <li>&bull; Calcoli illuminotecnici DiaLux</li>
+                                    <li>&bull; Tavole tecniche 2D (AutoCAD)</li>
+                                    <li>&bull; Illuminotecnica (DiaLux)</li>
                                 </ul>
                             </div>
 
                             <div>
                                 <h4 class="text-dark font-medium mb-3 uppercase tracking-wider text-[11px] text-accent">3D CGI & Visual</h4>
                                 <ul class="space-y-2 text-muted font-light">
-                                    <li>&bull; Blender (Mesh, Texture & UV)</li>
+                                    <li>&bull; Blender (Mesh, Texture, UV)</li>
                                     <li>&bull; Autodesk 3DS Max</li>
-                                    <li>&bull; Rendering fotorealistico (Cycles)</li>
-                                    <li>&bull; Post-produzione & Fotoinserimento</li>
+                                    <li>&bull; Rendering fotorealistico</li>
+                                    <li>&bull; Compositing & Fotoinserimenti</li>
                                 </ul>
                             </div>
 
                             <div>
-                                <h4 class="text-dark font-medium mb-3 uppercase tracking-wider text-[11px] text-accent">Fotografia & Disegno</h4>
+                                <h4 class="text-dark font-medium mb-3 uppercase tracking-wider text-[11px] text-accent">Fotografia & Segno</h4>
                                 <ul class="space-y-2 text-muted font-light">
-                                    <li>&bull; Fotografia di still life & prodotto</li>
-                                    <li>&bull; Fotoritocco cromatico avanzato</li>
+                                    <li>&bull; Fotografia di prodotto & still life</li>
+                                    <li>&bull; Color grading & Post-produzione</li>
                                     <li>&bull; Illustrazione vettoriale</li>
-                                    <li>&bull; Disegno e sketching a mano libera</li>
+                                    <li>&bull; Sketching a mano libera</li>
                                 </ul>
                             </div>
                         </div>
@@ -638,12 +715,28 @@
 
 
     <!-- ======================================================== -->
-    <!-- SCRIPT                                                   -->
+    <!-- SCRIPT JAVASCRIPT                                        -->
     <!-- ======================================================== -->
     <script>
+        // Anno corrente dinamico
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // 1. Filtro Media Unificato
+        // 1. Menu Mobile a Schermo Intero
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+        function openMobileMenu() {
+            mobileMenuOverlay.classList.remove('-translate-y-full');
+            document.body.style.overflow = 'hidden';
+            mobileMenuOverlay.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeMobileMenu() {
+            mobileMenuOverlay.classList.add('-translate-y-full');
+            document.body.style.overflow = 'auto';
+            mobileMenuOverlay.setAttribute('aria-hidden', 'true');
+        }
+
+        // 2. Filtro Media & Arti Visive
         function filterMedia(category) {
             const items = document.querySelectorAll('.media-item');
             const buttons = document.querySelectorAll('.tab-btn');
@@ -661,7 +754,7 @@
             });
         }
 
-        // 2. Lightbox
+        // 3. Lightbox Navigabile
         const lightbox = document.getElementById('lightbox');
         const lbImg = document.getElementById('lb-img');
         const lbCaption = document.getElementById('lb-caption');
@@ -691,7 +784,7 @@
             if (e.key === 'Escape') closeLightbox();
         });
 
-        // 3. Copia email con feedback visivo
+        // 4. Copia Email Rapida
         function copyEmail() {
             const email = 'albeb3b@gmail.com';
             navigator.clipboard.writeText(email).then(() => {
