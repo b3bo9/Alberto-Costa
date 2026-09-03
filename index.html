@@ -165,7 +165,7 @@
         <div class="space-y-4 pt-6 border-t border-border">
             <div class="grid grid-cols-2 gap-3">
                 <a href="Alberto_Costa_Portfolio_CV.pdf" download class="text-center py-3.5 rounded-lg border border-dark text-dark font-mono text-xs uppercase tracking-wider bg-white">
-                    Scarica CV & Portfolio
+                    Scarica CV
                 </a>
                 <a href="mailto:albeb3b@gmail.com" class="text-center py-3.5 rounded-lg bg-dark text-white font-mono text-xs uppercase tracking-wider">
                     Scrivi Email
@@ -181,48 +181,74 @@
     <main id="home" class="flex-grow pt-24 md:pt-32">
 
         <!-- ======================================================== -->
-        <!-- 2. HERO SECTION                                          -->
+        <!-- 2. HERO SECTION (EDITORIALE SENZA COPERTINA)             -->
         <!-- ======================================================== -->
-        <section class="max-w-7xl mx-auto px-5 md:px-10 py-10 md:py-20">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+        <section class="max-w-7xl mx-auto px-5 md:px-10 pt-8 pb-16 md:pt-14 md:pb-24">
+            
+            <!-- Meta Bar Superiore -->
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-8 md:mb-12">
+                <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted bg-stone px-3.5 py-1.5 rounded-full border border-border/60">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>Disponibile per opportunità & progetti</span>
+                </div>
+                <div class="font-mono text-xs uppercase tracking-widest text-muted hidden sm:block">
+                    Vicenza, IT &bull; Portfolio 2024
+                </div>
+            </div>
+
+            <!-- Griglia Headline & Statement -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-end">
                 
-                <div class="lg:col-span-8 space-y-5 md:space-y-6">
-                    <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted bg-stone px-3 py-1 rounded-full">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                        Disponibile per opportunità & progetti
-                    </div>
-                    
-                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-light tracking-tight leading-[1.08] text-dark text-balance">
-                        Dalla materia al segno, <br>
-                        dalla forma alla grafica. <br>
+                <div class="lg:col-span-8 space-y-4">
+                    <h1 class="text-4xl sm:text-6xl lg:text-[4.5rem] font-light tracking-tight leading-[1.05] text-dark text-balance">
+                        Dalla materia al segno,<br>
+                        dalla forma alla grafica.<br>
                         <span class="text-accent italic font-normal">Progettare l'essenziale.</span>
                     </h1>
                 </div>
 
-                <div class="lg:col-span-4 space-y-4 pb-2">
+                <div class="lg:col-span-4 space-y-5 pb-1">
                     <p class="text-sm md:text-[15px] text-muted font-light leading-relaxed text-pretty">
-                        Designer con background nelle arti visive e nella grafica editoriale, specializzato nel coordinare industrial design, illuminazione, modellazione 3D e fotografia per costruire narrazioni visive coerenti e funzionali.
+                        Designer con background nelle arti visive e nella grafica editoriale. Integro industrial design, illuminazione, modellazione 3D e fotografia per costruire narrazioni visive coerenti, funzionali e tangibili.
                     </p>
                     
-                    <div class="flex flex-wrap gap-1.5 pt-1 font-mono text-[10px] uppercase text-dark/70">
-                        <span class="bg-white border border-border px-2.5 py-1 rounded">Graphic & Brand Design</span>
-                        <span class="bg-white border border-border px-2.5 py-1 rounded">Product & Lighting</span>
-                        <span class="bg-white border border-border px-2.5 py-1 rounded">3D CGI & Visual</span>
-                        <span class="bg-white border border-border px-2.5 py-1 rounded">Fotografia d'Autore</span>
-                        <span class="bg-white border border-border px-2.5 py-1 rounded">Illustrazione</span>
+                    <div class="flex flex-wrap items-center gap-3 pt-1">
+                        <a href="#progetti" class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider py-2.5 px-4 rounded-full bg-dark text-white hover:bg-accent transition-colors shadow-sm">
+                            <span>Esplora i lavori</span>
+                            <span aria-hidden="true">&darr;</span>
+                        </a>
+                        <a href="#profilo" class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider py-2.5 px-4 rounded-full border border-dark/20 bg-white hover:border-dark text-dark transition-all">
+                            <span>Contatti & CV</span>
+                        </a>
                     </div>
                 </div>
 
             </div>
 
-            <div class="mt-10 md:mt-20 overflow-hidden rounded-xl border border-border bg-stone">
-                <img 
-                    src="Copertina2.png" 
-                    alt="Alberto Costa — Progettare l'Essenziale" 
-                    class="w-full h-auto max-h-[70vh] object-cover object-center block"
-                    onerror="this.src='https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1600'"
-                >
+            <!-- Matrice Architettonica di Sintesi (Sostituisce l'immagine dando solidità) -->
+            <div class="mt-14 md:mt-20 pt-8 border-t border-border grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 font-mono text-xs">
+                <div class="space-y-1.5">
+                    <span class="text-[10px] uppercase tracking-widest text-accent font-medium block">01 / Focus</span>
+                    <p class="text-dark font-medium leading-snug">Product & Lighting</p>
+                    <p class="text-muted text-[11px] font-light">Concept, ergonomia e ricerca materica</p>
+                </div>
+                <div class="space-y-1.5">
+                    <span class="text-[10px] uppercase tracking-widest text-accent font-medium block">02 / Digitale</span>
+                    <p class="text-dark font-medium leading-snug">3D CGI & Visual</p>
+                    <p class="text-muted text-[11px] font-light">Modellazione solida, UV e rendering</p>
+                </div>
+                <div class="space-y-1.5">
+                    <span class="text-[10px] uppercase tracking-widest text-accent font-medium block">03 / Identità</span>
+                    <p class="text-dark font-medium leading-snug">Grafica & Brand</p>
+                    <p class="text-muted text-[11px] font-light">Visual identity, editoria e tipografia</p>
+                </div>
+                <div class="space-y-1.5">
+                    <span class="text-[10px] uppercase tracking-widest text-accent font-medium block">04 / Sede</span>
+                    <p class="text-dark font-medium leading-snug">Schio (Vicenza)</p>
+                    <p class="text-muted text-[11px] font-light">Presenza, ibrido o full-remote</p>
+                </div>
             </div>
+
         </section>
 
 
@@ -262,8 +288,8 @@
                             Corpo illuminante da tavolo a fascio direzionabile. La linearità dell'asta snodata è bilanciata da componenti di regolazione a contrasto cromatico, trasformando il gesto ergonomico nel fulcro visivo del progetto.
                         </p>
 
-                        <!-- Specifiche Essenziali (Solo Ambito e Materiali) -->
-                        <div class="pt-2 border-t border-border">
+                        <!-- Specifiche Essenziali -->
+                        <div class="pt-3 border-t border-border">
                             <div class="font-mono text-[10px] uppercase tracking-wider text-muted mb-3 font-medium">Specifiche Progettuali</div>
                             <dl class="space-y-2 font-mono text-xs">
                                 <div class="grid grid-cols-[85px_1fr] items-baseline gap-2">
@@ -313,8 +339,8 @@
                             Un'indagine sull'equilibrio dei contrasti materici: la massa solida della base sostiene l'asse verticale in legno, lasciando scendere a sbalzo il diffusore nello spazio con una presenza discreta e silenziosa.
                         </p>
 
-                        <!-- Specifiche Essenziali (Solo Ambito e Materiali) -->
-                        <div class="pt-2 border-t border-border">
+                        <!-- Specifiche Essenziali -->
+                        <div class="pt-3 border-t border-border">
                             <div class="font-mono text-[10px] uppercase tracking-wider text-muted mb-3 font-medium">Specifiche Progettuali</div>
                             <dl class="space-y-2 font-mono text-xs">
                                 <div class="grid grid-cols-[85px_1fr] items-baseline gap-2">
@@ -359,8 +385,8 @@
                             Punto d'incontro tra grafica dell'interfaccia e product design. La cassa nasce da pieghe geometriche rigorose, valorizzando una leggibilità istantanea e un'architettura priva di decorazioni superflue.
                         </p>
 
-                        <!-- Specifiche Essenziali (Solo Ambito e Materiali) -->
-                        <div class="pt-2 border-t border-border">
+                        <!-- Specifiche Essenziali -->
+                        <div class="pt-3 border-t border-border">
                             <div class="font-mono text-[10px] uppercase tracking-wider text-muted mb-3 font-medium">Specifiche Progettuali</div>
                             <dl class="space-y-2 font-mono text-xs">
                                 <div class="grid grid-cols-[85px_1fr] items-baseline gap-2">
@@ -405,8 +431,8 @@
                             Progettata per integrarsi con naturalezza in mensole, montanti e postazioni di lavoro. Un dispositivo compatto che orienta il fascio luminoso con precisione attraverso geometrie essenziali e ridotte all'osso.
                         </p>
 
-                        <!-- Specifiche Essenziali (Solo Ambito e Materiali) -->
-                        <div class="pt-2 border-t border-border">
+                        <!-- Specifiche Essenziali -->
+                        <div class="pt-3 border-t border-border">
                             <div class="font-mono text-[10px] uppercase tracking-wider text-muted mb-3 font-medium">Specifiche Progettuali</div>
                             <dl class="space-y-2 font-mono text-xs">
                                 <div class="grid grid-cols-[85px_1fr] items-baseline gap-2">
@@ -437,7 +463,7 @@
 
 
         <!-- ======================================================== -->
-        <!-- 4. HUB MULTIDISCIPLINARE: TUTTI I MEDIA RIPRISTINATI     -->
+        <!-- 4. HUB MULTIDISCIPLINARE: MEDIA & ARTI VISIVE           -->
         <!-- ======================================================== -->
         <section id="archivio" class="max-w-7xl mx-auto px-5 md:px-10 py-16 md:py-24 hairline-t">
             
@@ -461,16 +487,13 @@
             <!-- Griglia Archivio Completa -->
             <div id="media-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
 
-                <!-- ================= 8x RENDERS (VISIBILI DI DEFAULT) ================= -->
+                <!-- 8x RENDERS (VISIBILI DI DEFAULT) -->
                 <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r1.jpg', 'Concept Ninfea — Studio volumetrico 3D')">
                     <img src="r1.jpg" alt="Concept Ninfea" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600'">
                 </div>
                 <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r2.jpg', 'Concept Lampada Tavolo — Studio di luce e texture')">
                     <img src="r2.jpg" alt="Concept Lampada Tavolo" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=600'">
                 </div>
-               <!--  <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r3.jpg', 'Render Ambientato Camera — Rendering di interni')">
-                    <img src="r3.jpg" alt="Render Ambientato Camera" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=600'">
-                </div>-->
                 <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r4.jpg', 'Concept Sospensione — Studio cromatico e riflessi')">
                     <img src="r4.jpg" alt="Concept Sospensione" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=600'">
                 </div>
@@ -486,17 +509,11 @@
                 <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r8.jpg', 'Tavolino da Caffè — Dettaglio raccordi 3D')">
                     <img src="r8.jpg" alt="Tavolino da caffè" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
                 </div>
-              <!--   <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r9.jpg', 'Lampada da Tavolo — Studio illuminotecnico')">
-                    <img src="r9.jpg" alt="Lampada da tavolo" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
-                </div>-->
                 <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r10.jpg', 'Lampada a Sospensione — Diffusione luminosa')">
                     <img src="r10.jpg" alt="Lampada a sospensione" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
                 </div>
 
-                <!-- ================= 8x FOTOGRAFIE (NASCOSTE ALL'AVVIO) ================= -->
-               <!--    <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_1.jpg', 'Fotografia — Texture organiche e ritmi naturali')">
-                    <img src="foto_1.jpg" alt="Dettaglio natura - Texture Organica" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=600'">
-                </div>-->
+                <!-- FOTOGRAFIE (GESTITE VIA JS) -->
                 <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_2.jpg', 'Fotografia — Studio di luce radente e contrasti')">
                     <img src="foto_2.jpg" alt="Dettaglio natura - Luce e Ombra" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&q=80&w=600'">
                 </div>
@@ -509,18 +526,12 @@
                 <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_5.jpg', 'Fotografia — Riflessi e trasparenze')">
                     <img src="foto_5.jpg" alt="Dettaglio natura - Riflessi" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&q=80&w=600'">
                 </div>
-               <!--  <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_6.jpg', 'Fotografia — Contrasti tonali e texture')">
-                    <img src="foto_6.jpg" alt="Dettaglio natura - Contrasti" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
-                </div>-->
                 <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_7.jpg', 'Fotografia — Linee di orizzonte')">
                     <img src="foto_7.jpg" alt="Dettaglio natura - Orizzonti" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
                 </div>
                 <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_8.jpg', 'Fotografia — Superfici materiche')">
                     <img src="foto_8.jpg" alt="Dettaglio natura - Superfici" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
                 </div>
-               <!--  <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_9.jpg', 'Fotografia — Rocce, minerali e finiture')">
-                    <img src="foto_9.jpg" alt="Dettaglio natura - Rocce e Pietre" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
-                </div>-->
                 <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_10.jpg', 'Fotografia — Linee organiche')">
                     <img src="foto_10.jpg" alt="Dettaglio natura - Linee Naturali" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
                 </div>
@@ -528,7 +539,7 @@
                     <img src="foto_11.jpg" alt="Dettaglio natura - Atmosfera" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
                 </div>
 
-                <!-- ================= 6x ILLUSTRAZIONI (NASCOSTE ALL'AVVIO) ================= -->
+                <!-- ILLUSTRAZIONI (GESTITE VIA JS) -->
                 <div class="media-item sketch work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_1.jpg', 'Illustrazione — Composizione Formale I')">
                     <img src="illustrazione_1.jpg" alt="Illustrazione - Composizione Formale I" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=600'">
                 </div>
@@ -567,7 +578,7 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="bg-white p-6 rounded-lg border border-border space-y-3 shadow-sm">
-                        <div class="font-mono text-xs text-accent">01. RICERCA & VISIONE</div>
+                        <div class="font-mono text-xs text-accent font-medium">01. RICERCA & VISIONE</div>
                         <h3 class="font-medium text-base text-dark">Osservazione Visiva</h3>
                         <p class="text-xs text-muted leading-relaxed font-light">
                             Fotografia, tavole materiche e schizzi preliminari per individuare l'anima compositiva e le proporzioni ideali del concept.
@@ -575,7 +586,7 @@
                     </div>
 
                     <div class="bg-white p-6 rounded-lg border border-border space-y-3 shadow-sm">
-                        <div class="font-mono text-xs text-accent">02. IDENTITÀ & SEGNO</div>
+                        <div class="font-mono text-xs text-accent font-medium">02. IDENTITÀ & SEGNO</div>
                         <h3 class="font-medium text-base text-dark">Sintesi Grafica</h3>
                         <p class="text-xs text-muted leading-relaxed font-light">
                             Definizione del linguaggio visivo, ritmo tipografico, pesi compositivi e coerenza identitaria del progetto.
@@ -583,7 +594,7 @@
                     </div>
 
                     <div class="bg-white p-6 rounded-lg border border-border space-y-3 shadow-sm">
-                        <div class="font-mono text-xs text-accent">03. MODELLAZIONE 3D</div>
+                        <div class="font-mono text-xs text-accent font-medium">03. MODELLAZIONE 3D</div>
                         <h3 class="font-medium text-base text-dark">Sviluppo Spaziale</h3>
                         <p class="text-xs text-muted leading-relaxed font-light">
                             Progettazione tridimensionale parametrica e poligonale, definendo ingombri reali, spessori, raccordi e assiemi.
@@ -591,7 +602,7 @@
                     </div>
 
                     <div class="bg-white p-6 rounded-lg border border-border space-y-3 shadow-sm">
-                        <div class="font-mono text-xs text-accent">04. CGI & COMUNICAZIONE</div>
+                        <div class="font-mono text-xs text-accent font-medium">04. CGI & COMUNICAZIONE</div>
                         <h3 class="font-medium text-base text-dark">Restituzione Finale</h3>
                         <p class="text-xs text-muted leading-relaxed font-light">
                             Rendering fotorealistico per cataloghi, studi di texture, illuminotecnica applicata e verifiche di prototipazione.
@@ -605,14 +616,19 @@
         <!-- ======================================================== -->
         <!-- 6. PROFILO & MATRICE COMPETENZE                          -->
         <!-- ======================================================== -->
-        <section id="profilo" class="max-w-7xl mx-auto px-5 md:px-10 py-20 md:py-28">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-14">
+        <section id="profilo" class="max-w-7xl mx-auto px-5 md:px-10 py-16 md:py-24 hairline-t">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
                 
+                <!-- Colonna Sinistra: Bio & Contatti -->
                 <div class="lg:col-span-6 space-y-8">
                     <div>
                         <span class="font-mono text-xs uppercase tracking-widest text-accent font-medium">04 / Chi sono</span>
-                        <h2 class="text-4xl font-light tracking-tight text-dark mt-2">Alberto Costa</h2>
-                        <p class="font-mono text-xs text-muted mt-1">Schio (Vicenza) &bull; Disponibile in presenza, ibrido o full-remote</p>
+                        <h2 class="text-3xl md:text-4xl font-light tracking-tight text-dark mt-2">Alberto Costa</h2>
+                        <p class="font-mono text-xs text-muted mt-2 flex flex-wrap items-center gap-2">
+                            <span>Schio (Vicenza)</span>
+                            <span class="text-muted/60">&bull;</span>
+                            <span>Disponibile in presenza, ibrido o full-remote</span>
+                        </p>
                     </div>
 
                     <div class="space-y-4 text-sm text-muted font-light leading-relaxed max-w-lg text-pretty">
@@ -624,80 +640,137 @@
                         </p>
                     </div>
 
-                    <div class="space-y-4 pt-4 border-t border-border">
-                        <div class="text-xs font-mono uppercase text-muted">Contatto Diretto</div>
-                        <div class="flex flex-col sm:flex-row gap-3">
-                            <button onclick="copyEmail()" class="inline-flex items-center justify-between gap-3 bg-white border border-border hover:border-dark px-4 py-3 rounded-lg text-xs font-mono text-dark transition-all group shadow-sm">
-                                <span id="email-text">albeb3b@gmail.com</span>
-                                <span class="text-[10px] text-muted group-hover:text-dark uppercase tracking-wider">(Copia)</span>
+                    <!-- Blocco Azioni & Contatti Allineato -->
+                    <div class="space-y-4 pt-6 border-t border-border">
+                        <div class="text-xs font-mono uppercase tracking-wider text-muted font-medium">Contatto Diretto & Portfolio</div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <button onclick="copyEmail()" class="flex items-center justify-between gap-3 bg-white border border-border hover:border-dark px-4 py-3 rounded-lg text-xs font-mono text-dark transition-all group shadow-sm text-left">
+                                <span class="truncate" id="email-text">albeb3b@gmail.com</span>
+                                <span class="text-[10px] text-muted group-hover:text-dark uppercase tracking-wider shrink-0">(Copia)</span>
                             </button>
-                            <a href="mailto:albeb3b@gmail.com" class="inline-flex items-center justify-center gap-2 bg-dark text-white px-5 py-3 rounded-lg text-xs font-mono uppercase tracking-wider hover:bg-accent transition-colors shadow-sm">
-                                Scrivi un'email &rarr;
+                            
+                            <a href="mailto:albeb3b@gmail.com" class="inline-flex items-center justify-center gap-2 bg-dark text-white px-5 py-3 rounded-lg text-xs font-mono uppercase tracking-wider hover:bg-accent transition-colors shadow-sm text-center">
+                                <span>Scrivi un'email</span>
+                                <span aria-hidden="true">&rarr;</span>
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="Alberto_Costa_Portfolio_CV.pdf" download class="w-full inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-lg border border-dark text-dark font-mono text-xs uppercase tracking-wider hover:bg-dark hover:text-white transition-all shadow-sm">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                <span>Scarica CV & Portfolio Completo (PDF)</span>
                             </a>
                         </div>
                     </div>
-
-                    <!-- PULSANTE DOWNLOAD UNIFICATO -->
-                    <div class="pt-2">
-                        <a href="Alberto_Costa_Portfolio_CV.pdf" download class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-lg border border-dark text-dark font-mono text-xs uppercase tracking-wider hover:bg-dark hover:text-white transition-all shadow-sm">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                            </svg>
-                            <span>Scarica CV & Portfolio Completo (PDF)</span>
-                        </a>
-                    </div>
                 </div>
 
+                <!-- Colonna Destra: Matrice Competenze & Strumenti -->
                 <div class="lg:col-span-6 bg-white p-7 md:p-8 rounded-xl border border-border flex flex-col justify-between shadow-sm">
                     <div>
                         <h3 class="text-xs font-mono uppercase tracking-widest text-muted mb-6 pb-2 border-b border-border">Aree di Competenza & Strumenti</h3>
                         
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 font-mono text-xs">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-8 font-mono text-xs">
+                            <!-- 1. Grafica -->
                             <div>
-                                <h4 class="text-dark font-medium mb-3 uppercase tracking-wider text-[11px] text-accent">Grafica & Brand</h4>
+                                <h4 class="text-accent font-medium mb-3 uppercase tracking-wider text-[11px]">Grafica & Brand</h4>
                                 <ul class="space-y-2 text-muted font-light">
-                                    <li>&bull; Brand Identity & Logotipi</li>
-                                    <li>&bull; Grafica editoriale & Layout</li>
-                                    <li>&bull; Adobe Illustrator</li>
-                                    <li>&bull; Adobe InDesign & Photoshop</li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent/60 select-none">&bull;</span>
+                                        <span>Brand Identity & Logotipi</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent/60 select-none">&bull;</span>
+                                        <span>Grafica editoriale & Layout</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent/60 select-none">&bull;</span>
+                                        <span>Adobe Illustrator</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent/60 select-none">&bull;</span>
+                                        <span>Adobe InDesign & Photoshop</span>
+                                    </li>
                                 </ul>
                             </div>
 
+                            <!-- 2. Product -->
                             <div>
-                                <h4 class="text-dark font-medium mb-3 uppercase tracking-wider text-[11px] text-accent">Product & Lighting</h4>
+                                <h4 class="text-accent font-medium mb-3 uppercase tracking-wider text-[11px]">Product & Lighting</h4>
                                 <ul class="space-y-2 text-muted font-light">
-                                    <li>&bull; Concept design & Ergonomia</li>
-                                    <li>&bull; Autodesk Inventor & Rhino 3D</li>
-                                    <li>&bull; Tavole tecniche 2D (AutoCAD)</li>
-                                    <li>&bull; Illuminotecnica (DiaLux)</li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent/60 select-none">&bull;</span>
+                                        <span>Concept design & Ergonomia</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent/60 select-none">&bull;</span>
+                                        <span>Autodesk Inventor & Rhino 3D</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent/60 select-none">&bull;</span>
+                                        <span>Tavole tecniche 2D (AutoCAD)</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent/60 select-none">&bull;</span>
+                                        <span>Illuminotecnica (DiaLux)</span>
+                                    </li>
                                 </ul>
                             </div>
 
+                            <!-- 3. CGI -->
                             <div>
-                                <h4 class="text-dark font-medium mb-3 uppercase tracking-wider text-[11px] text-accent">3D CGI & Visual</h4>
+                                <h4 class="text-accent font-medium mb-3 uppercase tracking-wider text-[11px]">3D CGI & Visual</h4>
                                 <ul class="space-y-2 text-muted font-light">
-                                    <li>&bull; Blender (Mesh, Texture, UV)</li>
-                                    <li>&bull; Autodesk 3DS Max</li>
-                                    <li>&bull; Rendering fotorealistico</li>
-                                    <li>&bull; Compositing & Fotoinserimenti</li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent/60 select-none">&bull;</span>
+                                        <span>Blender (Mesh, Texture, UV)</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent/60 select-none">&bull;</span>
+                                        <span>Autodesk 3DS Max</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent/60 select-none">&bull;</span>
+                                        <span>Rendering fotorealistico</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent/60 select-none">&bull;</span>
+                                        <span>Compositing & Fotoinserimenti</span>
+                                    </li>
                                 </ul>
                             </div>
 
+                            <!-- 4. Fotografia -->
                             <div>
-                                <h4 class="text-dark font-medium mb-3 uppercase tracking-wider text-[11px] text-accent">Fotografia & Segno</h4>
+                                <h4 class="text-accent font-medium mb-3 uppercase tracking-wider text-[11px]">Fotografia & Segno</h4>
                                 <ul class="space-y-2 text-muted font-light">
-                                    <li>&bull; Fotografia di prodotto & still life</li>
-                                    <li>&bull; Color grading & Post-produzione</li>
-                                    <li>&bull; Illustrazione vettoriale</li>
-                                    <li>&bull; Sketching a mano libera</li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent/60 select-none">&bull;</span>
+                                        <span>Fotografia di prodotto & still life</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent/60 select-none">&bull;</span>
+                                        <span>Color grading & Post-produzione</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent/60 select-none">&bull;</span>
+                                        <span>Illustrazione vettoriale</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <span class="text-accent/60 select-none">&bull;</span>
+                                        <span>Sketching a mano libera</span>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <blockquote class="mt-12 pt-6 border-t border-border">
-                        <p class="text-xl font-light text-dark italic">"Less, but better."</p>
-                        <footer class="mt-1 font-mono text-[10px] uppercase text-muted">&mdash; Dieter Rams</footer>
+                    <!-- Citazione Finale Integrata -->
+                    <blockquote class="mt-10 pt-6 border-t border-border flex items-baseline justify-between">
+                        <p class="text-xl font-light text-dark italic tracking-tight">“Less, but better.”</p>
+                        <footer class="font-mono text-[10px] uppercase text-muted tracking-widest">&mdash; Dieter Rams</footer>
                     </blockquote>
                 </div>
 
