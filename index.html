@@ -91,11 +91,12 @@
                     CV (PDF)
                 </a>
                 
-                <a href="#profilo" class="inline-flex text-xs font-mono uppercase tracking-wider py-2 px-4 rounded-full bg-dark text-white hover:bg-accent transition-colors shadow-sm">
-                    Contatti
+                <!-- Tasto Scrivimi (Sfondo Nero) -->
+                <a href="mailto:albeb3b@gmail.com" class="inline-flex text-xs font-mono uppercase tracking-wider py-2 px-4 rounded-full bg-dark text-white hover:bg-accent transition-colors shadow-sm">
+                    Scrivimi
                 </a>
 
-                <!-- Bottone Menu Mobile (coerente con lo stile a pillola) -->
+                <!-- Bottone Menu Mobile -->
                 <button 
                     onclick="openMobileMenu()" 
                     class="md:hidden inline-flex items-center justify-center py-1.5 px-3.5 rounded-full border border-dark/20 hover:border-dark text-dark font-mono text-xs uppercase tracking-wider transition-colors"
@@ -109,7 +110,7 @@
     </header>
 
     <!-- ======================================================== -->
-    <!-- MENU MOBILE (GRAFICA UNIFICATA ALLO STILE DESKTOP)       -->
+    <!-- MENU MOBILE                                              -->
     <!-- ======================================================== -->
     <div 
         id="mobile-menu-overlay" 
@@ -118,7 +119,6 @@
     >
         <div class="bg-[#f8f8f6] border-b border-border shadow-xl w-full flex flex-col">
             
-            <!-- Barra Superiore coordinata con l'Header -->
             <div class="px-5 sm:px-8 h-16 flex justify-between items-center hairline-b">
                 <a href="#home" onclick="closeMobileMenu()" class="font-medium text-sm tracking-tight flex items-center gap-2">
                     <span>Alberto Costa</span>
@@ -133,7 +133,7 @@
                 </button>
             </div>
 
-            <!-- Voci di Navigazione: Stessa dicitura e font-mono del Desktop -->
+            <!-- Voci di Navigazione -->
             <nav class="flex flex-col px-5 sm:px-8 py-5 space-y-4 font-mono text-xs uppercase tracking-wider text-muted">
                 <a href="#progetti" onclick="closeMobileMenu()" class="hover:text-dark transition-colors py-1 flex items-center justify-between">
                     <span>01. Progetti</span>
@@ -149,18 +149,17 @@
                 </a>
             </nav>
 
-            <!-- Tasti Azione: Stile Pillola identico al Desktop -->
+            <!-- Tasti Azione Mobile -->
             <div class="px-5 sm:px-8 pb-5 pt-3 hairline-t flex items-center gap-3">
                 <a href="Alberto_Costa_Portfolio_CV.pdf" download class="w-1/2 text-center py-2.5 px-3.5 rounded-full border border-dark/20 hover:border-dark text-dark text-xs font-mono uppercase tracking-wider transition-colors">
                     CV (PDF)
                 </a>
-                <a href="#profilo" onclick="closeMobileMenu()" class="w-1/2 text-center py-2.5 px-4 rounded-full bg-dark text-white text-xs font-mono uppercase tracking-wider hover:bg-accent transition-colors shadow-sm">
-                    Contatti
+                <a href="mailto:albeb3b@gmail.com" onclick="closeMobileMenu()" class="w-1/2 text-center py-2.5 px-4 rounded-full bg-dark text-white text-xs font-mono uppercase tracking-wider hover:bg-accent transition-colors shadow-sm">
+                    Scrivimi
                 </a>
             </div>
         </div>
 
-        <!-- Spazio inferiore semitrasparente per chiudere al tocco -->
         <div class="flex-grow" onclick="closeMobileMenu()"></div>
     </div>
 
@@ -168,7 +167,7 @@
     <main id="home" class="flex-grow pt-20 md:pt-24">
 
         <!-- ======================================================== -->
-        <!-- 2. HERO: DIRETTA, PULITA, SENZA DISTRAZIONI               -->
+        <!-- 2. HERO                                                  -->
         <!-- ======================================================== -->
         <section class="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 pt-10 pb-14 md:pt-16 md:pb-20">
             <div class="max-w-4xl space-y-6">
@@ -200,7 +199,7 @@
 
 
         <!-- ======================================================== -->
-        <!-- 3. PROGETTI DI PRODOTTO (2 FOTO CON PROPORZIONI REALI)    -->
+        <!-- 3. PROGETTI DI PRODOTTO                                  -->
         <!-- ======================================================== -->
         <section id="progetti" class="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 py-16 md:py-20 hairline-t">
             
@@ -213,7 +212,7 @@
 
             <div class="space-y-24 md:space-y-36">
 
-                <!-- PROGETTO 1: Lampada da Lettura (2 Foto) -->
+                <!-- PROGETTO 1 -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
                     <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
@@ -249,7 +248,7 @@
                     </div>
                 </article>
 
-                <!-- PROGETTO 2: Piantana Cantilever (2 Foto) -->
+                <!-- PROGETTO 2 -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
                     <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
@@ -285,7 +284,7 @@
                     </div>
                 </article>
 
-                <!-- PROGETTO 3: Tavolino Modulare (2 Foto) -->
+                <!-- PROGETTO 3 -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
                     <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
@@ -321,7 +320,7 @@
                     </div>
                 </article>
 
-                <!-- PROGETTO 4: Lampada a Sospensione (2 Foto) -->
+                <!-- PROGETTO 4 -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
                     <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
@@ -357,7 +356,7 @@
                     </div>
                 </article>
 
-                <!-- PROGETTO 5: Lampada a Morsetto (2 Foto) -->
+                <!-- PROGETTO 5 -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
                     <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
@@ -393,7 +392,7 @@
                     </div>
                 </article>
 
-                <!-- PROGETTO 6: Orologio Digitale (2 Foto) -->
+                <!-- PROGETTO 6 -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
                     <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
@@ -434,7 +433,7 @@
 
 
         <!-- ======================================================== -->
-        <!-- 4. ARCHIVIO VISIVO: 3D CGI, FOTO, GRAFICA               -->
+        <!-- 4. ARCHIVIO VISIVO                                       -->
         <!-- ======================================================== -->
         <section id="archivio" class="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 py-16 md:py-20 hairline-t">
             
@@ -458,7 +457,7 @@
             <!-- Griglia Galleria -->
             <div id="media-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
 
-                <!-- 3D RENDER (Visibili di default) -->
+                <!-- 3D RENDER -->
                 <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r1.jpg', 'Studio volumetrico 3D — Concept Ninfea')">
                     <img src="r1.jpg" alt="Concept Ninfea" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600'">
                 </div>
@@ -484,7 +483,7 @@
                     <img src="r10.jpg" alt="Lampada a sospensione" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
                 </div>
 
-                <!-- FOTOGRAFIA (Nascoste all'avvio) -->
+                <!-- FOTOGRAFIA -->
                 <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_2.jpg', 'Studio luce e ombra')">
                     <img src="foto_2.jpg" alt="Luce e Ombra" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&q=80&w=600'">
                 </div>
@@ -510,7 +509,7 @@
                     <img src="foto_11.jpg" alt="Atmosfera" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
                 </div>
 
-                <!-- GRAFICA & ILLUSTRAZIONE (Nascoste all'avvio) -->
+                <!-- GRAFICA & ILLUSTRAZIONE -->
                 <div class="media-item sketch work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_1.jpg', 'Composizione vettoriale 01')">
                     <img src="illustrazione_1.jpg" alt="Composizione I" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=600'">
                 </div>
@@ -541,8 +540,8 @@
             
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
                 
-                <!-- Colonna Sinistra: Bio e Tasto CV -->
-                <div class="lg:col-span-5 flex flex-col justify-between h-full space-y-8 lg:space-y-0">
+                <!-- Colonna Sinistra: Bio, Copia Email e Download CV -->
+                <div class="lg:col-span-5 flex flex-col justify-between h-full">
                     
                     <div class="space-y-5">
                         <div>
@@ -560,29 +559,34 @@
                         </p>
                     </div>
 
-                    <!-- Blocco Contatti e Tasto Download CV -->
-                    <div class="space-y-3 pt-6 lg:pt-0">
+                    <!-- Blocco Contatto Diretto & CV: perfetto allineamento inferiore -->
+                    <div class="space-y-3 mt-8 lg:mt-auto">
                         <div class="text-xs font-mono uppercase tracking-wider text-muted font-medium">Contatto Diretto</div>
                         
+                        <!-- Tasti Copia Mail e Scarica CV affiancati in modo simmetrico -->
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                            <button onclick="copyEmail()" class="flex items-center justify-between px-3.5 py-2.5 rounded-lg border border-border hover:border-dark bg-white text-xs font-mono transition-colors text-left shadow-sm group">
+                            <!-- Tasto Copia Mail -->
+                            <button 
+                                onclick="copyEmail()" 
+                                class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg border border-border hover:border-dark bg-white text-xs font-mono transition-colors text-left shadow-sm group"
+                                title="Clicca per copiare l'indirizzo email"
+                            >
                                 <span id="email-text" class="text-dark truncate">albeb3b@gmail.com</span>
                                 <span class="text-[10px] text-muted uppercase tracking-wider ml-1 group-hover:text-dark shrink-0">(Copia)</span>
                             </button>
                             
-                            <a href="mailto:albeb3b@gmail.com" class="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg bg-dark text-white text-xs font-mono uppercase tracking-wider hover:bg-accent transition-colors shadow-sm text-center">
-                                <span>Scrivi Email</span>
-                                <span aria-hidden="true">&rarr;</span>
+                            <!-- Tasto Scarica CV (PDF) -->
+                            <a 
+                                href="Alberto_Costa_Portfolio_CV.pdf" 
+                                download 
+                                class="w-full inline-flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-lg border border-border hover:border-dark bg-white hover:bg-dark hover:text-white text-dark text-xs font-mono uppercase tracking-wider transition-all shadow-sm text-center group"
+                            >
+                                <svg class="w-3.5 h-3.5 text-muted group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                <span>Scarica CV (PDF)</span>
                             </a>
                         </div>
-
-                        <!-- TASTO DOWNLOAD CV ALLINEATO AL FONDO -->
-                        <a href="Alberto_Costa_Portfolio_CV.pdf" download class="w-full inline-flex items-center justify-center gap-2.5 px-4 py-3 rounded-lg border border-dark text-dark text-xs font-mono uppercase tracking-wider hover:bg-dark hover:text-white transition-all shadow-sm">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                            </svg>
-                            <span>Scarica CV & Portfolio (PDF)</span>
-                        </a>
                     </div>
                 </div>
 
@@ -688,7 +692,7 @@
             document.body.style.overflow = 'auto';
         }
 
-        // 2. Filtro Media Diretto
+        // 2. Filtro Media
         function filterMedia(category, btn) {
             const items = document.querySelectorAll('.media-item');
             const buttons = document.querySelectorAll('.tab-btn');
@@ -736,7 +740,7 @@
             if (e.key === 'Escape') closeLightbox();
         });
 
-        // 4. Copia Rapida Email
+        // 4. Copia Rapida Email con feedback
         function copyEmail() {
             const email = 'albeb3b@gmail.com';
             navigator.clipboard.writeText(email).then(() => {
