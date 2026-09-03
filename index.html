@@ -71,9 +71,9 @@
     <!-- 1. HEADER                                                -->
     <!-- ======================================================== -->
     <header class="fixed top-0 left-0 w-full z-40 bg-[#f8f8f6]/95 backdrop-blur-sm hairline-b">
-        <div class="max-w-7xl mx-auto px-5 md:px-10 h-16 flex justify-between items-center">
+        <div class="max-w-7xl mx-auto px-5 md:px-10 h-16 md:h-20 flex justify-between items-center">
             
-            <a href="#home" class="font-medium text-sm tracking-tight flex items-center gap-2">
+            <a href="#home" class="font-medium text-sm md:text-base tracking-tight flex items-center gap-2">
                 <span>Alberto Costa</span>
                 <span class="text-muted font-normal hidden sm:inline">&mdash; Portfolio</span>
             </a>
@@ -85,12 +85,14 @@
                 <a href="#profilo" class="hover:text-dark transition-colors">03. Info & Contatti</a>
             </nav>
 
-            <!-- Azioni rapide -->
+            <!-- Tasti Azione: CV e Tasto Nero Contatti Diretto -->
             <div class="flex items-center gap-3">
-                <a href="Alberto_Costa_Portfolio_CV.pdf" download class="hidden sm:inline-flex text-xs font-mono uppercase tracking-wider py-1.5 px-3 rounded border border-dark/20 hover:border-dark text-dark transition-colors">
+                <a href="Alberto_Costa_Portfolio_CV.pdf" download class="hidden sm:inline-flex text-xs font-mono uppercase tracking-wider py-2 px-3.5 rounded-full border border-dark/20 hover:border-dark text-dark transition-colors">
                     CV (PDF)
                 </a>
-                <a href="#profilo" class="text-xs font-mono uppercase tracking-wider py-1.5 px-3.5 rounded bg-dark text-white hover:bg-accent transition-colors">
+                
+                <!-- TASTO NERO CONTATTI HEADER -->
+                <a href="#profilo" class="inline-flex text-xs font-mono uppercase tracking-wider py-2 px-4 rounded-full bg-dark text-white hover:bg-accent transition-colors shadow-sm">
                     Contatti
                 </a>
 
@@ -133,40 +135,44 @@
         </nav>
 
         <div class="pt-4 border-t border-border flex gap-3">
-            <a href="Alberto_Costa_Portfolio_CV.pdf" download class="w-1/2 text-center py-2.5 border border-dark text-xs font-mono uppercase">Scarica CV</a>
-            <a href="mailto:albeb3b@gmail.com" class="w-1/2 text-center py-2.5 bg-dark text-white text-xs font-mono uppercase">Email</a>
+            <a href="Alberto_Costa_Portfolio_CV.pdf" download class="w-1/2 text-center py-3 rounded-lg border border-dark text-xs font-mono uppercase">Scarica CV</a>
+            <a href="mailto:albeb3b@gmail.com" class="w-1/2 text-center py-3 rounded-lg bg-dark text-white text-xs font-mono uppercase">Scrivi Email</a>
         </div>
     </div>
 
 
-    <main id="home" class="flex-grow pt-20">
+    <main id="home" class="flex-grow pt-20 md:pt-24">
 
         <!-- ======================================================== -->
-        <!-- 2. HERO: DIRETTA, INFORMATIVA, ZERO FRASI FATTE          -->
+        <!-- 2. HERO: DIRETTA, INFORMATIVA CON TASTO NERO             -->
         <!-- ======================================================== -->
         <section class="max-w-7xl mx-auto px-5 md:px-10 pt-12 pb-14 md:pt-16 md:pb-20">
             <div class="max-w-4xl space-y-6">
                 
-                <div class="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-wider text-muted">
+                <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-muted bg-stone px-3 py-1 rounded-full border border-border/50">
                     <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
-                    <span>Schio (Vicenza) &bull; Disponibile per incarichi e collaborazioni</span>
+                    <span>Schio (Vicenza) &bull; Disponibile per progetti e collaborazioni</span>
                 </div>
 
-                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-light tracking-tight text-dark leading-[1.12]">
-                    Design del prodotto, corpi illuminanti, visualizzazione 3D e grafica applicata.
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-light tracking-tight text-dark leading-[1.12] text-balance">
+                    Product & Lighting Design,<br>
+                    modellazione 3D e grafica applicata.
                 </h1>
 
-                <p class="text-base sm:text-lg text-muted font-light max-w-2xl leading-relaxed">
-                    Sviluppo progetti dal concept formale ai dettagli costruttivi: disegno tecnico, illuminotecnica, modellazione 3D e immagini fotorealistiche.
+                <p class="text-base sm:text-lg text-muted font-light max-w-2xl leading-relaxed text-pretty">
+                    Sviluppo progetti dal concept formale ai dettagli costruttivi: disegno tecnico, illuminotecnica, modellazione parametrica e visualizzazione fotorealistica.
                 </p>
 
-                <div class="pt-2 flex flex-wrap gap-4 font-mono text-xs">
-                    <a href="#progetti" class="inline-flex items-center gap-2 text-dark border-b border-dark pb-0.5 hover:text-accent hover:border-accent transition-colors">
-                        <span>Vai ai progetti selezionati</span>
-                        <span aria-hidden="true">&darr;</span>
+                <!-- TASTI AZIONE HERO: IL TASTO NERO DIRETTO + VEDI LAVORI -->
+                <div class="pt-2 flex flex-wrap items-center gap-3">
+                    <a href="#profilo" class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider py-2.5 px-5 rounded-full bg-dark text-white hover:bg-accent transition-colors shadow-sm">
+                        <span>Contatti diretti</span>
+                        <span aria-hidden="true">&rarr;</span>
                     </a>
-                    <a href="#profilo" class="text-muted hover:text-dark transition-colors">
-                        Competenze & Software &rarr;
+                    
+                    <a href="#progetti" class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider py-2.5 px-5 rounded-full border border-dark/20 bg-white hover:border-dark text-dark transition-all">
+                        <span>Esplora i progetti</span>
+                        <span aria-hidden="true">&darr;</span>
                     </a>
                 </div>
 
@@ -177,13 +183,16 @@
         <!-- ======================================================== -->
         <!-- 3. PROGETTI DI PRODOTTO                                 -->
         <!-- ======================================================== -->
-        <section id="progetti" class="max-w-7xl mx-auto px-5 md:px-10 py-16 hairline-t">
+        <section id="progetti" class="max-w-7xl mx-auto px-5 md:px-10 py-16 md:py-20 hairline-t">
             
             <div class="flex items-baseline justify-between mb-12">
-                <h2 class="text-xl md:text-2xl font-light tracking-tight text-dark">
-                    01 / Progetti Selezionati
-                </h2>
-                <span class="font-mono text-xs text-muted">4 Lavori</span>
+                <div>
+                    <span class="font-mono text-xs uppercase tracking-widest text-accent font-medium">01 / Lavori Selezionati</span>
+                    <h2 class="text-2xl md:text-3xl font-light tracking-tight text-dark mt-1">
+                        Design del Prodotto & Illuminazione
+                    </h2>
+                </div>
+                <span class="font-mono text-xs text-muted">4 Progetti</span>
             </div>
 
             <div class="space-y-24 md:space-y-32">
@@ -215,14 +224,14 @@
                     </div>
 
                     <div class="lg:col-span-8 space-y-4">
-                        <div class="work-card rounded overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2836.jpg', 'Lampada da Lettura — Vista generale')">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2836.jpg', 'Lampada da Lettura — Vista generale')">
                             <img src="Copia di DSC_2836.jpg" alt="Lampada da Lettura Orientabile" class="w-full h-auto object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                         <div class="grid grid-cols-2 gap-4">
-                            <div class="work-card rounded overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_1643.jpg', 'Lampada da Lettura — Meccanismo di snodo')">
+                            <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_1643.jpg', 'Lampada da Lettura — Meccanismo di snodo')">
                                 <img src="Copia di DSC_1643.jpg" alt="Dettaglio Meccanismo" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600'">
                             </div>
-                            <div class="work-card rounded overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_1641.jpg', 'Lampada da Lettura — Dettaglio serraggi')">
+                            <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_1641.jpg', 'Lampada da Lettura — Dettaglio serraggi')">
                                 <img src="Copia di DSC_1641.jpg" alt="Dettaglio Serraggi" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=600'">
                             </div>
                         </div>
@@ -256,10 +265,10 @@
                     </div>
 
                     <div class="lg:col-span-8 space-y-4">
-                        <div class="work-card rounded overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2151.png', 'Piantana Cantilever — Assetto completo')">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2151.png', 'Piantana Cantilever — Assetto completo')">
                             <img src="Copia di DSC_2151.png" alt="Piantana Cantilever" class="w-full h-auto object-cover block" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=1200'">
                         </div>
-                        <div class="work-card rounded overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2176.png', 'Piantana Cantilever — Innesto legno-metallo')">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2176.png', 'Piantana Cantilever — Innesto legno-metallo')">
                             <img src="Copia di DSC_2176.png" alt="Giunzione Legno Acciaio" class="w-full h-auto object-cover block" onerror="this.src='https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=80&w=1200'">
                         </div>
                     </div>
@@ -292,10 +301,10 @@
                     </div>
 
                     <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="work-card rounded overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_3217.jpg', 'Orologio Lamellare — Vista frontale')">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_3217.jpg', 'Orologio Lamellare — Vista frontale')">
                             <img src="Copia di DSC_3217.jpg" alt="Cassa Orologio" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&q=80&w=800'">
                         </div>
-                        <div class="work-card rounded overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_3228.jpg', 'Orologio Lamellare — Vista laterale e pulsanti')">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_3228.jpg', 'Orologio Lamellare — Vista laterale e pulsanti')">
                             <img src="Copia di DSC_3228.jpg" alt="Dettaglio Pulsanti" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&q=80&w=800'">
                         </div>
                     </div>
@@ -328,10 +337,10 @@
                     </div>
 
                     <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="work-card rounded overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_3095.jpg', 'Lampada Morsetto — Ancoraggio')">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_3095.jpg', 'Lampada Morsetto — Ancoraggio')">
                             <img src="Copia di DSC_3095.jpg" alt="Morsetto su mensola" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=800'">
                         </div>
-                        <div class="work-card rounded overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_3113.jpg', 'Lampada Morsetto — Testa orientabile')">
+                        <div class="work-card rounded-lg overflow-hidden border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_3113.jpg', 'Lampada Morsetto — Testa orientabile')">
                             <img src="Copia di DSC_3113.jpg" alt="Diffusore" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1534346850257-2309852b7e0e?auto=format&fit=crop&q=80&w=800'">
                         </div>
                     </div>
@@ -344,21 +353,22 @@
         <!-- ======================================================== -->
         <!-- 4. ARCHIVIO VISIVO: 3D CGI, FOTO, GRAFICA               -->
         <!-- ======================================================== -->
-        <section id="archivio" class="max-w-7xl mx-auto px-5 md:px-10 py-16 hairline-t">
+        <section id="archivio" class="max-w-7xl mx-auto px-5 md:px-10 py-16 md:py-20 hairline-t">
             
             <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4 mb-8">
                 <div>
-                    <h2 class="text-xl md:text-2xl font-light tracking-tight text-dark">
-                        02 / Media & Arti Visive
+                    <span class="font-mono text-xs uppercase tracking-widest text-accent font-medium">02 / Ricerca Visiva</span>
+                    <h2 class="text-2xl md:text-3xl font-light tracking-tight text-dark mt-1">
+                        Media & Arti Visive
                     </h2>
                     <p class="text-xs text-muted font-mono mt-1">Studi di forma, texture e restituzione digitale</p>
                 </div>
 
                 <!-- Filtri Categoria -->
                 <div class="flex flex-wrap gap-2 font-mono text-xs">
-                    <button onclick="filterMedia('render', this)" class="tab-btn active px-3 py-1.5 rounded border border-border bg-white hover:border-dark transition-all">3D CGI & Render</button>
-                    <button onclick="filterMedia('photo', this)" class="tab-btn px-3 py-1.5 rounded border border-border bg-white hover:border-dark transition-all">Fotografia</button>
-                    <button onclick="filterMedia('sketch', this)" class="tab-btn px-3 py-1.5 rounded border border-border bg-white hover:border-dark transition-all">Grafica & Disegno</button>
+                    <button onclick="filterMedia('render', this)" class="tab-btn active px-3.5 py-1.5 rounded-full border border-border bg-white hover:border-dark transition-all">3D CGI & Render</button>
+                    <button onclick="filterMedia('photo', this)" class="tab-btn px-3.5 py-1.5 rounded-full border border-border bg-white hover:border-dark transition-all">Fotografia</button>
+                    <button onclick="filterMedia('sketch', this)" class="tab-btn px-3.5 py-1.5 rounded-full border border-border bg-white hover:border-dark transition-all">Grafica & Disegno</button>
                 </div>
             </div>
 
@@ -366,74 +376,74 @@
             <div id="media-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
 
                 <!-- 3D RENDER (Visibili di default) -->
-                <div class="media-item render work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r1.jpg', 'Studio volumetrico 3D — Concept Ninfea')">
+                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r1.jpg', 'Studio volumetrico 3D — Concept Ninfea')">
                     <img src="r1.jpg" alt="Concept Ninfea" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item render work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r2.jpg', 'Studio illuminotecnico — Lampada da tavolo')">
+                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r2.jpg', 'Studio illuminotecnico — Lampada da tavolo')">
                     <img src="r2.jpg" alt="Concept Lampada Tavolo" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item render work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r4.jpg', 'Riflessione e materiale — Lampada a sospensione')">
+                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r4.jpg', 'Riflessione e materiale — Lampada a sospensione')">
                     <img src="r4.jpg" alt="Concept Sospensione" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item render work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r5.jpg', 'Visualizzazione d\'interni — Living')">
+                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r5.jpg', 'Visualizzazione d\'interni — Living')">
                     <img src="r5.jpg" alt="Render Ambientato Living" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1597072689227-8882273e8f6a?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item render work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r6.jpg', 'Cinematismo — Lampada a scorrimento')">
+                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r6.jpg', 'Cinematismo — Lampada a scorrimento')">
                     <img src="r6.jpg" alt="Lampada a scorrimento" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item render work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r7.jpg', 'Modellazione superfici — Lampada da terra')">
+                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r7.jpg', 'Modellazione superfici — Lampada da terra')">
                     <img src="r7.jpg" alt="Lampada da terra" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item render work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r8.jpg', 'Assieme e raccordi — Tavolino')">
+                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r8.jpg', 'Assieme e raccordi — Tavolino')">
                     <img src="r8.jpg" alt="Tavolino da caffè" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item render work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r10.jpg', 'Distribuzione fotometrica — Sospensione')">
+                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r10.jpg', 'Distribuzione fotometrica — Sospensione')">
                     <img src="r10.jpg" alt="Lampada a sospensione" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
                 </div>
 
                 <!-- FOTOGRAFIA (Nascoste all'avvio) -->
-                <div class="media-item photo work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_2.jpg', 'Studio luce e ombra')">
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_2.jpg', 'Studio luce e ombra')">
                     <img src="foto_2.jpg" alt="Luce e Ombra" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item photo work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_3.jpg', 'Composizione orizzontale')">
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_3.jpg', 'Composizione orizzontale')">
                     <img src="foto_3.jpg" alt="Paesaggio" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item photo work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_4.jpg', 'Pattern e texture')">
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_4.jpg', 'Pattern e texture')">
                     <img src="foto_4.jpg" alt="Geometrie naturali" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item photo work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_5.jpg', 'Trasparenza e rifrazione')">
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_5.jpg', 'Trasparenza e rifrazione')">
                     <img src="foto_5.jpg" alt="Riflessi" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item photo work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_7.jpg', 'Studio di scala e orizzonte')">
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_7.jpg', 'Studio di scala e orizzonte')">
                     <img src="foto_7.jpg" alt="Orizzonte" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item photo work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_8.jpg', 'Superfici minerali')">
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_8.jpg', 'Superfici minerali')">
                     <img src="foto_8.jpg" alt="Superfici" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item photo work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_10.jpg', 'Profilo lineare')">
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_10.jpg', 'Profilo lineare')">
                     <img src="foto_10.jpg" alt="Linee" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item photo work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_11.jpg', 'Gradiente e densità')">
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_11.jpg', 'Gradiente e densità')">
                     <img src="foto_11.jpg" alt="Atmosfera" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
                 </div>
 
                 <!-- GRAFICA & ILLUSTRAZIONE (Nascoste all'avvio) -->
-                <div class="media-item sketch work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_1.jpg', 'Composizione vettoriale 01')">
+                <div class="media-item sketch work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_1.jpg', 'Composizione vettoriale 01')">
                     <img src="illustrazione_1.jpg" alt="Composizione I" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item sketch work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_2.jpg', 'Studio geometrico 02')">
+                <div class="media-item sketch work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_2.jpg', 'Studio geometrico 02')">
                     <img src="illustrazione_2.jpg" alt="Studio II" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item sketch work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_3.jpg', 'Disegno lineare 03')">
+                <div class="media-item sketch work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_3.jpg', 'Disegno lineare 03')">
                     <img src="illustrazione_3.jpg" alt="Linee III" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item sketch work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_4.jpg', 'Assonometria 04')">
+                <div class="media-item sketch work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_4.jpg', 'Assonometria 04')">
                     <img src="illustrazione_4.jpg" alt="Prospettiva IV" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item sketch work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_5.jpg', 'Geometrie piatte 05')">
+                <div class="media-item sketch work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_5.jpg', 'Geometrie piatte 05')">
                     <img src="illustrazione_5.jpg" alt="Geometrie V" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item sketch work-card rounded overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_6.jpg', 'Segno e tratteggio 06')">
+                <div class="media-item sketch work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_6.jpg', 'Segno e tratteggio 06')">
                     <img src="illustrazione_6.jpg" alt="Texture VI" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=600'">
                 </div>
 
@@ -444,89 +454,106 @@
         <!-- ======================================================== -->
         <!-- 5. PROFILO, STRUMENTI & CONTATTI                         -->
         <!-- ======================================================== -->
-        <section id="profilo" class="max-w-7xl mx-auto px-5 md:px-10 py-16 hairline-t">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <section id="profilo" class="max-w-7xl mx-auto px-5 md:px-10 py-16 md:py-24 hairline-t">
+            
+            <!-- Grid con items-stretch per sincronizzare le altezze delle colonne -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
                 
-                <!-- Colonna Sinistra: Dati e Azioni -->
-                <div class="lg:col-span-5 space-y-6">
-                    <div>
-                        <h2 class="text-xl md:text-2xl font-light tracking-tight text-dark">
-                            03 / Info & Contatti
-                        </h2>
-                        <p class="font-mono text-xs text-muted mt-1">Alberto Costa &bull; Schio (VI)</p>
+                <!-- Colonna Sinistra: Bio e Tasto CV (Allineato al fondo con flex-col justify-between) -->
+                <div class="lg:col-span-5 flex flex-col justify-between">
+                    
+                    <div class="space-y-5">
+                        <div>
+                            <span class="font-mono text-xs uppercase tracking-widest text-accent font-medium">03 / Info & Contatti</span>
+                            <h2 class="text-2xl md:text-3xl font-light tracking-tight text-dark mt-1">Alberto Costa</h2>
+                            <p class="font-mono text-xs text-muted mt-1.5 flex items-center gap-2">
+                                <span>Schio (Vicenza)</span>
+                                <span class="text-muted/60">&bull;</span>
+                                <span>In presenza o da remoto</span>
+                            </p>
+                        </div>
+
+                        <p class="text-sm text-muted font-light leading-relaxed">
+                            Designer specializzato nello sviluppo di corpi illuminanti e prodotto industriale. Gestisco l'intero iter esecutivo: rilievi, studio ergonomico, modellazione 3D parametrica e poligonale, calcolo illuminotecnico, rendering e preparazione delle tavole tecniche e grafiche.
+                        </p>
                     </div>
 
-                    <p class="text-sm text-muted font-light leading-relaxed">
-                        Formazione nelle arti visive e nella grafica, specializzato nello sviluppo tridimensionale di prodotto e illuminazione. Gestisco il flusso di lavoro completo: modellazione parametrica e poligonale, calcolo illuminotecnico, rendering e impaginazione esecutiva.
-                    </p>
-
-                    <!-- Azioni di contatto essenziali -->
-                    <div class="space-y-3 pt-4 border-t border-border">
-                        <div class="flex flex-col sm:flex-row gap-3">
-                            <button onclick="copyEmail()" class="flex-1 flex items-center justify-between px-3.5 py-2.5 rounded border border-border hover:border-dark bg-white text-xs font-mono transition-colors text-left">
-                                <span id="email-text" class="text-dark">albeb3b@gmail.com</span>
-                                <span class="text-[10px] text-muted uppercase tracking-wider ml-2">(Copia)</span>
+                    <!-- Blocco Contatti e Tasto Download CV (spinto a fondo colonna) -->
+                    <div class="space-y-3 pt-8 lg:pt-0">
+                        <div class="text-xs font-mono uppercase tracking-wider text-muted font-medium">Contatto Diretto</div>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <button onclick="copyEmail()" class="flex items-center justify-between px-3.5 py-2.5 rounded-lg border border-border hover:border-dark bg-white text-xs font-mono transition-colors text-left shadow-sm group">
+                                <span id="email-text" class="text-dark truncate">albeb3b@gmail.com</span>
+                                <span class="text-[10px] text-muted uppercase tracking-wider ml-1 group-hover:text-dark shrink-0">(Copia)</span>
                             </button>
                             
-                            <a href="mailto:albeb3b@gmail.com" class="inline-flex items-center justify-center px-4 py-2.5 rounded bg-dark text-white text-xs font-mono uppercase tracking-wider hover:bg-accent transition-colors text-center">
-                                Scrivi Email &rarr;
+                            <a href="mailto:albeb3b@gmail.com" class="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-lg bg-dark text-white text-xs font-mono uppercase tracking-wider hover:bg-accent transition-colors shadow-sm text-center">
+                                <span>Scrivi Email</span>
+                                <span aria-hidden="true">&rarr;</span>
                             </a>
                         </div>
 
-                        <a href="Alberto_Costa_Portfolio_CV.pdf" download class="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded border border-dark text-dark text-xs font-mono uppercase tracking-wider hover:bg-dark hover:text-white transition-colors">
-                            Scarica CV & Portfolio PDF
+                        <!-- TASTO DOWNLOAD CV: ALLINEATO PERFETTAMENTE AL FONDO DEL RIQUADRO A DESTRA -->
+                        <a href="Alberto_Costa_Portfolio_CV.pdf" download class="w-full inline-flex items-center justify-center gap-2.5 px-4 py-3 rounded-lg border border-dark text-dark text-xs font-mono uppercase tracking-wider hover:bg-dark hover:text-white transition-all shadow-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                            <span>Scarica CV & Portfolio (PDF)</span>
                         </a>
                     </div>
                 </div>
 
-                <!-- Colonna Destra: Competenze & Software (Tabellare e pulito) -->
-                <div class="lg:col-span-7 bg-white p-6 md:p-8 rounded border border-border">
-                    <h3 class="font-mono text-xs uppercase tracking-wider text-muted mb-6 pb-2 border-b border-border">
-                        Competenze & Software
-                    </h3>
+                <!-- Colonna Destra: Riquadro Competenze & Software -->
+                <div class="lg:col-span-7 bg-white p-6 md:p-8 rounded-xl border border-border shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-mono text-xs uppercase tracking-widest text-muted mb-6 pb-2 border-b border-border">
+                            Competenze & Software
+                        </h3>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono text-xs">
-                        
-                        <div class="space-y-2">
-                            <span class="text-dark font-medium block">Prodotto & Luce</span>
-                            <ul class="space-y-1.5 text-muted font-light">
-                                <li>&bull; Autodesk Inventor (Solidi/Parametrico)</li>
-                                <li>&bull; Rhinoceros 3D (Superfici NURBS)</li>
-                                <li>&bull; AutoCAD 2D (Tavole esecutive)</li>
-                                <li>&bull; DiaLux (Calcolo illuminotecnico)</li>
-                            </ul>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-6 font-mono text-xs">
+                            
+                            <div class="space-y-2">
+                                <span class="text-dark font-medium block">Prodotto & Luce</span>
+                                <ul class="space-y-1.5 text-muted font-light">
+                                    <li>&bull; Autodesk Inventor (Solidi/Parametrico)</li>
+                                    <li>&bull; Rhinoceros 3D (Superfici NURBS)</li>
+                                    <li>&bull; AutoCAD 2D (Tavole esecutive)</li>
+                                    <li>&bull; DiaLux (Calcolo illuminotecnico)</li>
+                                </ul>
+                            </div>
+
+                            <div class="space-y-2">
+                                <span class="text-dark font-medium block">3D CGI & Visual</span>
+                                <ul class="space-y-1.5 text-muted font-light">
+                                    <li>&bull; Blender (Mesh, Shader, Texture UV)</li>
+                                    <li>&bull; Autodesk 3ds Max</li>
+                                    <li>&bull; Motori di rendering fotorealistico</li>
+                                    <li>&bull; Compositing e fotoinserimento</li>
+                                </ul>
+                            </div>
+
+                            <div class="space-y-2">
+                                <span class="text-dark font-medium block">Grafica & Brand</span>
+                                <ul class="space-y-1.5 text-muted font-light">
+                                    <li>&bull; Adobe Illustrator (Vettoriale & Logo)</li>
+                                    <li>&bull; Adobe InDesign (Cataloghi & Editoria)</li>
+                                    <li>&bull; Adobe Photoshop (Fotoritocco avanzato)</li>
+                                    <li>&bull; Sistemi d'identità visiva</li>
+                                </ul>
+                            </div>
+
+                            <div class="space-y-2">
+                                <span class="text-dark font-medium block">Fotografia & Altro</span>
+                                <ul class="space-y-1.5 text-muted font-light">
+                                    <li>&bull; Still life di prodotto</li>
+                                    <li>&bull; Color grading & Post-produzione</li>
+                                    <li>&bull; Prototipazione rapida e verifiche</li>
+                                    <li>&bull; Lingue: Italiano (Madrelingua), Inglese</li>
+                                </ul>
+                            </div>
+
                         </div>
-
-                        <div class="space-y-2">
-                            <span class="text-dark font-medium block">3D CGI & Visual</span>
-                            <ul class="space-y-1.5 text-muted font-light">
-                                <li>&bull; Blender (Mesh, Shader, Texture UV)</li>
-                                <li>&bull; Autodesk 3ds Max</li>
-                                <li>&bull; Motori di rendering fotorealistico</li>
-                                <li>&bull; Compositing e fotoinserimento</li>
-                            </ul>
-                        </div>
-
-                        <div class="space-y-2">
-                            <span class="text-dark font-medium block">Grafica & Brand</span>
-                            <ul class="space-y-1.5 text-muted font-light">
-                                <li>&bull; Adobe Illustrator (Vettoriale & Logo)</li>
-                                <li>&bull; Adobe InDesign (Cataloghi & Editoria)</li>
-                                <li>&bull; Adobe Photoshop (Fotoritocco avanzato)</li>
-                                <li>&bull; Sistemi d'identità visiva</li>
-                            </ul>
-                        </div>
-
-                        <div class="space-y-2">
-                            <span class="text-dark font-medium block">Fotografia & Altro</span>
-                            <ul class="space-y-1.5 text-muted font-light">
-                                <li>&bull; Still life di prodotto</li>
-                                <li>&bull; Color grading & Post-produzione</li>
-                                <li>&bull; Prototipazione rapida e verifiche</li>
-                                <li>&bull; Lingue: Italiano (Madrelingua), Inglese</li>
-                            </ul>
-                        </div>
-
                     </div>
                 </div>
 
