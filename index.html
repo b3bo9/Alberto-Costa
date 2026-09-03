@@ -437,7 +437,7 @@
 
 
         <!-- ======================================================== -->
-        <!-- 4. HUB MULTIDISCIPLINARE                                -->
+        <!-- 4. HUB MULTIDISCIPLINARE: TUTTI I MEDIA RIPRISTINATI     -->
         <!-- ======================================================== -->
         <section id="archivio" class="max-w-7xl mx-auto px-5 md:px-10 py-16 md:py-24 hairline-t">
             
@@ -446,60 +446,106 @@
                     <span class="font-mono text-xs uppercase tracking-widest text-accent font-medium">02 / Ricerca Visiva</span>
                     <h2 class="text-3xl md:text-4xl font-light tracking-tight text-dark mt-2">Media & Arti Visive</h2>
                     <p class="text-sm text-muted font-light mt-2 max-w-xl text-pretty">
-                        La forma nasce dall'osservazione e si declina in molteplici registri espressivi: rendering 3D fotorealistico, fotografia di ricerca, disegno e composizione grafica.
+                        La forma nasce dall'osservazione e si declina in diversi registri: modellazione 3D e rendering, fotografia di ricerca materica e disegno grafico.
                     </p>
                 </div>
 
+                <!-- Filtri Senza 'Tutti' — Default Render -->
                 <div class="flex flex-wrap gap-2 font-mono text-xs">
-                    <button onclick="filterMedia('all')" class="tab-btn active px-4 py-2 rounded-full border border-border bg-white hover:border-dark transition-all">Tutti</button>
-                    <button onclick="filterMedia('render')" class="tab-btn px-4 py-2 rounded-full border border-border bg-white hover:border-dark transition-all">3D CGI & Concept</button>
-                    <button onclick="filterMedia('photo')" class="tab-btn px-4 py-2 rounded-full border border-border bg-white hover:border-dark transition-all">Fotografia</button>
-                    <button onclick="filterMedia('sketch')" class="tab-btn px-4 py-2 rounded-full border border-border bg-white hover:border-dark transition-all">Grafica & Disegno</button>
+                    <button onclick="filterMedia('render', this)" class="tab-btn active px-4 py-2 rounded-full border border-border bg-white hover:border-dark transition-all">3D CGI & Render</button>
+                    <button onclick="filterMedia('photo', this)" class="tab-btn px-4 py-2 rounded-full border border-border bg-white hover:border-dark transition-all">Fotografia</button>
+                    <button onclick="filterMedia('sketch', this)" class="tab-btn px-4 py-2 rounded-full border border-border bg-white hover:border-dark transition-all">Illustrazioni</button>
                 </div>
             </div>
 
+            <!-- Griglia Archivio Completa -->
             <div id="media-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
 
-                <!-- 3D CGI -->
+                <!-- ================= 10x RENDERS (VISIBILI DI DEFAULT) ================= -->
                 <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r1.jpg', 'Concept Ninfea — Studio volumetrico 3D')">
                     <img src="r1.jpg" alt="Concept Ninfea" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r2.jpg', 'Lampada da Tavolo — Studio di luce e texture')">
-                    <img src="r2.jpg" alt="Lampada da Tavolo Render" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=600'">
+                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r2.jpg', 'Concept Lampada Tavolo — Studio di luce e texture')">
+                    <img src="r2.jpg" alt="Concept Lampada Tavolo" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r3.jpg', 'Living Contemporaneo — CGI Ambientato')">
-                    <img src="r3.jpg" alt="Ambiente Camera" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=600'">
+                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r3.jpg', 'Render Ambientato Camera — Rendering di interni')">
+                    <img src="r3.jpg" alt="Render Ambientato Camera" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r4.jpg', 'Sospensione Industriale — Studio cromatico')">
+                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r4.jpg', 'Concept Sospensione — Studio cromatico e riflessi')">
                     <img src="r4.jpg" alt="Concept Sospensione" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r7.jpg', 'Piantana da Terra — Modellazione 3D')">
-                    <img src="r7.jpg" alt="Lampada da terra render" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
+                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r5.jpg', 'Render Ambientato Living — Previsualizzazione living')">
+                    <img src="r5.jpg" alt="Render Ambientato Living" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1597072689227-8882273e8f6a?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r6.jpg', 'Lampada a Scorrimento — Meccanismo integrato')">
+                    <img src="r6.jpg" alt="Lampada a scorrimento" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r7.jpg', 'Lampada da Terra — Modellazione 3D')">
+                    <img src="r7.jpg" alt="Lampada da terra" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
                 </div>
                 <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r8.jpg', 'Tavolino da Caffè — Dettaglio raccordi 3D')">
                     <img src="r8.jpg" alt="Tavolino da caffè" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
                 </div>
-
-                <!-- FOTOGRAFIA -->
-                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('foto_1.jpg', 'Fotografia — Texture organiche e ritmi naturali')">
-                    <img src="foto_1.jpg" alt="Dettaglio natura" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=600'">
+                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r9.jpg', 'Lampada da Tavolo — Studio illuminotecnico')">
+                    <img src="r9.jpg" alt="Lampada da tavolo" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('foto_2.jpg', 'Fotografia — Studio di luce radente e contrasti')">
-                    <img src="foto_2.jpg" alt="Luce e Ombra" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&q=80&w=600'">
-                </div>
-                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('foto_4.jpg', 'Fotografia — Geometrie naturali')">
-                    <img src="foto_4.jpg" alt="Geometrie Botaniche" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
-                </div>
-                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('foto_9.jpg', 'Fotografia — Ricerca materica su pietra e minerali')">
-                    <img src="foto_9.jpg" alt="Pietre e superfici" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
+                <div class="media-item render work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('r10.jpg', 'Lampada a Sospensione — Diffusione luminosa')">
+                    <img src="r10.jpg" alt="Lampada a sospensione" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
                 </div>
 
-                <!-- GRAFICA & ILLUSTRAZIONE -->
-                <div class="media-item sketch work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('illustrazione_1.jpg', 'Grafica & Disegno — Composizione astratta I')">
-                    <img src="illustrazione_1.jpg" alt="Composizione Formale" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=600'">
+                <!-- ================= 11x FOTOGRAFIE (NASCOSTE ALL'AVVIO) ================= -->
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_1.jpg', 'Fotografia — Texture organiche e ritmi naturali')">
+                    <img src="foto_1.jpg" alt="Dettaglio natura - Texture Organica" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=600'">
                 </div>
-                <div class="media-item sketch work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" onclick="openLightbox('illustrazione_3.jpg', 'Grafica & Disegno — Studio prospettico e spaziale')">
-                    <img src="illustrazione_3.jpg" alt="Studio Astratto" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=600'">
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_2.jpg', 'Fotografia — Studio di luce radente e contrasti')">
+                    <img src="foto_2.jpg" alt="Dettaglio natura - Luce e Ombra" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_3.jpg', 'Fotografia — Studio del paesaggio e orizzonti')">
+                    <img src="foto_3.jpg" alt="Dettaglio natura - Paesaggio" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_4.jpg', 'Fotografia — Geometrie naturali e ritmi botanici')">
+                    <img src="foto_4.jpg" alt="Dettaglio natura - Geometrie Botaniche" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_5.jpg', 'Fotografia — Riflessi e trasparenze')">
+                    <img src="foto_5.jpg" alt="Dettaglio natura - Riflessi" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_6.jpg', 'Fotografia — Contrasti tonali e texture')">
+                    <img src="foto_6.jpg" alt="Dettaglio natura - Contrasti" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_7.jpg', 'Fotografia — Linee di orizzonte')">
+                    <img src="foto_7.jpg" alt="Dettaglio natura - Orizzonti" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_8.jpg', 'Fotografia — Superfici materiche')">
+                    <img src="foto_8.jpg" alt="Dettaglio natura - Superfici" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_9.jpg', 'Fotografia — Rocce, minerali e finiture')">
+                    <img src="foto_9.jpg" alt="Dettaglio natura - Rocce e Pietre" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_10.jpg', 'Fotografia — Linee organiche')">
+                    <img src="foto_10.jpg" alt="Dettaglio natura - Linee Naturali" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="media-item photo work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('foto_11.jpg', 'Fotografia — Studio di atmosfera')">
+                    <img src="foto_11.jpg" alt="Dettaglio natura - Atmosfera" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
+                </div>
+
+                <!-- ================= 6x ILLUSTRAZIONI (NASCOSTE ALL'AVVIO) ================= -->
+                <div class="media-item sketch work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_1.jpg', 'Illustrazione — Composizione Formale I')">
+                    <img src="illustrazione_1.jpg" alt="Illustrazione - Composizione Formale I" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="media-item sketch work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_2.jpg', 'Illustrazione — Studio Astratto II')">
+                    <img src="illustrazione_2.jpg" alt="Illustrazione - Studio Astratto II" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="media-item sketch work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_3.jpg', 'Illustrazione — Linee e Spazio III')">
+                    <img src="illustrazione_3.jpg" alt="Illustrazione - Linee e Spazio III" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="media-item sketch work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_4.jpg', 'Illustrazione — Studio Prospettico IV')">
+                    <img src="illustrazione_4.jpg" alt="Illustrazione - Studio Prospettico IV" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="media-item sketch work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_5.jpg', 'Illustrazione — Geometrie Pure V')">
+                    <img src="illustrazione_5.jpg" alt="Illustrazione - Geometrie Pure V" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=600'">
+                </div>
+                <div class="media-item sketch work-card rounded-lg overflow-hidden border border-border bg-stone aspect-square cursor-pointer" style="display: none;" onclick="openLightbox('illustrazione_6.jpg', 'Illustrazione — Texture e Segno VI')">
+                    <img src="illustrazione_6.jpg" alt="Illustrazione - Texture e Segno VI" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=600'">
                 </div>
 
             </div>
@@ -706,18 +752,18 @@
             mobileMenuOverlay.setAttribute('aria-hidden', 'true');
         }
 
-        // 2. Filtro Media
-        function filterMedia(category) {
+        // 2. Filtro Media: Mostra una categoria alla volta (Default Render)
+        function filterMedia(category, btn) {
             const items = document.querySelectorAll('.media-item');
             const buttons = document.querySelectorAll('.tab-btn');
 
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            buttons.forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
 
             items.forEach(item => {
-                if (category === 'all' || item.classList.contains(category)) {
+                if (item.classList.contains(category)) {
                     item.style.display = 'block';
-                    gsap.fromTo(item, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.35 });
+                    gsap.fromTo(item, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power2.out' });
                 } else {
                     item.style.display = 'none';
                 }
@@ -754,7 +800,7 @@
             if (e.key === 'Escape') closeLightbox();
         });
 
-        // 4. Copia Email
+        // 4. Copia Email Rapida
         function copyEmail() {
             const email = 'albeb3b@gmail.com';
             navigator.clipboard.writeText(email).then(() => {
