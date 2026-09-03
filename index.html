@@ -95,10 +95,10 @@
                     Contatti
                 </a>
 
-                <!-- Bottone Menu Mobile -->
+                <!-- Bottone Menu Mobile (coerente con lo stile a pillola) -->
                 <button 
                     onclick="openMobileMenu()" 
-                    class="md:hidden inline-flex items-center justify-center p-2 text-dark font-mono text-xs uppercase tracking-wider"
+                    class="md:hidden inline-flex items-center justify-center py-1.5 px-3.5 rounded-full border border-dark/20 hover:border-dark text-dark font-mono text-xs uppercase tracking-wider transition-colors"
                     aria-label="Apri Menu"
                 >
                     Menu
@@ -108,35 +108,60 @@
         </div>
     </header>
 
-    <!-- MENU MOBILE OVERLAY -->
+    <!-- ======================================================== -->
+    <!-- MENU MOBILE (GRAFICA UNIFICATA ALLO STILE DESKTOP)       -->
+    <!-- ======================================================== -->
     <div 
         id="mobile-menu-overlay" 
-        class="fixed inset-0 z-50 bg-[#f8f8f6] -translate-y-full transition-transform duration-300 md:hidden flex flex-col justify-between p-6"
+        class="fixed inset-0 z-50 bg-dark/30 backdrop-blur-xs -translate-y-full transition-transform duration-300 ease-out md:hidden flex flex-col"
+        onclick="if(event.target === this) closeMobileMenu()"
     >
-        <div class="flex justify-between items-center pb-4 border-b border-border">
-            <span class="font-mono text-xs uppercase tracking-widest text-muted">Indice</span>
-            <button onclick="closeMobileMenu()" class="font-mono text-xs uppercase p-2">✕ Chiudi</button>
+        <div class="bg-[#f8f8f6] border-b border-border shadow-xl w-full flex flex-col">
+            
+            <!-- Barra Superiore coordinata con l'Header -->
+            <div class="px-5 sm:px-8 h-16 flex justify-between items-center hairline-b">
+                <a href="#home" onclick="closeMobileMenu()" class="font-medium text-sm tracking-tight flex items-center gap-2">
+                    <span>Alberto Costa</span>
+                    <span class="text-muted font-normal">&mdash; Portfolio</span>
+                </a>
+                <button 
+                    onclick="closeMobileMenu()" 
+                    class="inline-flex items-center justify-center py-1.5 px-3.5 rounded-full border border-dark/20 hover:border-dark text-dark font-mono text-xs uppercase tracking-wider transition-colors"
+                    aria-label="Chiudi menu"
+                >
+                    Chiudi ✕
+                </button>
+            </div>
+
+            <!-- Voci di Navigazione: Stessa dicitura e font-mono del Desktop -->
+            <nav class="flex flex-col px-5 sm:px-8 py-5 space-y-4 font-mono text-xs uppercase tracking-wider text-muted">
+                <a href="#progetti" onclick="closeMobileMenu()" class="hover:text-dark transition-colors py-1 flex items-center justify-between">
+                    <span>01. Progetti</span>
+                    <span class="text-[10px] text-muted/60">&rarr;</span>
+                </a>
+                <a href="#archivio" onclick="closeMobileMenu()" class="hover:text-dark transition-colors py-1 flex items-center justify-between">
+                    <span>02. Media & 3D</span>
+                    <span class="text-[10px] text-muted/60">&rarr;</span>
+                </a>
+                <a href="#profilo" onclick="closeMobileMenu()" class="hover:text-dark transition-colors py-1 flex items-center justify-between">
+                    <span>03. Info & Contatti</span>
+                    <span class="text-[10px] text-muted/60">&rarr;</span>
+                </a>
+            </nav>
+
+            <!-- Tasti Azione: Stile Pillola identico al Desktop -->
+            <div class="px-5 sm:px-8 pb-5 pt-3 hairline-t flex items-center gap-3">
+                <a href="Alberto_Costa_Portfolio_CV.pdf" download class="w-1/2 text-center py-2.5 px-3.5 rounded-full border border-dark/20 hover:border-dark text-dark text-xs font-mono uppercase tracking-wider transition-colors">
+                    CV (PDF)
+                </a>
+                <a href="#profilo" onclick="closeMobileMenu()" class="w-1/2 text-center py-2.5 px-4 rounded-full bg-dark text-white text-xs font-mono uppercase tracking-wider hover:bg-accent transition-colors shadow-sm">
+                    Contatti
+                </a>
+            </div>
         </div>
 
-        <nav class="flex flex-col space-y-6 text-xl font-light">
-            <a href="#progetti" onclick="closeMobileMenu()" class="flex justify-between items-baseline border-b border-border/60 pb-3">
-                <span>Progetti di Prodotto</span>
-                <span class="font-mono text-xs text-muted">01</span>
-            </a>
-            <a href="#archivio" onclick="closeMobileMenu()" class="flex justify-between items-baseline border-b border-border/60 pb-3">
-                <span>Media & 3D CGI</span>
-                <span class="font-mono text-xs text-muted">02</span>
-            </a>
-            <a href="#profilo" onclick="closeMobileMenu()" class="flex justify-between items-baseline border-b border-border/60 pb-3">
-                <span>Info & Contatti</span>
-                <span class="font-mono text-xs text-muted">03</span>
-            </a>
-        </nav>
-
-        <div class="pt-4 border-t border-border flex gap-3">
-            <a href="Alberto_Costa_Portfolio_CV.pdf" download class="w-1/2 text-center py-3 rounded-lg border border-dark text-xs font-mono uppercase">Scarica CV</a>
-            <a href="mailto:albeb3b@gmail.com" class="w-1/2 text-center py-3 rounded-lg bg-dark text-white text-xs font-mono uppercase">Scrivi Email</a>
-        </div>
+        <!-- Spazio inferiore semitrasparente per chiudere al tocco -->
+        <div class="flex-grow" onclick="closeMobileMenu()"></div>
     </div>
 
 
@@ -175,7 +200,7 @@
 
 
         <!-- ======================================================== -->
-        <!-- 3. PROGETTI DI PRODOTTO (RISOLUZIONE NATURALE NON TAGLIATA) -->
+        <!-- 3. PROGETTI DI PRODOTTO (2 FOTO CON PROPORZIONI REALI)    -->
         <!-- ======================================================== -->
         <section id="progetti" class="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 py-16 md:py-20 hairline-t">
             
@@ -188,7 +213,7 @@
 
             <div class="space-y-24 md:space-y-36">
 
-                <!-- PROGETTO 1: Lampada da Lettura (2 foto non forzate) -->
+                <!-- PROGETTO 1: Lampada da Lettura (2 Foto) -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
                     <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
@@ -224,7 +249,7 @@
                     </div>
                 </article>
 
-                <!-- PROGETTO 2: Piantana Cantilever (2 foto non forzate) -->
+                <!-- PROGETTO 2: Piantana Cantilever (2 Foto) -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
                     <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
@@ -260,7 +285,7 @@
                     </div>
                 </article>
 
-                <!-- PROGETTO 3: Tavolino Modulare (2 foto non forzate) -->
+                <!-- PROGETTO 3: Tavolino Modulare (2 Foto) -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
                     <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
@@ -296,7 +321,7 @@
                     </div>
                 </article>
 
-                <!-- PROGETTO 4: Lampada a Sospensione (2 foto non forzate) -->
+                <!-- PROGETTO 4: Lampada a Sospensione (2 Foto) -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
                     <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
@@ -332,7 +357,7 @@
                     </div>
                 </article>
 
-                <!-- PROGETTO 5: Lampada a Morsetto (2 foto non forzate) -->
+                <!-- PROGETTO 5: Lampada a Morsetto (2 Foto) -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
                     <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
@@ -368,7 +393,7 @@
                     </div>
                 </article>
 
-                <!-- PROGETTO 6: Orologio Digitale (2 foto non forzate) -->
+                <!-- PROGETTO 6: Orologio Digitale (2 Foto) -->
                 <article class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
                     <div class="lg:col-span-4 lg:sticky lg:top-28 space-y-5">
                         <div>
@@ -631,7 +656,7 @@
     <div id="lightbox" class="fixed inset-0 z-[9999] bg-dark/95 hidden opacity-0 transition-opacity duration-200 flex flex-col justify-between p-4 md:p-8 select-none">
         <div class="w-full flex justify-between items-center text-white/80 font-mono text-xs max-w-6xl mx-auto">
             <span id="lb-caption" class="truncate font-light text-stone">Dettaglio</span>
-            <button onclick="closeLightbox()" class="text-white hover:text-accent font-mono text-xs p-1">✕ Chiudi (ESC)</button>
+            <button onclick="closeLightbox()" class="text-white hover:text-accent font-mono text-xs p-2">✕ Chiudi (ESC)</button>
         </div>
 
         <div class="flex-grow flex items-center justify-center max-h-[85vh] p-2">
