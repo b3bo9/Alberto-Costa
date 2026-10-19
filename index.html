@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alberto Costa — Industrial & Lighting Design</title>
-    <meta name="description" content="Portfolio di Alberto Costa: progettazione di prodotto, illuminazione, modellazione 3D e disegno tecnico.">
+    <title>Alberto Costa — Product, Lighting & CGI</title>
+    <meta name="description" content="Alberto Costa — Product & Lighting Design, 3D CGI, Visual Design. Schio (VI).">
     
     <!-- Google Fonts: Inter + JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,6 +19,7 @@
 
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
@@ -26,13 +27,10 @@
                         mono: ['JetBrains Mono', 'monospace'],
                     },
                     colors: {
-                        canvas: '#f6f5f2',
-                        surface: '#ffffff',
-                        stone: '#eceae4',
-                        dark: '#121212',
-                        muted: '#5e5e5a',
-                        border: '#dcdad3',
-                        accent: '#d54026'
+                        paper: '#f4f3ef',
+                        ink: '#0e0e0e',
+                        ash: '#71716b',
+                        accent: '#e03e24'
                     }
                 }
             }
@@ -40,926 +38,651 @@
     </script>
 
     <style>
-        ::selection { background-color: #d54026; color: #ffffff; }
-        
-        body {
-            background-color: #f6f5f2;
-            color: #121212;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        :root {
+            --bg: #f4f3ef;
+            --surface: #eae8e1;
+            --text: #0e0e0e;
+            --muted: #6e6e68;
+            --line: rgba(14, 14, 14, 0.11);
         }
 
-        /* Griglia tecnica sottile */
-        .hairline-b { border-bottom: 1px solid #dcdad3; }
-        .hairline-t { border-top: 1px solid #dcdad3; }
-        .hairline-r { border-right: 1px solid #dcdad3; }
+        html.dark {
+            --bg: #0b0b0b;
+            --surface: #151515;
+            --text: #f2f2ee;
+            --muted: #8a8a84;
+            --line: rgba(242, 242, 238, 0.12);
+        }
 
-        /* Bottoni filtro */
-        .tab-btn.active {
-            background-color: #121212;
+        ::selection {
+            background-color: #e03e24;
             color: #ffffff;
-            border-color: #121212;
         }
 
-        /* Effetti card immagini */
-        .work-card {
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.35s ease, color 0.35s ease;
+        }
+
+        .rule-t { border-top: 1px solid var(--line); }
+        .rule-b { border-bottom: 1px solid var(--line); }
+        .rule-box { border: 1px solid var(--line); }
+        .surface-bg { background-color: var(--surface); }
+
+        /* Media Zoom & Hover */
+        .media-frame {
             position: relative;
             overflow: hidden;
-        }
-        .work-card img {
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        @media (min-width: 768px) {
-            .work-card:hover img {
-                transform: scale(1.03);
-            }
+            background-color: var(--surface);
         }
 
-        /* Indicatore zoom su hover */
-        .zoom-badge {
+        .media-frame img {
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+            will-change: transform;
+        }
+
+        .media-frame:hover img {
+            transform: scale(1.03);
+        }
+
+        .media-badge {
             opacity: 0;
             transform: translateY(4px);
             transition: all 0.25s ease;
         }
-        .work-card:hover .zoom-badge {
+
+        .media-frame:hover .media-badge {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Riga indice progetti */
-        .index-row {
-            transition: background-color 0.2s ease, padding-left 0.2s ease;
+        /* Filter Buttons */
+        .filter-pill {
+            border: 1px solid var(--line);
+            color: var(--muted);
+            transition: all 0.2s ease;
         }
-        .index-row:hover {
-            background-color: #eceae4;
-            padding-left: 0.5rem;
+        .filter-pill:hover {
+            border-color: var(--text);
+            color: var(--text);
+        }
+        .filter-pill.active {
+            background-color: var(--text);
+            color: var(--bg);
+            border-color: var(--text);
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col selection:bg-accent selection:text-white">
 
     <!-- ======================================================== -->
-    <!-- 1. HEADER                                                -->
+    <!-- HEADER                                                   -->
     <!-- ======================================================== -->
-    <header class="fixed top-0 left-0 w-full z-40 bg-[#f6f5f2]/90 backdrop-blur-md hairline-b">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 h-16 flex justify-between items-center">
+    <header class="fixed top-0 left-0 w-full z-40 backdrop-blur-md bg-[var(--bg)]/85 rule-b">
+        <div class="max-w-[1600px] mx-auto px-4 sm:px-8 h-14 md:h-16 flex justify-between items-center">
             
-            <a href="#home" class="flex items-center gap-3 group">
-                <span class="w-2 h-2 rounded-full bg-accent inline-block"></span>
-                <span class="font-medium text-sm tracking-tight text-dark">Alberto Costa</span>
-                <span class="text-muted font-mono text-xs hidden sm:inline">/ Industrial & Lighting Design</span>
+            <!-- Brand -->
+            <a href="#top" class="flex items-center gap-3 group">
+                <span class="w-2 h-2 rounded-full bg-accent inline-block group-hover:scale-125 transition-transform"></span>
+                <span class="font-medium text-sm tracking-tight">Alberto Costa</span>
+                <span class="font-mono text-[11px] uppercase tracking-widest opacity-50 hidden sm:inline">Industrial & Lighting</span>
             </a>
 
-            <!-- Navigazione Desktop -->
-            <nav class="hidden md:flex items-center gap-8 text-xs font-mono uppercase tracking-wider text-muted">
-                <a href="#progetti" class="hover:text-dark transition-colors">01. Progetti</a>
-                <a href="#archivio" class="hover:text-dark transition-colors">02. Archivio</a>
-                <a href="#profilo" class="hover:text-dark transition-colors">03. Profilo</a>
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 font-mono text-[11px] uppercase tracking-widest">
+                <a href="#progetti" class="opacity-60 hover:opacity-100 transition-opacity">01 / Oggetti (06)</a>
+                <a href="#archivio" class="opacity-60 hover:opacity-100 transition-opacity">02 / Archivio (22)</a>
+                <a href="#profilo" class="opacity-60 hover:opacity-100 transition-opacity">03 / Spec & Contatti</a>
             </nav>
 
-            <!-- Tasti Azione Rapida -->
-            <div class="flex items-center gap-2">
-                <a href="Alberto_Costa_Portfolio_CV.pdf" download class="hidden sm:inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider py-1.5 px-3 rounded border border-border bg-surface hover:border-dark text-dark transition-colors">
-                    <span>CV</span>
-                    <span class="text-[10px] text-muted">&darr;</span>
+            <!-- Actions + Luce/Buio Switch -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button 
+                    onclick="toggleTheme()" 
+                    class="font-mono text-[11px] uppercase tracking-wider px-3 py-1.5 rounded-full rule-box hover:border-current transition-colors flex items-center gap-2"
+                    title="Cambia atmosfera Luce / Buio"
+                >
+                    <span id="theme-dot" class="w-1.5 h-1.5 rounded-full bg-current"></span>
+                    <span id="theme-label">Buio</span>
+                </button>
+
+                <a href="Alberto_Costa_Portfolio_CV.pdf" download class="hidden sm:inline-flex font-mono text-[11px] uppercase tracking-wider px-3 py-1.5 rounded-full rule-box hover:border-current transition-colors">
+                    CV.pdf
                 </a>
-                
-                <a href="mailto:albeb3b@gmail.com" class="inline-flex text-xs font-mono uppercase tracking-wider py-1.5 px-3.5 rounded bg-dark text-white hover:bg-accent transition-colors">
+
+                <a href="mailto:albeb3b@gmail.com" class="font-mono text-[11px] uppercase tracking-wider px-3.5 py-1.5 rounded-full bg-accent text-white hover:opacity-90 transition-opacity">
                     Contatta
                 </a>
 
-                <!-- Bottone Menu Mobile -->
-                <button 
-                    onclick="openMobileMenu()" 
-                    class="md:hidden inline-flex items-center justify-center py-1.5 px-3 rounded border border-border bg-surface text-dark font-mono text-xs uppercase tracking-wider"
-                    aria-label="Apri Menu"
-                >
+                <button onclick="openMobileMenu()" class="md:hidden font-mono text-[11px] uppercase tracking-wider px-2.5 py-1.5 rounded-full rule-box">
                     Menu
                 </button>
             </div>
-
         </div>
     </header>
 
     <!-- ======================================================== -->
-    <!-- MENU MOBILE                                              -->
+    <!-- MOBILE MENU                                              -->
     <!-- ======================================================== -->
-    <div 
-        id="mobile-menu-overlay" 
-        class="fixed inset-0 z-50 bg-dark/40 backdrop-blur-xs -translate-y-full transition-transform duration-300 ease-out md:hidden flex flex-col"
-        onclick="if(event.target === this) closeMobileMenu()"
-    >
-        <div class="bg-canvas border-b border-border shadow-xl w-full flex flex-col">
-            <div class="px-5 sm:px-8 h-16 flex justify-between items-center hairline-b">
-                <span class="font-medium text-sm tracking-tight flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-accent"></span>
-                    <span>Alberto Costa</span>
-                </span>
-                <button 
-                    onclick="closeMobileMenu()" 
-                    class="py-1.5 px-3 rounded border border-border bg-surface text-dark font-mono text-xs uppercase tracking-wider"
-                >
-                    Chiudi ✕
-                </button>
-            </div>
-
-            <nav class="flex flex-col px-5 sm:px-8 py-4 divide-y divide-border font-mono text-xs uppercase tracking-wider text-dark">
-                <a href="#progetti" onclick="closeMobileMenu()" class="py-3.5 flex items-center justify-between">
-                    <span>01. Progetti di Prodotto</span>
-                    <span class="text-muted">&rarr;</span>
-                </a>
-                <a href="#archivio" onclick="closeMobileMenu()" class="py-3.5 flex items-center justify-between">
-                    <span>02. Archivio Visivo</span>
-                    <span class="text-muted">&rarr;</span>
-                </a>
-                <a href="#profilo" onclick="closeMobileMenu()" class="py-3.5 flex items-center justify-between">
-                    <span>03. Profilo & Contatti</span>
-                    <span class="text-muted">&rarr;</span>
-                </a>
-            </nav>
-
-            <div class="px-5 sm:px-8 pb-5 pt-3 hairline-t grid grid-cols-2 gap-2.5">
-                <a href="Alberto_Costa_Portfolio_CV.pdf" download class="text-center py-2.5 px-3 rounded border border-border bg-surface text-dark text-xs font-mono uppercase tracking-wider">
-                    Scarica CV
-                </a>
-                <a href="mailto:albeb3b@gmail.com" onclick="closeMobileMenu()" class="text-center py-2.5 px-3 rounded bg-dark text-white text-xs font-mono uppercase tracking-wider">
-                    Scrivimi
-                </a>
-            </div>
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-[var(--bg)] -translate-y-full transition-transform duration-300 ease-out md:hidden flex flex-col justify-between p-6">
+        <div class="flex justify-between items-center pb-4 rule-b">
+            <span class="font-mono text-xs uppercase tracking-widest opacity-60">Navigazione</span>
+            <button onclick="closeMobileMenu()" class="font-mono text-xs uppercase tracking-wider px-3 py-1.5 rounded-full rule-box">Chiudi ✕</button>
         </div>
-        <div class="flex-grow" onclick="closeMobileMenu()"></div>
+
+        <nav class="flex flex-col space-y-6 my-auto font-light text-3xl tracking-tight">
+            <a href="#progetti" onclick="closeMobileMenu()" class="flex justify-between items-baseline pb-4 rule-b">
+                <span>Oggetti & Luce</span>
+                <span class="font-mono text-xs opacity-50">01</span>
+            </a>
+            <a href="#archivio" onclick="closeMobileMenu()" class="flex justify-between items-baseline pb-4 rule-b">
+                <span>Archivio CGI & Media</span>
+                <span class="font-mono text-xs opacity-50">02</span>
+            </a>
+            <a href="#profilo" onclick="closeMobileMenu()" class="flex justify-between items-baseline pb-4 rule-b">
+                <span>Specifiche & Contatti</span>
+                <span class="font-mono text-xs opacity-50">03</span>
+            </a>
+        </nav>
+
+        <div class="grid grid-cols-2 gap-3 pt-4">
+            <a href="Alberto_Costa_Portfolio_CV.pdf" download class="text-center font-mono text-xs uppercase tracking-wider py-3 rounded-full rule-box">Scarica CV</a>
+            <a href="mailto:albeb3b@gmail.com" class="text-center font-mono text-xs uppercase tracking-wider py-3 rounded-full bg-accent text-white">Scrivimi</a>
+        </div>
     </div>
 
+    <!-- ======================================================== -->
+    <!-- MAIN                                                     -->
+    <!-- ======================================================== -->
+    <main id="top" class="flex-grow pt-14 md:pt-16">
 
-    <main id="home" class="flex-grow pt-16">
-
-        <!-- ======================================================== -->
-        <!-- 2. HERO & INDICE RAPIDO                                  -->
-        <!-- ======================================================== -->
-        <section class="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 pt-10 pb-14 md:pt-16 md:pb-20">
-            
-            <!-- Barra metadati superiore -->
-            <div class="flex flex-wrap items-center justify-between gap-4 pb-6 mb-8 md:mb-12 hairline-b font-mono text-xs text-muted">
-                <div class="flex items-center gap-6">
-                    <span>SEDE: Schio (VI), Italia</span>
-                    <span class="hidden sm:inline">45°42'N 11°21'E</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
-                    <span>Disponibile per progetti e collaborazioni</span>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-end">
-                
-                <!-- Titolo principale -->
-                <div class="lg:col-span-7 space-y-6">
-                    <h1 class="text-3xl sm:text-5xl lg:text-[52px] font-normal tracking-tight text-dark leading-[1.1]">
-                        Progettazione di prodotto, apparecchi d'illuminazione e modelli 3D.
+        <!-- 1. COMPACT ARCHITECTURAL HERO -->
+        <section class="max-w-[1600px] mx-auto px-4 sm:px-8 pt-10 pb-10 md:pt-16 md:pb-14">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
+                <div class="lg:col-span-8">
+                    <div class="font-mono text-[11px] uppercase tracking-widest opacity-60 mb-3 flex flex-wrap items-center gap-x-4 gap-y-1">
+                        <span>Schio (VI), Italia</span>
+                        <span>&bull;</span>
+                        <span>Product Design</span>
+                        <span>&bull;</span>
+                        <span>Lighting Engineering</span>
+                        <span>&bull;</span>
+                        <span>3D CGI</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl lg:text-[56px] font-light tracking-tight leading-[1.06]">
+                        Progettazione industriale,<br>
+                        apparecchi illuminanti e resa digitale.
                     </h1>
-                    <p class="text-base sm:text-lg text-muted font-light max-w-2xl leading-relaxed">
-                        Disegno industriale, ingegnerizzazione dei componenti, calcolo illuminotecnico e prototipazione. Dal primo schizzo quotato alle tavole esecutive per l'officina.
-                    </p>
                 </div>
 
-                <!-- Indice rapido dei progetti (stile catalogo tecnico) -->
-                <div class="lg:col-span-5 bg-surface border border-border rounded p-4 sm:p-5">
-                    <div class="flex justify-between items-center pb-2.5 mb-2 hairline-b font-mono text-[11px] uppercase tracking-wider text-muted">
-                        <span>Indice Progetti Selezionati</span>
-                        <span>2022—2024</span>
-                    </div>
-                    <div class="divide-y divide-border/60 font-mono text-xs">
-                        <a href="#proj-01" class="index-row py-2 flex justify-between items-center text-dark">
-                            <span><strong class="text-accent font-normal mr-2">01</strong>Lampada da Lettura</span>
-                            <span class="text-muted text-[11px]">Illuminazione &bull; 2024</span>
+                <div class="lg:col-span-4 flex lg:justify-end">
+                    <div class="w-full lg:w-auto flex flex-wrap gap-2 font-mono text-[11px] uppercase tracking-wider">
+                        <a href="#progetti" class="px-4 py-2.5 rounded-full rule-box hover:border-current transition-colors">
+                            ↓ Lavori selezionati [06]
                         </a>
-                        <a href="#proj-02" class="index-row py-2 flex justify-between items-center text-dark">
-                            <span><strong class="text-accent font-normal mr-2">02</strong>Piantana con Sospensione</span>
-                            <span class="text-muted text-[11px]">Luce d'ambiente &bull; 2023</span>
-                        </a>
-                        <a href="#proj-03" class="index-row py-2 flex justify-between items-center text-dark">
-                            <span><strong class="text-accent font-normal mr-2">03</strong>Tavolino Modulare</span>
-                            <span class="text-muted text-[11px]">Arredo &bull; 2023</span>
-                        </a>
-                        <a href="#proj-04" class="index-row py-2 flex justify-between items-center text-dark">
-                            <span><strong class="text-accent font-normal mr-2">04</strong>Lampada a Sospensione</span>
-                            <span class="text-muted text-[11px]">Luce lineare &bull; 2022</span>
-                        </a>
-                        <a href="#proj-05" class="index-row py-2 flex justify-between items-center text-dark">
-                            <span><strong class="text-accent font-normal mr-2">05</strong>Lampada a Morsetto</span>
-                            <span class="text-muted text-[11px]">Luce tecnica &bull; 2024</span>
-                        </a>
-                        <a href="#proj-06" class="index-row py-2 flex justify-between items-center text-dark">
-                            <span><strong class="text-accent font-normal mr-2">06</strong>Orologio Digitale</span>
-                            <span class="text-muted text-[11px]">Micromeccanica &bull; 2023</span>
+                        <a href="#archivio" class="px-4 py-2.5 rounded-full rule-box hover:border-current transition-colors">
+                            ↓ Archivio visivo [22]
                         </a>
                     </div>
                 </div>
-
             </div>
         </section>
 
-
         <!-- ======================================================== -->
-        <!-- 3. PROGETTI DI PRODOTTO                                  -->
+        <!-- 2. SELECTED WORKS — FULL-WIDTH MEDIA SHOWCASE            -->
         <!-- ======================================================== -->
-        <section id="progetti" class="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 py-16 md:py-24 hairline-t">
+        <section id="progetti" class="max-w-[1600px] mx-auto px-4 sm:px-8 pb-20 md:pb-32">
             
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 md:mb-16 gap-4">
-                <div>
-                    <span class="font-mono text-xs uppercase tracking-widest text-accent">01 / Produzione</span>
-                    <h2 class="text-2xl md:text-3xl font-normal tracking-tight text-dark mt-1">
-                        Progetti di Prodotto & Illuminazione
-                    </h2>
-                </div>
-                <p class="font-mono text-xs text-muted">Clicca sulle immagini per ingrandire i dettagli costruttivi</p>
+            <!-- Section Bar -->
+            <div class="rule-t pt-4 pb-8 md:pb-12 flex justify-between items-baseline font-mono text-[11px] uppercase tracking-widest opacity-60">
+                <span>01 / Progetti Selezionati</span>
+                <span>2022 — 2024</span>
             </div>
 
-            <div class="space-y-20 md:space-y-28">
+            <div class="space-y-20 md:space-y-32">
 
                 <!-- PROGETTO 01 -->
-                <article id="proj-01" class="scroll-mt-24 pt-8 hairline-t grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
-                    <div class="lg:col-span-4 lg:sticky lg:top-24 space-y-5">
-                        <div class="flex items-baseline justify-between">
-                            <span class="font-mono text-sm font-medium text-accent">01 / 06</span>
-                            <span class="font-mono text-xs text-muted">2024</span>
+                <article class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline pb-3 rule-b">
+                        <div class="md:col-span-5 flex items-baseline gap-3">
+                            <span class="font-mono text-xs text-accent font-medium">01</span>
+                            <h2 class="text-xl sm:text-2xl font-normal tracking-tight">Lampada da Lettura Orientabile</h2>
                         </div>
-                        
-                        <h3 class="text-xl md:text-2xl font-normal text-dark tracking-tight">
-                            Lampada da Lettura Orientabile
-                        </h3>
-                        
-                        <p class="text-sm text-muted font-light leading-relaxed">
-                            Lampada da tavolo a fascio concentrato. L'asta snodata permette la regolazione dell'inclinazione tramite boccole a frizione meccanica a vista con finitura anodizzata rossa.
-                        </p>
-
-                        <dl class="pt-4 border-t border-border font-mono text-xs space-y-2">
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Tipologia</dt>
-                                <dd class="text-dark">Apparecchio da tavolo</dd>
-                            </div>
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Materiali</dt>
-                                <dd class="text-dark">Alluminio, Acciaio Inox</dd>
-                            </div>
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Lavorazioni</dt>
-                                <dd class="text-dark">Tornitura, Piegatura</dd>
-                            </div>
-                        </dl>
+                        <div class="md:col-span-4 font-mono text-xs opacity-60">
+                            Snodo a frizione meccanica a vista &bull; Fascio concentrato
+                        </div>
+                        <div class="md:col-span-3 md:text-right font-mono text-xs opacity-60">
+                            Alluminio, Inox &mdash; 2024
+                        </div>
                     </div>
 
-                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 items-start">
-                        <figure class="space-y-2">
-                            <div class="work-card rounded border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2836.jpg', '01 — Lampada da Lettura: vista d'insieme')">
-                                <img src="Copia di DSC_2836.jpg" alt="Lampada da Lettura Orientabile" class="w-full h-auto block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=1200'">
-                                <span class="zoom-badge absolute bottom-3 right-3 bg-dark/85 text-white font-mono text-[10px] uppercase px-2.5 py-1 rounded">+ Ingrandisci</span>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4">
+                        <div class="md:col-span-7 media-frame rounded-sm aspect-[4/3] cursor-pointer" onclick="openLightboxBySrc('Copia di DSC_2836.jpg')">
+                            <img src="Copia di DSC_2836.jpg" alt="Lampada da Lettura Orientabile — Vista d'insieme" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=85&w=1400'">
+                            <div class="media-badge absolute bottom-3 left-3 right-3 flex justify-between items-center font-mono text-[11px] bg-black/75 text-white px-3 py-1.5 backdrop-blur-sm">
+                                <span>01.A — Assetto complessivo</span>
+                                <span>[Ingrandisci +]</span>
                             </div>
-                            <figcaption class="font-mono text-[11px] text-muted flex justify-between">
-                                <span>FIG. 1.1 — Vista d'insieme</span>
-                                <span>Prototipo</span>
-                            </figcaption>
-                        </figure>
-
-                        <figure class="space-y-2">
-                            <div class="work-card rounded border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_1641.jpg', '01 — Lampada da Lettura: dettaglio frizione e serraggi')">
-                                <img src="Copia di DSC_1641.jpg" alt="Dettaglio Serraggi e Meccanica" class="w-full h-auto block" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=800'">
-                                <span class="zoom-badge absolute bottom-3 right-3 bg-dark/85 text-white font-mono text-[10px] uppercase px-2.5 py-1 rounded">+ Ingrandisci</span>
+                        </div>
+                        <div class="md:col-span-5 media-frame rounded-sm aspect-[4/3] cursor-pointer" onclick="openLightboxBySrc('Copia di DSC_1641.jpg')">
+                            <img src="Copia di DSC_1641.jpg" alt="Lampada da Lettura — Dettaglio serraggi e boccole" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=85&w=1000'">
+                            <div class="media-badge absolute bottom-3 left-3 right-3 flex justify-between items-center font-mono text-[11px] bg-black/75 text-white px-3 py-1.5 backdrop-blur-sm">
+                                <span>01.B — Boccole a frizione</span>
+                                <span>[Ingrandisci +]</span>
                             </div>
-                            <figcaption class="font-mono text-[11px] text-muted flex justify-between">
-                                <span>FIG. 1.2 — Snodo e serraggi</span>
-                                <span>Dettaglio</span>
-                            </figcaption>
-                        </figure>
+                        </div>
                     </div>
                 </article>
 
                 <!-- PROGETTO 02 -->
-                <article id="proj-02" class="scroll-mt-24 pt-8 hairline-t grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
-                    <div class="lg:col-span-4 lg:sticky lg:top-24 space-y-5">
-                        <div class="flex items-baseline justify-between">
-                            <span class="font-mono text-sm font-medium text-accent">02 / 06</span>
-                            <span class="font-mono text-xs text-muted">2023</span>
+                <article class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline pb-3 rule-b">
+                        <div class="md:col-span-5 flex items-baseline gap-3">
+                            <span class="font-mono text-xs text-accent font-medium">02</span>
+                            <h2 class="text-xl sm:text-2xl font-normal tracking-tight">Piantana con Sospensione</h2>
                         </div>
-                        
-                        <h3 class="text-xl md:text-2xl font-normal text-dark tracking-tight">
-                            Piantana con Sospensione
-                        </h3>
-                        
-                        <p class="text-sm text-muted font-light leading-relaxed">
-                            Apparecchio da terra a luce diffusa. La base in acciaio inox ad alto spessore bilancia lo stelo verticale in legno tornito, che sostiene il diffusore a sbalzo tramite un tirante metallico.
-                        </p>
-
-                        <dl class="pt-4 border-t border-border font-mono text-xs space-y-2">
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Tipologia</dt>
-                                <dd class="text-dark">Piantana a luce diffusa</dd>
-                            </div>
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Materiali</dt>
-                                <dd class="text-dark">Legno, Acciaio Inox, Tessuto</dd>
-                            </div>
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Lavorazioni</dt>
-                                <dd class="text-dark">Tornitura legno, Taglio laser</dd>
-                            </div>
-                        </dl>
+                        <div class="md:col-span-4 font-mono text-xs opacity-60">
+                            Sorgente a sbalzo su tirante d'acciaio &bull; Luce diffusa
+                        </div>
+                        <div class="md:col-span-3 md:text-right font-mono text-xs opacity-60">
+                            Legno tornito, Inox, Tessuto &mdash; 2023
+                        </div>
                     </div>
 
-                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 items-start">
-                        <figure class="space-y-2">
-                            <div class="work-card rounded border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2151.png', '02 — Piantana con Sospensione: assetto completo')">
-                                <img src="Copia di DSC_2151.png" alt="Piantana con Sospensione" class="w-full h-auto block" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=1200'">
-                                <span class="zoom-badge absolute bottom-3 right-3 bg-dark/85 text-white font-mono text-[10px] uppercase px-2.5 py-1 rounded">+ Ingrandisci</span>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4">
+                        <div class="md:col-span-5 media-frame rounded-sm aspect-[4/3] cursor-pointer" onclick="openLightboxBySrc('Copia di DSC_2151.png')">
+                            <img src="Copia di DSC_2151.png" alt="Piantana con Sospensione — Vista verticale" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=85&w=1000'">
+                            <div class="media-badge absolute bottom-3 left-3 right-3 flex justify-between items-center font-mono text-[11px] bg-black/75 text-white px-3 py-1.5 backdrop-blur-sm">
+                                <span>02.A — Stelo e contrappeso</span>
+                                <span>[Ingrandisci +]</span>
                             </div>
-                            <figcaption class="font-mono text-[11px] text-muted flex justify-between">
-                                <span>FIG. 2.1 — Assetto completo</span>
-                                <span>Vista frontale</span>
-                            </figcaption>
-                        </figure>
-
-                        <figure class="space-y-2">
-                            <div class="work-card rounded border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2176.png', '02 — Piantana con Sospensione: innesto legno-metallo')">
-                                <img src="Copia di DSC_2176.png" alt="Giunzione Legno Acciaio" class="w-full h-auto block" onerror="this.src='https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=80&w=800'">
-                                <span class="zoom-badge absolute bottom-3 right-3 bg-dark/85 text-white font-mono text-[10px] uppercase px-2.5 py-1 rounded">+ Ingrandisci</span>
+                        </div>
+                        <div class="md:col-span-7 media-frame rounded-sm aspect-[4/3] cursor-pointer" onclick="openLightboxBySrc('Copia di DSC_2176.png')">
+                            <img src="Copia di DSC_2176.png" alt="Piantana con Sospensione — Giunzione legno-metallo" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=85&w=1400'">
+                            <div class="media-badge absolute bottom-3 left-3 right-3 flex justify-between items-center font-mono text-[11px] bg-black/75 text-white px-3 py-1.5 backdrop-blur-sm">
+                                <span>02.B — Innesto legno-acciaio</span>
+                                <span>[Ingrandisci +]</span>
                             </div>
-                            <figcaption class="font-mono text-[11px] text-muted flex justify-between">
-                                <span>FIG. 2.2 — Giunzione stelo-braccio</span>
-                                <span>Dettaglio</span>
-                            </figcaption>
-                        </figure>
+                        </div>
                     </div>
                 </article>
 
                 <!-- PROGETTO 03 -->
-                <article id="proj-03" class="scroll-mt-24 pt-8 hairline-t grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
-                    <div class="lg:col-span-4 lg:sticky lg:top-24 space-y-5">
-                        <div class="flex items-baseline justify-between">
-                            <span class="font-mono text-sm font-medium text-accent">03 / 06</span>
-                            <span class="font-mono text-xs text-muted">2023</span>
+                <article class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline pb-3 rule-b">
+                        <div class="md:col-span-5 flex items-baseline gap-3">
+                            <span class="font-mono text-xs text-accent font-medium">03</span>
+                            <h2 class="text-xl sm:text-2xl font-normal tracking-tight">Tavolino Modulare</h2>
                         </div>
-                        
-                        <h3 class="text-xl md:text-2xl font-normal text-dark tracking-tight">
-                            Tavolino Modulare
-                        </h3>
-                        
-                        <p class="text-sm text-muted font-light leading-relaxed">
-                            Sistema di tavolini componibili per zona giorno. I piani sagomati in multistrato di betulla si innestano sulle gambe in lamiera d'acciaio inox piegata, bloccate con viteria passante a vista.
-                        </p>
-
-                        <dl class="pt-4 border-t border-border font-mono text-xs space-y-2">
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Tipologia</dt>
-                                <dd class="text-dark">Arredo componibile</dd>
-                            </div>
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Materiali</dt>
-                                <dd class="text-dark">Multistrato di betulla, Inox</dd>
-                            </div>
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Lavorazioni</dt>
-                                <dd class="text-dark">Fresatura CNC, Piegatura lamiera</dd>
-                            </div>
-                        </dl>
+                        <div class="md:col-span-4 font-mono text-xs opacity-60">
+                            Sistema componibile a incastro meccanico
+                        </div>
+                        <div class="md:col-span-3 md:text-right font-mono text-xs opacity-60">
+                            Multistrato betulla, Inox piegato &mdash; 2023
+                        </div>
                     </div>
 
-                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 items-start">
-                        <figure class="space-y-2">
-                            <div class="work-card rounded border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2940.jpg', '03 — Tavolino Modulare: vista superiore dei piani')">
-                                <img src="Copia di DSC_2940.jpg" alt="Tavolino Modulare - Vista Superiore" class="w-full h-auto block" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=800'">
-                                <span class="zoom-badge absolute bottom-3 right-3 bg-dark/85 text-white font-mono text-[10px] uppercase px-2.5 py-1 rounded">+ Ingrandisci</span>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4">
+                        <div class="md:col-span-6 media-frame rounded-sm aspect-[4/3] cursor-pointer" onclick="openLightboxBySrc('Copia di DSC_2940.jpg')">
+                            <img src="Copia di DSC_2940.jpg" alt="Tavolino Modulare — Geometria superiore" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=85&w=1200'">
+                            <div class="media-badge absolute bottom-3 left-3 right-3 flex justify-between items-center font-mono text-[11px] bg-black/75 text-white px-3 py-1.5 backdrop-blur-sm">
+                                <span>03.A — Piani sagomati</span>
+                                <span>[Ingrandisci +]</span>
                             </div>
-                            <figcaption class="font-mono text-[11px] text-muted flex justify-between">
-                                <span>FIG. 3.1 — Accostamento moduli</span>
-                                <span>Pianta</span>
-                            </figcaption>
-                        </figure>
-
-                        <figure class="space-y-2">
-                            <div class="work-card rounded border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_2933.jpg', '03 — Tavolino Modulare: nodo strutturale in acciaio')">
-                                <img src="Copia di DSC_2933.jpg" alt="Tavolino Modulare - Giunzione Meccanica" class="w-full h-auto block" onerror="this.src='https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&q=80&w=800'">
-                                <span class="zoom-badge absolute bottom-3 right-3 bg-dark/85 text-white font-mono text-[10px] uppercase px-2.5 py-1 rounded">+ Ingrandisci</span>
+                        </div>
+                        <div class="md:col-span-6 media-frame rounded-sm aspect-[4/3] cursor-pointer" onclick="openLightboxBySrc('Copia di DSC_2933.jpg')">
+                            <img src="Copia di DSC_2933.jpg" alt="Tavolino Modulare — Nodo strutturale" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1592078615290-033ee584e267?auto=format&fit=crop&q=85&w=1200'">
+                            <div class="media-badge absolute bottom-3 left-3 right-3 flex justify-between items-center font-mono text-[11px] bg-black/75 text-white px-3 py-1.5 backdrop-blur-sm">
+                                <span>03.B — Giunzione in lamiera piegata</span>
+                                <span>[Ingrandisci +]</span>
                             </div>
-                            <figcaption class="font-mono text-[11px] text-muted flex justify-between">
-                                <span>FIG. 3.2 — Nodo gamba-piano</span>
-                                <span>Dettaglio</span>
-                            </figcaption>
-                        </figure>
+                        </div>
                     </div>
                 </article>
 
                 <!-- PROGETTO 04 -->
-                <article id="proj-04" class="scroll-mt-24 pt-8 hairline-t grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
-                    <div class="lg:col-span-4 lg:sticky lg:top-24 space-y-5">
-                        <div class="flex items-baseline justify-between">
-                            <span class="font-mono text-sm font-medium text-accent">04 / 06</span>
-                            <span class="font-mono text-xs text-muted">2022</span>
+                <article class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline pb-3 rule-b">
+                        <div class="md:col-span-5 flex items-baseline gap-3">
+                            <span class="font-mono text-xs text-accent font-medium">04</span>
+                            <h2 class="text-xl sm:text-2xl font-normal tracking-tight">Lampada a Sospensione Lineare</h2>
                         </div>
-                        
-                        <h3 class="text-xl md:text-2xl font-normal text-dark tracking-tight">
-                            Lampada a Sospensione
-                        </h3>
-                        
-                        <p class="text-sm text-muted font-light leading-relaxed">
-                            Corpo illuminante lineare ricavato da un profilato tubolare in alluminio grezzo sospeso su cavi d'acciaio. L'alimentazione e l'ancoraggio sono integrati in un morsetto centrale in lamiera piegata.
-                        </p>
-
-                        <dl class="pt-4 border-t border-border font-mono text-xs space-y-2">
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Tipologia</dt>
-                                <dd class="text-dark">Sospensione lineare</dd>
-                            </div>
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Materiali</dt>
-                                <dd class="text-dark">Alluminio grezzo, Acciaio Inox</dd>
-                            </div>
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Lavorazioni</dt>
-                                <dd class="text-dark">Taglio, Piegatura lamiera</dd>
-                            </div>
-                        </dl>
+                        <div class="md:col-span-4 font-mono text-xs opacity-60">
+                            Profilo tubolare estruso &bull; Morsetto strutturale a molla
+                        </div>
+                        <div class="md:col-span-3 md:text-right font-mono text-xs opacity-60">
+                            Alluminio grezzo, Inox &mdash; 2022
+                        </div>
                     </div>
 
-                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 items-start">
-                        <figure class="space-y-2">
-                            <div class="work-card rounded border border-border bg-stone cursor-pointer" onclick="openLightbox('DSC_4333.jpg', '04 — Lampada a Sospensione: installazione a soffitto')">
-                                <img src="DSC_4333.jpg" alt="Lampada Sospesa" class="w-full h-auto block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=800'">
-                                <span class="zoom-badge absolute bottom-3 right-3 bg-dark/85 text-white font-mono text-[10px] uppercase px-2.5 py-1 rounded">+ Ingrandisci</span>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4">
+                        <div class="md:col-span-7 media-frame rounded-sm aspect-[4/3] cursor-pointer" onclick="openLightboxBySrc('DSC_4333.jpg')">
+                            <img src="DSC_4333.jpg" alt="Lampada a Sospensione Lineare — Vista ambientata" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=85&w=1400'">
+                            <div class="media-badge absolute bottom-3 left-3 right-3 flex justify-between items-center font-mono text-[11px] bg-black/75 text-white px-3 py-1.5 backdrop-blur-sm">
+                                <span>04.A — Corpo lineare sospeso</span>
+                                <span>[Ingrandisci +]</span>
                             </div>
-                            <figcaption class="font-mono text-[11px] text-muted flex justify-between">
-                                <span>FIG. 4.1 — Profilo sospeso</span>
-                                <span>Vista d'insieme</span>
-                            </figcaption>
-                        </figure>
-
-                        <figure class="space-y-2">
-                            <div class="work-card rounded border border-border bg-stone cursor-pointer" onclick="openLightbox('DSC_4331.jpg', '04 — Lampada a Sospensione: morsetto centrale in acciaio')">
-                                <img src="DSC_4331.jpg" alt="Dettaglio Morsetto Piegato" class="w-full h-auto block" onerror="this.src='https://images.unsplash.com/photo-1534346850257-2309852b7e0e?auto=format&fit=crop&q=80&w=800'">
-                                <span class="zoom-badge absolute bottom-3 right-3 bg-dark/85 text-white font-mono text-[10px] uppercase px-2.5 py-1 rounded">+ Ingrandisci</span>
+                        </div>
+                        <div class="md:col-span-5 media-frame rounded-sm aspect-[4/3] cursor-pointer" onclick="openLightboxBySrc('DSC_4331.jpg')">
+                            <img src="DSC_4331.jpg" alt="Lampada a Sospensione — Dettaglio morsetto inox" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1534346850257-2309852b7e0e?auto=format&fit=crop&q=85&w=1000'">
+                            <div class="media-badge absolute bottom-3 left-3 right-3 flex justify-between items-center font-mono text-[11px] bg-black/75 text-white px-3 py-1.5 backdrop-blur-sm">
+                                <span>04.B — Morsetto in lamiera piegata</span>
+                                <span>[Ingrandisci +]</span>
                             </div>
-                            <figcaption class="font-mono text-[11px] text-muted flex justify-between">
-                                <span>FIG. 4.2 — Morsetto di sospensione</span>
-                                <span>Dettaglio</span>
-                            </figcaption>
-                        </figure>
+                        </div>
                     </div>
                 </article>
 
                 <!-- PROGETTO 05 -->
-                <article id="proj-05" class="scroll-mt-24 pt-8 hairline-t grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
-                    <div class="lg:col-span-4 lg:sticky lg:top-24 space-y-5">
-                        <div class="flex items-baseline justify-between">
-                            <span class="font-mono text-sm font-medium text-accent">05 / 06</span>
-                            <span class="font-mono text-xs text-muted">2024</span>
+                <article class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline pb-3 rule-b">
+                        <div class="md:col-span-5 flex items-baseline gap-3">
+                            <span class="font-mono text-xs text-accent font-medium">05</span>
+                            <h2 class="text-xl sm:text-2xl font-normal tracking-tight">Lampada Tecnica a Morsetto</h2>
                         </div>
-                        
-                        <h3 class="text-xl md:text-2xl font-normal text-dark tracking-tight">
-                            Lampada a Morsetto
-                        </h3>
-                        
-                        <p class="text-sm text-muted font-light leading-relaxed">
-                            Punto luce a fissaggio rapido per piani di lavoro, mensole o scaffalature metalliche. Struttura dissipante in alluminio con vite di serraggio a vista e calotta diffusore orientabile.
-                        </p>
-
-                        <dl class="pt-4 border-t border-border font-mono text-xs space-y-2">
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Tipologia</dt>
-                                <dd class="text-dark">Luce operativa a morsetto</dd>
-                            </div>
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Materiali</dt>
-                                <dd class="text-dark">Alluminio, Acciaio Inox, Polimeri</dd>
-                            </div>
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Lavorazioni</dt>
-                                <dd class="text-dark">Tornitura, Stampa 3D funzionale</dd>
-                            </div>
-                        </dl>
+                        <div class="md:col-span-4 font-mono text-xs opacity-60">
+                            Innesto rapido su mensola &bull; Calotta semi-sferica orientabile
+                        </div>
+                        <div class="md:col-span-3 md:text-right font-mono text-xs opacity-60">
+                            Alluminio, Inox, Polimeri &mdash; 2024
+                        </div>
                     </div>
 
-                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 items-start">
-                        <figure class="space-y-2">
-                            <div class="work-card rounded border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_3095.jpg', '05 — Lampada a Morsetto: ancoraggio su piano')">
-                                <img src="Copia di DSC_3095.jpg" alt="Morsetto su mensola" class="w-full h-auto block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=800'">
-                                <span class="zoom-badge absolute bottom-3 right-3 bg-dark/85 text-white font-mono text-[10px] uppercase px-2.5 py-1 rounded">+ Ingrandisci</span>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4">
+                        <div class="md:col-span-6 media-frame rounded-sm aspect-[4/3] cursor-pointer" onclick="openLightboxBySrc('Copia di DSC_3095.jpg')">
+                            <img src="Copia di DSC_3095.jpg" alt="Lampada a Morsetto — Serraggio a vite" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=85&w=1200'">
+                            <div class="media-badge absolute bottom-3 left-3 right-3 flex justify-between items-center font-mono text-[11px] bg-black/75 text-white px-3 py-1.5 backdrop-blur-sm">
+                                <span>05.A — Morsetto di ancoraggio</span>
+                                <span>[Ingrandisci +]</span>
                             </div>
-                            <figcaption class="font-mono text-[11px] text-muted flex justify-between">
-                                <span>FIG. 5.1 — Serraggio su mensola</span>
-                                <span>Installazione</span>
-                            </figcaption>
-                        </figure>
-
-                        <figure class="space-y-2">
-                            <div class="work-card rounded border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_3113.jpg', '05 — Lampada a Morsetto: calotta orientabile')">
-                                <img src="Copia di DSC_3113.jpg" alt="Diffusore" class="w-full h-auto block" onerror="this.src='https://images.unsplash.com/photo-1534346850257-2309852b7e0e?auto=format&fit=crop&q=80&w=800'">
-                                <span class="zoom-badge absolute bottom-3 right-3 bg-dark/85 text-white font-mono text-[10px] uppercase px-2.5 py-1 rounded">+ Ingrandisci</span>
+                        </div>
+                        <div class="md:col-span-6 media-frame rounded-sm aspect-[4/3] cursor-pointer" onclick="openLightboxBySrc('Copia di DSC_3113.jpg')">
+                            <img src="Copia di DSC_3113.jpg" alt="Lampada a Morsetto — Diffusore orientabile" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1534346850257-2309852b7e0e?auto=format&fit=crop&q=85&w=1200'">
+                            <div class="media-badge absolute bottom-3 left-3 right-3 flex justify-between items-center font-mono text-[11px] bg-black/75 text-white px-3 py-1.5 backdrop-blur-sm">
+                                <span>05.B — Diffusore e dissipatore</span>
+                                <span>[Ingrandisci +]</span>
                             </div>
-                            <figcaption class="font-mono text-[11px] text-muted flex justify-between">
-                                <span>FIG. 5.2 — Diffusore emisferico</span>
-                                <span>Dettaglio</span>
-                            </figcaption>
-                        </figure>
+                        </div>
                     </div>
                 </article>
 
                 <!-- PROGETTO 06 -->
-                <article id="proj-06" class="scroll-mt-24 pt-8 hairline-t grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-start">
-                    <div class="lg:col-span-4 lg:sticky lg:top-24 space-y-5">
-                        <div class="flex items-baseline justify-between">
-                            <span class="font-mono text-sm font-medium text-accent">06 / 06</span>
-                            <span class="font-mono text-xs text-muted">2023</span>
+                <article class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline pb-3 rule-b">
+                        <div class="md:col-span-5 flex items-baseline gap-3">
+                            <span class="font-mono text-xs text-accent font-medium">06</span>
+                            <h2 class="text-xl sm:text-2xl font-normal tracking-tight">Orologio Digitale CNC</h2>
                         </div>
-                        
-                        <h3 class="text-xl md:text-2xl font-normal text-dark tracking-tight">
-                            Orologio Digitale
-                        </h3>
-                        
-                        <p class="text-sm text-muted font-light leading-relaxed">
-                            Orologio da polso con cassa in lamiera d'acciaio inox piegata a controllo numerico. Progettato attorno agli ingombri del modulo elettronico, con serraggi laterali a vista e pulsanti cilindrici torniti.
-                        </p>
-
-                        <dl class="pt-4 border-t border-border font-mono text-xs space-y-2">
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Tipologia</dt>
-                                <dd class="text-dark">Orologio da polso</dd>
-                            </div>
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Materiali</dt>
-                                <dd class="text-dark">Acciaio Inox, Cuoio vegetale</dd>
-                            </div>
-                            <div class="flex justify-between">
-                                <dt class="text-muted">Lavorazioni</dt>
-                                <dd class="text-dark">Taglio laser, Micro-piegatura</dd>
-                            </div>
-                        </dl>
+                        <div class="md:col-span-4 font-mono text-xs opacity-60">
+                            Cassa in lamiera piegata a controllo numerico &bull; Viteria a vista
+                        </div>
+                        <div class="md:col-span-3 md:text-right font-mono text-xs opacity-60">
+                            Acciaio Inox, Cuoio vegetale &mdash; 2023
+                        </div>
                     </div>
 
-                    <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 items-start">
-                        <figure class="space-y-2">
-                            <div class="work-card rounded border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_3217.jpg', '06 — Orologio Digitale: cassa in lamiera piegata')">
-                                <img src="Copia di DSC_3217.jpg" alt="Cassa Orologio" class="w-full h-auto block" onerror="this.src='https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&q=80&w=800'">
-                                <span class="zoom-badge absolute bottom-3 right-3 bg-dark/85 text-white font-mono text-[10px] uppercase px-2.5 py-1 rounded">+ Ingrandisci</span>
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4">
+                        <div class="md:col-span-7 media-frame rounded-sm aspect-[4/3] cursor-pointer" onclick="openLightboxBySrc('Copia di DSC_3217.jpg')">
+                            <img src="Copia di DSC_3217.jpg" alt="Orologio Digitale — Cassa in acciaio inox" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&q=85&w=1400'">
+                            <div class="media-badge absolute bottom-3 left-3 right-3 flex justify-between items-center font-mono text-[11px] bg-black/75 text-white px-3 py-1.5 backdrop-blur-sm">
+                                <span>06.A — Architettura cassa</span>
+                                <span>[Ingrandisci +]</span>
                             </div>
-                            <figcaption class="font-mono text-[11px] text-muted flex justify-between">
-                                <span>FIG. 6.1 — Cassa e quadrante</span>
-                                <span>Vista frontale</span>
-                            </figcaption>
-                        </figure>
-
-                        <figure class="space-y-2">
-                            <div class="work-card rounded border border-border bg-stone cursor-pointer" onclick="openLightbox('Copia di DSC_3228.jpg', '06 — Orologio Digitale: pulsanti e viteria laterale')">
-                                <img src="Copia di DSC_3228.jpg" alt="Dettaglio Pulsanti" class="w-full h-auto block" onerror="this.src='https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&q=80&w=800'">
-                                <span class="zoom-badge absolute bottom-3 right-3 bg-dark/85 text-white font-mono text-[10px] uppercase px-2.5 py-1 rounded">+ Ingrandisci</span>
+                        </div>
+                        <div class="md:col-span-5 media-frame rounded-sm aspect-[4/3] cursor-pointer" onclick="openLightboxBySrc('Copia di DSC_3228.jpg')">
+                            <img src="Copia di DSC_3228.jpg" alt="Orologio Digitale — Pulsanti cilindrici e cinturino" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&q=85&w=1000'">
+                            <div class="media-badge absolute bottom-3 left-3 right-3 flex justify-between items-center font-mono text-[11px] bg-black/75 text-white px-3 py-1.5 backdrop-blur-sm">
+                                <span>06.B — Pulsantiera meccanica</span>
+                                <span>[Ingrandisci +]</span>
                             </div>
-                            <figcaption class="font-mono text-[11px] text-muted flex justify-between">
-                                <span>FIG. 6.2 — Pulsanti e fianco cassa</span>
-                                <span>Dettaglio</span>
-                            </figcaption>
-                        </figure>
+                        </div>
                     </div>
                 </article>
 
             </div>
         </section>
 
-
         <!-- ======================================================== -->
-        <!-- 4. ARCHIVIO VISIVO                                       -->
+        <!-- 3. ARCHIVIO VISIVO — DENSE MEDIA WALL                    -->
         <!-- ======================================================== -->
-        <section id="archivio" class="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 py-16 md:py-24 hairline-t">
+        <section id="archivio" class="max-w-[1600px] mx-auto px-4 sm:px-8 py-16 md:py-24 rule-t">
             
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
                 <div>
-                    <span class="font-mono text-xs uppercase tracking-widest text-accent">02 / Archivio</span>
-                    <h2 class="text-2xl md:text-3xl font-normal tracking-tight text-dark mt-1">
-                        Render 3D, Fotografia & Disegno
-                    </h2>
-                    <p class="text-sm text-muted font-light mt-1">Visualizzazioni fotorealistiche di prodotto, scatti fotografici e tavole grafiche.</p>
+                    <span class="font-mono text-[11px] uppercase tracking-widest opacity-60 block mb-2">02 / Archivio Visivo</span>
+                    <h2 class="text-2xl sm:text-3xl font-light tracking-tight">3D CGI, Fotografia & Disegno</h2>
                 </div>
 
-                <!-- Filtri Categoria con contatore -->
-                <div class="flex flex-wrap gap-2 font-mono text-xs">
-                    <button onclick="filterMedia('render', this)" class="tab-btn active px-3.5 py-2 rounded border border-border bg-surface hover:border-dark transition-all">
-                        3D & Render <span class="opacity-60 ml-1">[08]</span>
-                    </button>
-                    <button onclick="filterMedia('photo', this)" class="tab-btn px-3.5 py-2 rounded border border-border bg-surface hover:border-dark transition-all">
-                        Fotografia <span class="opacity-60 ml-1">[08]</span>
-                    </button>
-                    <button onclick="filterMedia('sketch', this)" class="tab-btn px-3.5 py-2 rounded border border-border bg-surface hover:border-dark transition-all">
-                        Grafica & Disegno <span class="opacity-60 ml-1">[06]</span>
-                    </button>
-                    <button onclick="filterMedia('all', this)" class="tab-btn px-3.5 py-2 rounded border border-border bg-surface hover:border-dark transition-all">
-                        Tutti <span class="opacity-60 ml-1">[22]</span>
-                    </button>
+                <!-- Filtri Rapidi con Contatori -->
+                <div class="flex flex-wrap gap-2 font-mono text-[11px] uppercase tracking-wider">
+                    <button onclick="filterMedia('all', this)" class="filter-pill px-3.5 py-1.5 rounded-full">Tutti [22]</button>
+                    <button onclick="filterMedia('render', this)" class="filter-pill active px-3.5 py-1.5 rounded-full">3D CGI [08]</button>
+                    <button onclick="filterMedia('photo', this)" class="filter-pill px-3.5 py-1.5 rounded-full">Fotografia [08]</button>
+                    <button onclick="filterMedia('sketch', this)" class="filter-pill px-3.5 py-1.5 rounded-full">Grafica [06]</button>
                 </div>
             </div>
 
-            <!-- Griglia Galleria -->
-            <div id="media-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
+            <!-- Griglia Media -->
+            <div id="media-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3">
 
-                <!-- 3D RENDER -->
-                <div class="media-item render work-card rounded border border-border bg-stone aspect-square cursor-pointer group" onclick="openLightbox('r1.jpg', 'Render 3D — Concept Ninfea')">
-                    <img src="r1.jpg" alt="Concept Ninfea" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Concept Ninfea</span>
+                <!-- 3D RENDER (8) -->
+                <div class="media-item render media-frame aspect-square cursor-pointer" onclick="openLightboxBySrc('r1.jpg')">
+                    <img src="r1.jpg" alt="CGI 01 — Concept Ninfea" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>CGI.01 — Concept Ninfea</span><span>+</span>
                     </div>
                 </div>
-                <div class="media-item render work-card rounded border border-border bg-stone aspect-square cursor-pointer group" onclick="openLightbox('r2.jpg', 'Render 3D — Lampada da tavolo')">
-                    <img src="r2.jpg" alt="Concept Lampada Tavolo" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Lampada da tavolo</span>
+                <div class="media-item render media-frame aspect-square cursor-pointer" onclick="openLightboxBySrc('r2.jpg')">
+                    <img src="r2.jpg" alt="CGI 02 — Studio illuminotecnico" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>CGI.02 — Lampada da tavolo</span><span>+</span>
                     </div>
                 </div>
-                <div class="media-item render work-card rounded border border-border bg-stone aspect-square cursor-pointer group" onclick="openLightbox('r4.jpg', 'Render 3D — Lampada a sospensione')">
-                    <img src="r4.jpg" alt="Concept Sospensione" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Sospensione metallica</span>
+                <div class="media-item render media-frame aspect-square cursor-pointer" onclick="openLightboxBySrc('r4.jpg')">
+                    <img src="r4.jpg" alt="CGI 03 — Riflessione e materiali" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1540932239986-30128078f3c5?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>CGI.03 — Sospensione</span><span>+</span>
                     </div>
                 </div>
-                <div class="media-item render work-card rounded border border-border bg-stone aspect-square cursor-pointer group" onclick="openLightbox('r5.jpg', 'Render 3D — Ambientazione living')">
-                    <img src="r5.jpg" alt="Render Ambientato Living" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1597072689227-8882273e8f6a?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Ambientazione interna</span>
+                <div class="media-item render media-frame aspect-square cursor-pointer" onclick="openLightboxBySrc('r5.jpg')">
+                    <img src="r5.jpg" alt="CGI 04 — Visualizzazione d'interni" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1597072689227-8882273e8f6a?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>CGI.04 — Interno Living</span><span>+</span>
                     </div>
                 </div>
-                <div class="media-item render work-card rounded border border-border bg-stone aspect-square cursor-pointer group" onclick="openLightbox('r6.jpg', 'Render 3D — Lampada a scorrimento')">
-                    <img src="r6.jpg" alt="Lampada a scorrimento" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Lampada a scorrimento</span>
+                <div class="media-item render media-frame aspect-square cursor-pointer" onclick="openLightboxBySrc('r6.jpg')">
+                    <img src="r6.jpg" alt="CGI 05 — Lampada a scorrimento" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>CGI.05 — Cinematismo</span><span>+</span>
                     </div>
                 </div>
-                <div class="media-item render work-card rounded border border-border bg-stone aspect-square cursor-pointer group" onclick="openLightbox('r7.jpg', 'Render 3D — Lampada da terra')">
-                    <img src="r7.jpg" alt="Lampada da terra" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Lampada da terra</span>
+                <div class="media-item render media-frame aspect-square cursor-pointer" onclick="openLightboxBySrc('r7.jpg')">
+                    <img src="r7.jpg" alt="CGI 06 — Superfici lampada da terra" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>CGI.06 — Stelo da terra</span><span>+</span>
                     </div>
                 </div>
-                <div class="media-item render work-card rounded border border-border bg-stone aspect-square cursor-pointer group" onclick="openLightbox('r8.jpg', 'Render 3D — Tavolino in legno e metallo')">
-                    <img src="r8.jpg" alt="Tavolino da caffè" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Tavolino componibile</span>
+                <div class="media-item render media-frame aspect-square cursor-pointer" onclick="openLightboxBySrc('r8.jpg')">
+                    <img src="r8.jpg" alt="CGI 07 — Assieme tavolino" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>CGI.07 — Raccordi tavolino</span><span>+</span>
                     </div>
                 </div>
-                <div class="media-item render work-card rounded border border-border bg-stone aspect-square cursor-pointer group" onclick="openLightbox('r10.jpg', 'Render 3D — Studio illuminotecnico sospensione')">
-                    <img src="r10.jpg" alt="Lampada a sospensione" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Fascio luminoso a sospensione</span>
-                    </div>
-                </div>
-
-                <!-- FOTOGRAFIA -->
-                <div class="media-item photo work-card rounded border border-border bg-stone aspect-square cursor-pointer group" style="display: none;" onclick="openLightbox('foto_2.jpg', 'Fotografia — Contrasto luce e ombra')">
-                    <img src="foto_2.jpg" alt="Luce e Ombra" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Contrasto luce e ombra</span>
-                    </div>
-                </div>
-                <div class="media-item photo work-card rounded border border-border bg-stone aspect-square cursor-pointer group" style="display: none;" onclick="openLightbox('foto_3.jpg', 'Fotografia — Paesaggio e orizzonte')">
-                    <img src="foto_3.jpg" alt="Paesaggio" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Paesaggio e orizzonte</span>
-                    </div>
-                </div>
-                <div class="media-item photo work-card rounded border border-border bg-stone aspect-square cursor-pointer group" style="display: none;" onclick="openLightbox('foto_4.jpg', 'Fotografia — Texture naturale')">
-                    <img src="foto_4.jpg" alt="Geometrie naturali" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Texture naturale</span>
-                    </div>
-                </div>
-                <div class="media-item photo work-card rounded border border-border bg-stone aspect-square cursor-pointer group" style="display: none;" onclick="openLightbox('foto_5.jpg', 'Fotografia — Riflessi sull'acqua')">
-                    <img src="foto_5.jpg" alt="Riflessi" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Riflessi sull'acqua</span>
-                    </div>
-                </div>
-                <div class="media-item photo work-card rounded border border-border bg-stone aspect-square cursor-pointer group" style="display: none;" onclick="openLightbox('foto_7.jpg', 'Fotografia — Studio di scala')">
-                    <img src="foto_7.jpg" alt="Orizzonte" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Studio di scala</span>
-                    </div>
-                </div>
-                <div class="media-item photo work-card rounded border border-border bg-stone aspect-square cursor-pointer group" style="display: none;" onclick="openLightbox('foto_8.jpg', 'Fotografia — Superficie rocciosa')">
-                    <img src="foto_8.jpg" alt="Superfici" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Superficie rocciosa</span>
-                    </div>
-                </div>
-                <div class="media-item photo work-card rounded border border-border bg-stone aspect-square cursor-pointer group" style="display: none;" onclick="openLightbox('foto_10.jpg', 'Fotografia — Profilo architettonico')">
-                    <img src="foto_10.jpg" alt="Linee" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Profilo lineare</span>
-                    </div>
-                </div>
-                <div class="media-item photo work-card rounded border border-border bg-stone aspect-square cursor-pointer group" style="display: none;" onclick="openLightbox('foto_11.jpg', 'Fotografia — Luce atmosferica')">
-                    <img src="foto_11.jpg" alt="Atmosfera" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Luce atmosferica</span>
+                <div class="media-item render media-frame aspect-square cursor-pointer" onclick="openLightboxBySrc('r10.jpg')">
+                    <img src="r10.jpg" alt="CGI 08 — Fotometria sospensione" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>CGI.08 — Resa fotometrica</span><span>+</span>
                     </div>
                 </div>
 
-                <!-- GRAFICA & ILLUSTRAZIONE -->
-                <div class="media-item sketch work-card rounded border border-border bg-stone aspect-square cursor-pointer group" style="display: none;" onclick="openLightbox('illustrazione_1.jpg', 'Grafica — Tavola vettoriale 01')">
-                    <img src="illustrazione_1.jpg" alt="Composizione I" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Tavola vettoriale 01</span>
+                <!-- FOTOGRAFIA (8) -->
+                <div class="media-item photo media-frame aspect-square cursor-pointer" style="display: none;" onclick="openLightboxBySrc('foto_2.jpg')">
+                    <img src="foto_2.jpg" alt="PH 01 — Luce e ombra" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>PH.01 — Luce e ombra</span><span>+</span>
                     </div>
                 </div>
-                <div class="media-item sketch work-card rounded border border-border bg-stone aspect-square cursor-pointer group" style="display: none;" onclick="openLightbox('illustrazione_2.jpg', 'Grafica — Studio geometrico 02')">
-                    <img src="illustrazione_2.jpg" alt="Studio II" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Studio geometrico 02</span>
+                <div class="media-item photo media-frame aspect-square cursor-pointer" style="display: none;" onclick="openLightboxBySrc('foto_3.jpg')">
+                    <img src="foto_3.jpg" alt="PH 02 — Composizione orizzontale" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1426604966848-d7adac402bff?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>PH.02 — Orizzonte</span><span>+</span>
                     </div>
                 </div>
-                <div class="media-item sketch work-card rounded border border-border bg-stone aspect-square cursor-pointer group" style="display: none;" onclick="openLightbox('illustrazione_3.jpg', 'Grafica — Disegno lineare 03')">
-                    <img src="illustrazione_3.jpg" alt="Linee III" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Disegno lineare 03</span>
+                <div class="media-item photo media-frame aspect-square cursor-pointer" style="display: none;" onclick="openLightboxBySrc('foto_4.jpg')">
+                    <img src="foto_4.jpg" alt="PH 03 — Pattern e texture" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>PH.03 — Pattern naturale</span><span>+</span>
                     </div>
                 </div>
-                <div class="media-item sketch work-card rounded border border-border bg-stone aspect-square cursor-pointer group" style="display: none;" onclick="openLightbox('illustrazione_4.jpg', 'Grafica — Assonometria 04')">
-                    <img src="illustrazione_4.jpg" alt="Prospettiva IV" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Assonometria 04</span>
+                <div class="media-item photo media-frame aspect-square cursor-pointer" style="display: none;" onclick="openLightboxBySrc('foto_5.jpg')">
+                    <img src="foto_5.jpg" alt="PH 04 — Trasparenza e rifrazione" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>PH.04 — Rifrazione</span><span>+</span>
                     </div>
                 </div>
-                <div class="media-item sketch work-card rounded border border-border bg-stone aspect-square cursor-pointer group" style="display: none;" onclick="openLightbox('illustrazione_5.jpg', 'Grafica — Composizione piana 05')">
-                    <img src="illustrazione_5.jpg" alt="Geometrie V" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Composizione piana 05</span>
+                <div class="media-item photo media-frame aspect-square cursor-pointer" style="display: none;" onclick="openLightboxBySrc('foto_7.jpg')">
+                    <img src="foto_7.jpg" alt="PH 05 — Studio di scala" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>PH.05 — Scala</span><span>+</span>
                     </div>
                 </div>
-                <div class="media-item sketch work-card rounded border border-border bg-stone aspect-square cursor-pointer group" style="display: none;" onclick="openLightbox('illustrazione_6.jpg', 'Grafica — Tratteggio 06')">
-                    <img src="illustrazione_6.jpg" alt="Texture VI" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=600'">
-                    <div class="absolute inset-x-0 bottom-0 p-2.5 bg-gradient-to-t from-dark/80 via-dark/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="font-mono text-[11px] text-white block truncate">Tratteggio 06</span>
+                <div class="media-item photo media-frame aspect-square cursor-pointer" style="display: none;" onclick="openLightboxBySrc('foto_8.jpg')">
+                    <img src="foto_8.jpg" alt="PH 06 — Superfici minerali" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>PH.06 — Materia</span><span>+</span>
+                    </div>
+                </div>
+                <div class="media-item photo media-frame aspect-square cursor-pointer" style="display: none;" onclick="openLightboxBySrc('foto_10.jpg')">
+                    <img src="foto_10.jpg" alt="PH 07 — Profilo lineare" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>PH.07 — Profilo</span><span>+</span>
+                    </div>
+                </div>
+                <div class="media-item photo media-frame aspect-square cursor-pointer" style="display: none;" onclick="openLightboxBySrc('foto_11.jpg')">
+                    <img src="foto_11.jpg" alt="PH 08 — Gradiente atmosferico" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1470071131384-001b85755b36?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>PH.08 — Densità</span><span>+</span>
+                    </div>
+                </div>
+
+                <!-- GRAFICA & DISEGNO (6) -->
+                <div class="media-item sketch media-frame aspect-square cursor-pointer" style="display: none;" onclick="openLightboxBySrc('illustrazione_1.jpg')">
+                    <img src="illustrazione_1.jpg" alt="GR 01 — Composizione vettoriale" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>GR.01 — Vettoriale I</span><span>+</span>
+                    </div>
+                </div>
+                <div class="media-item sketch media-frame aspect-square cursor-pointer" style="display: none;" onclick="openLightboxBySrc('illustrazione_2.jpg')">
+                    <img src="illustrazione_2.jpg" alt="GR 02 — Studio geometrico" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>GR.02 — Geometria II</span><span>+</span>
+                    </div>
+                </div>
+                <div class="media-item sketch media-frame aspect-square cursor-pointer" style="display: none;" onclick="openLightboxBySrc('illustrazione_3.jpg')">
+                    <img src="illustrazione_3.jpg" alt="GR 03 — Disegno lineare" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>GR.03 — Tratto III</span><span>+</span>
+                    </div>
+                </div>
+                <div class="media-item sketch media-frame aspect-square cursor-pointer" style="display: none;" onclick="openLightboxBySrc('illustrazione_4.jpg')">
+                    <img src="illustrazione_4.jpg" alt="GR 04 — Assonometria" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>GR.04 — Assonometria IV</span><span>+</span>
+                    </div>
+                </div>
+                <div class="media-item sketch media-frame aspect-square cursor-pointer" style="display: none;" onclick="openLightboxBySrc('illustrazione_5.jpg')">
+                    <img src="illustrazione_5.jpg" alt="GR 05 — Geometrie piatte" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>GR.05 — Superfici V</span><span>+</span>
+                    </div>
+                </div>
+                <div class="media-item sketch media-frame aspect-square cursor-pointer" style="display: none;" onclick="openLightboxBySrc('illustrazione_6.jpg')">
+                    <img src="illustrazione_6.jpg" alt="GR 06 — Segno e tratteggio" class="w-full h-full object-cover block" onerror="this.src='https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&q=80&w=700'">
+                    <div class="media-badge absolute bottom-2.5 left-2.5 right-2.5 font-mono text-[10px] bg-black/75 text-white px-2.5 py-1 flex justify-between">
+                        <span>GR.06 — Texture VI</span><span>+</span>
                     </div>
                 </div>
 
             </div>
         </section>
 
-
         <!-- ======================================================== -->
-        <!-- 5. PROFILO, METODO & CONTATTI                            -->
+        <!-- 4. SPEC SHEET & CONTATTI (MINIMAL / TABULAR)             -->
         <!-- ======================================================== -->
-        <section id="profilo" class="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 py-16 md:py-24 hairline-t">
-            
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
+        <section id="profilo" class="max-w-[1600px] mx-auto px-4 sm:px-8 py-16 md:py-24 rule-t">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 
-                <!-- Colonna Sinistra: Profilo & Contatti diretti -->
+                <!-- Colonna Contatto Diretto -->
                 <div class="lg:col-span-5 flex flex-col justify-between space-y-8">
-                    <div class="space-y-4">
-                        <span class="font-mono text-xs uppercase tracking-widest text-accent">03 / Profilo & Contatti</span>
-                        <h2 class="text-2xl md:text-3xl font-normal tracking-tight text-dark">Alberto Costa</h2>
-                        <p class="font-mono text-xs text-muted">
-                            Schio (Vicenza) &mdash; Operativo in sede e da remoto
-                        </p>
-                        <p class="text-sm text-muted font-light leading-relaxed pt-2">
-                            Mi occupo di progettazione di prodotto e apparecchi illuminanti. Seguo le fasi operative di sviluppo: rilievo, modellazione 3D parametrica e superficiale, verifica illuminotecnica, realizzazione di prototipi fisici, rendering e messa in tavola per la produzione.
-                        </p>
+                    <div>
+                        <span class="font-mono text-[11px] uppercase tracking-widest opacity-60 block mb-2">03 / Specifiche & Contatti</span>
+                        <h2 class="text-2xl sm:text-3xl font-light tracking-tight">Alberto Costa</h2>
+                        <p class="font-mono text-xs opacity-60 mt-1">Schio (Vicenza) &mdash; Disponibile in sede o da remoto</p>
                     </div>
 
-                    <!-- Riquadro Contatto Rapido -->
-                    <div class="bg-surface border border-border rounded p-5 space-y-4">
-                        <div class="flex items-center justify-between hairline-b pb-3">
-                            <span class="font-mono text-xs uppercase tracking-wider text-dark font-medium">Recapiti diretti</span>
-                            <span class="font-mono text-[11px] text-muted">Risposta rapida</span>
-                        </div>
+                    <div class="space-y-2.5 font-mono text-xs">
+                        <button 
+                            onclick="copyEmail()" 
+                            class="w-full flex items-center justify-between px-4 py-3.5 rounded-sm rule-box hover:border-current transition-colors group"
+                        >
+                            <span id="email-text">albeb3b@gmail.com</span>
+                            <span class="text-[10px] uppercase tracking-widest opacity-60 group-hover:opacity-100">[Copia Email]</span>
+                        </button>
 
-                        <div class="space-y-2.5">
-                            <div class="flex items-center justify-between gap-2 p-2.5 rounded bg-canvas border border-border font-mono text-xs">
-                                <span id="email-text" class="text-dark truncate select-all">albeb3b@gmail.com</span>
-                                <div class="flex items-center gap-1.5 shrink-0">
-                                    <button 
-                                        onclick="copyEmail()" 
-                                        class="px-2.5 py-1 rounded bg-surface border border-border hover:border-dark text-[11px] uppercase transition-colors"
-                                    >
-                                        Copia
-                                    </button>
-                                    <a 
-                                        href="mailto:albeb3b@gmail.com" 
-                                        class="px-2.5 py-1 rounded bg-dark text-white hover:bg-accent text-[11px] uppercase transition-colors"
-                                    >
-                                        Scrivi
-                                    </a>
-                                </div>
-                            </div>
-
-                            <a 
-                                href="Alberto_Costa_Portfolio_CV.pdf" 
-                                download 
-                                class="w-full flex items-center justify-between px-3.5 py-2.5 rounded border border-border hover:border-dark bg-surface text-dark text-xs font-mono uppercase tracking-wider transition-colors"
-                            >
-                                <span>Curriculum Vitae & Portfolio (PDF)</span>
-                                <span>Scarica &darr;</span>
-                            </a>
-                        </div>
+                        <a 
+                            href="Alberto_Costa_Portfolio_CV.pdf" 
+                            download 
+                            class="w-full flex items-center justify-between px-4 py-3.5 rounded-sm rule-box hover:bg-[var(--text)] hover:text-[var(--bg)] transition-colors"
+                        >
+                            <span>Curriculum Vitae & Portfolio</span>
+                            <span class="text-[10px] uppercase tracking-widest">[Scarica PDF ↓]</span>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Colonna Destra: Competenze tecniche e Software -->
-                <div class="lg:col-span-7 bg-surface border border-border rounded p-6 sm:p-8 flex flex-col justify-between space-y-8">
+                <!-- Matrice Tecnica Competenze (Zero Fuffa) -->
+                <div class="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-6 pt-2 lg:pt-0 font-mono text-xs">
                     
-                    <div>
-                        <h3 class="font-mono text-xs uppercase tracking-widest text-muted pb-3 mb-6 hairline-b">
-                            Strumenti & Ambiti Operativi
-                        </h3>
+                    <div class="space-y-3">
+                        <div class="text-[10px] uppercase tracking-widest opacity-50 pb-2 rule-b">CAD & Luce</div>
+                        <ul class="space-y-2 opacity-85">
+                            <li>Autodesk Inventor</li>
+                            <li>Rhinoceros 3D</li>
+                            <li>AutoCAD 2D</li>
+                            <li>DiaLux Evo</li>
+                        </ul>
+                    </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                            
-                            <div class="space-y-3">
-                                <div class="flex items-center gap-2 font-mono text-xs text-dark font-medium">
-                                    <span class="text-accent">01.</span>
-                                    <span>CAD & Illuminotecnica</span>
-                                </div>
-                                <ul class="space-y-2 font-mono text-xs text-muted">
-                                    <li class="flex justify-between py-1 hairline-b">
-                                        <span class="text-dark">Autodesk Inventor</span>
-                                        <span>Parametrico / Lamiera</span>
-                                    </li>
-                                    <li class="flex justify-between py-1 hairline-b">
-                                        <span class="text-dark">Rhinoceros 3D</span>
-                                        <span>Superfici NURBS</span>
-                                    </li>
-                                    <li class="flex justify-between py-1 hairline-b">
-                                        <span class="text-dark">AutoCAD 2D</span>
-                                        <span>Tavole esecutive</span>
-                                    </li>
-                                    <li class="flex justify-between py-1 hairline-b">
-                                        <span class="text-dark">DIALux</span>
-                                        <span>Calcolo fotometrico</span>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div class="space-y-3">
+                        <div class="text-[10px] uppercase tracking-widest opacity-50 pb-2 rule-b">3D CGI</div>
+                        <ul class="space-y-2 opacity-85">
+                            <li>Blender / Cycles</li>
+                            <li>Autodesk 3ds Max</li>
+                            <li>UV & Shading</li>
+                            <li>Compositing</li>
+                        </ul>
+                    </div>
 
-                            <div class="space-y-3">
-                                <div class="flex items-center gap-2 font-mono text-xs text-dark font-medium">
-                                    <span class="text-accent">02.</span>
-                                    <span>3D CGI & Rendering</span>
-                                </div>
-                                <ul class="space-y-2 font-mono text-xs text-muted">
-                                    <li class="flex justify-between py-1 hairline-b">
-                                        <span class="text-dark">Blender</span>
-                                        <span>Modellazione, UV, Shader</span>
-                                    </li>
-                                    <li class="flex justify-between py-1 hairline-b">
-                                        <span class="text-dark">Autodesk 3ds Max</span>
-                                        <span>Scene e allestimenti</span>
-                                    </li>
-                                    <li class="flex justify-between py-1 hairline-b">
-                                        <span class="text-dark">Rendering Motori PBR</span>
-                                        <span>Still life e ambientati</span>
-                                    </li>
-                                    <li class="flex justify-between py-1 hairline-b">
-                                        <span class="text-dark">Post-produzione</span>
-                                        <span>Fotoinserimento</span>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div class="space-y-3">
+                        <div class="text-[10px] uppercase tracking-widest opacity-50 pb-2 rule-b">Visual</div>
+                        <ul class="space-y-2 opacity-85">
+                            <li>Adobe Illustrator</li>
+                            <li>Adobe InDesign</li>
+                            <li>Adobe Photoshop</li>
+                            <li>Layout Tecnico</li>
+                        </ul>
+                    </div>
 
-                            <div class="space-y-3">
-                                <div class="flex items-center gap-2 font-mono text-xs text-dark font-medium">
-                                    <span class="text-accent">03.</span>
-                                    <span>Grafica Tecnica & Editoriale</span>
-                                </div>
-                                <ul class="space-y-2 font-mono text-xs text-muted">
-                                    <li class="flex justify-between py-1 hairline-b">
-                                        <span class="text-dark">Adobe Illustrator</span>
-                                        <span>Vettoriale, Schemi, Loghi</span>
-                                    </li>
-                                    <li class="flex justify-between py-1 hairline-b">
-                                        <span class="text-dark">Adobe InDesign</span>
-                                        <span>Cataloghi, Schede prodotto</span>
-                                    </li>
-                                    <li class="flex justify-between py-1 hairline-b">
-                                        <span class="text-dark">Adobe Photoshop</span>
-                                        <span>Ritocco e correzione colore</span>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="space-y-3">
-                                <div class="flex items-center gap-2 font-mono text-xs text-dark font-medium">
-                                    <span class="text-accent">04.</span>
-                                    <span>Laboratorio & Fotografia</span>
-                                </div>
-                                <ul class="space-y-2 font-mono text-xs text-muted">
-                                    <li class="flex justify-between py-1 hairline-b">
-                                        <span class="text-dark">Prototipazione</span>
-                                        <span>Stampa 3D e assemblaggio</span>
-                                    </li>
-                                    <li class="flex justify-between py-1 hairline-b">
-                                        <span class="text-dark">Fotografia di prodotto</span>
-                                        <span>Set studio e luce controllata</span>
-                                    </li>
-                                    <li class="flex justify-between py-1 hairline-b">
-                                        <span class="text-dark">Lingue</span>
-                                        <span>Italiano, Inglese</span>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
+                    <div class="space-y-3">
+                        <div class="text-[10px] uppercase tracking-widest opacity-50 pb-2 rule-b">Produzione</div>
+                        <ul class="space-y-2 opacity-85">
+                            <li>Tavole Esecutive</li>
+                            <li>Prototipazione</li>
+                            <li>Still Life Foto</li>
+                            <li>IT (Nativo) / EN</li>
+                        </ul>
                     </div>
 
                 </div>
@@ -970,79 +693,75 @@
     </main>
 
     <!-- Footer -->
-    <footer class="hairline-t py-6 bg-stone/60 font-mono text-[11px] text-muted">
-        <div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-10 flex flex-col sm:flex-row justify-between items-center gap-2">
-            <span>&copy; <span id="year"></span> Alberto Costa &mdash; Schio (VI)</span>
-            <a href="#home" class="hover:text-dark transition-colors">Torna su &uarr;</a>
-        </div>
+    <footer class="max-w-[1600px] w-full mx-auto px-4 sm:px-8 py-6 rule-t flex justify-between items-center font-mono text-[11px] opacity-50">
+        <span>&copy; <span id="year"></span> Alberto Costa</span>
+        <a href="#top" class="hover:opacity-100">Torna su ↑</a>
     </footer>
 
-
     <!-- ======================================================== -->
-    <!-- 6. LIGHTBOX CON NAVIGAZIONE                              -->
+    <!-- LIGHTBOX CON NAVIGAZIONE                                 -->
     <!-- ======================================================== -->
-    <div id="lightbox" class="fixed inset-0 z-[9999] bg-dark/95 hidden opacity-0 transition-opacity duration-200 flex flex-col justify-between p-4 md:p-8 select-none">
+    <div id="lightbox" class="fixed inset-0 z-[9999] bg-black/95 hidden opacity-0 transition-opacity duration-200 flex flex-col justify-between p-4 sm:p-6 select-none text-white">
         
-        <!-- Barra superiore Lightbox -->
-        <div class="w-full flex justify-between items-center text-white font-mono text-xs max-w-6xl mx-auto">
+        <!-- Top Bar -->
+        <div class="w-full max-w-[1600px] mx-auto flex justify-between items-center font-mono text-xs">
             <div class="flex items-center gap-3 truncate">
-                <span id="lb-counter" class="text-accent"></span>
-                <span id="lb-caption" class="truncate text-stone">Dettaglio</span>
+                <span id="lb-counter" class="text-accent">01 / 01</span>
+                <span class="opacity-30">|</span>
+                <span id="lb-caption" class="truncate opacity-80"></span>
             </div>
-            <button onclick="closeLightbox()" class="px-3 py-1.5 rounded border border-white/20 hover:border-white text-white font-mono text-xs transition-colors">
-                Chiudi (ESC)
+            <button onclick="closeLightbox()" class="px-3 py-1.5 border border-white/20 hover:border-white rounded-full text-[11px] uppercase tracking-wider">
+                Chiudi [ESC]
             </button>
         </div>
 
-        <!-- Area Immagine + Frecce -->
-        <div class="flex-grow flex items-center justify-between gap-4 max-h-[82vh] max-w-6xl w-full mx-auto my-auto">
-            <button onclick="changeLightboxImage(-1)" class="hidden sm:flex items-center justify-center w-10 h-10 rounded border border-white/15 hover:border-white text-white font-mono text-sm shrink-0 transition-colors" aria-label="Precedente">
+        <!-- Stage centrale + frecce -->
+        <div class="relative flex-grow flex items-center justify-center my-4 overflow-hidden">
+            <button onclick="stepLightbox(-1)" class="absolute left-2 sm:left-4 z-10 w-10 h-10 rounded-full border border-white/20 hover:border-white bg-black/50 flex items-center justify-center font-mono text-sm transition-colors" aria-label="Precedente">
                 &larr;
             </button>
-            
-            <div class="flex-grow h-full flex items-center justify-center overflow-hidden">
-                <img id="lb-img" src="" alt="Dettaglio opera" class="max-h-full max-w-full object-contain rounded">
-            </div>
 
-            <button onclick="changeLightboxImage(1)" class="hidden sm:flex items-center justify-center w-10 h-10 rounded border border-white/15 hover:border-white text-white font-mono text-sm shrink-0 transition-colors" aria-label="Successiva">
+            <img id="lb-img" src="" alt="" class="max-h-[82vh] max-w-[90vw] object-contain">
+
+            <button onclick="stepLightbox(1)" class="absolute right-2 sm:right-4 z-10 w-10 h-10 rounded-full border border-white/20 hover:border-white bg-black/50 flex items-center justify-center font-mono text-sm transition-colors" aria-label="Successiva">
                 &rarr;
             </button>
         </div>
 
-        <!-- Controlli mobile / Istruzioni -->
-        <div class="flex sm:hidden justify-center gap-4 pb-2">
-            <button onclick="changeLightboxImage(-1)" class="px-4 py-1.5 rounded border border-white/20 text-white font-mono text-xs">&larr; Prec</button>
-            <button onclick="changeLightboxImage(1)" class="px-4 py-1.5 rounded border border-white/20 text-white font-mono text-xs">Succ &rarr;</button>
-        </div>
-        <div class="hidden sm:block text-center font-mono text-[10px] text-zinc-500 uppercase">
+        <!-- Bottom Hint -->
+        <div class="text-center font-mono text-[10px] uppercase tracking-widest opacity-40">
             Usa le frecce &larr; &rarr; per scorrere &bull; ESC per chiudere
         </div>
     </div>
 
-
     <!-- ======================================================== -->
-    <!-- JAVASCRIPT                                               -->
+    <!-- SCRIPTS                                                  -->
     <!-- ======================================================== -->
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // 1. Menu Mobile
-        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-
-        function openMobileMenu() {
-            mobileMenuOverlay.classList.remove('-translate-y-full');
-            document.body.style.overflow = 'hidden';
+        // 1. Light / Dark Mode
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.classList.toggle('dark');
+            document.getElementById('theme-label').textContent = isDark ? 'Luce' : 'Buio';
         }
 
+        // 2. Mobile Menu
+        const mobileMenu = document.getElementById('mobile-menu');
+        function openMobileMenu() {
+            mobileMenu.classList.remove('-translate-y-full');
+            document.body.style.overflow = 'hidden';
+        }
         function closeMobileMenu() {
-            mobileMenuOverlay.classList.add('-translate-y-full');
+            mobileMenu.classList.add('-translate-y-full');
             document.body.style.overflow = 'auto';
         }
 
-        // 2. Filtro Media (con supporto 'all')
+        // 3. Filtro Archivio Media
         function filterMedia(category, btn) {
             const items = document.querySelectorAll('.media-item');
-            const buttons = document.querySelectorAll('.tab-btn');
+            const buttons = document.querySelectorAll('.filter-pill');
 
             buttons.forEach(b => b.classList.remove('active'));
             if (btn) btn.classList.add('active');
@@ -1050,14 +769,14 @@
             items.forEach(item => {
                 if (category === 'all' || item.classList.contains(category)) {
                     item.style.display = 'block';
-                    gsap.fromTo(item, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.25, clearProps: 'transform' });
+                    gsap.fromTo(item, { opacity: 0, scale: 0.98 }, { opacity: 1, scale: 1, duration: 0.25, ease: 'power2.out' });
                 } else {
                     item.style.display = 'none';
                 }
             });
         }
 
-        // 3. Lightbox con scorrimento tra le immagini visibili
+        // 4. Lightbox con Navigazione (raccoglie tutte le immagini visibili)
         const lightbox = document.getElementById('lightbox');
         const lbImg = document.getElementById('lb-img');
         const lbCaption = document.getElementById('lb-caption');
@@ -1065,50 +784,35 @@
         let galleryList = [];
         let currentIndex = 0;
 
-        function buildVisibleGallery() {
-            const cards = Array.from(document.querySelectorAll('.work-card')).filter(card => {
-                return card.offsetParent !== null;
-            });
-            return cards.map(card => {
-                const img = card.querySelector('img');
-                const onclickAttr = card.getAttribute('onclick') || '';
-                const match = onclickAttr.match(/openLightbox\(['"]([^'"]+)['"],\s*['"]((?:\\'|[^'"])+)['"]\)/);
-                return {
-                    src: match ? match[1] : (img ? img.src : ''),
-                    caption: match ? match[2].replace(/\\'/g, "'") : (img ? img.alt : ''),
-                    fallback: img ? img.src : ''
-                };
-            });
+        function buildGalleryList() {
+            const imgs = Array.from(document.querySelectorAll('main .media-frame img'));
+            return imgs.filter(img => img.closest('.media-frame').style.display !== 'none');
         }
 
-        function openLightbox(src, caption) {
-            galleryList = buildVisibleGallery();
-            currentIndex = galleryList.findIndex(item => item.src === src);
-            if (currentIndex === -1) {
-                galleryList = [{ src, caption, fallback: src }];
-                currentIndex = 0;
-            }
+        function openLightboxBySrc(targetSrc) {
+            galleryList = buildGalleryList();
+            const foundIdx = galleryList.findIndex(img => img.getAttribute('src') === targetSrc);
+            currentIndex = foundIdx !== -1 ? foundIdx : 0;
             updateLightboxView();
+
             lightbox.classList.remove('hidden');
             setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
             document.body.style.overflow = 'hidden';
         }
 
         function updateLightboxView() {
-            const item = galleryList[currentIndex];
-            lbImg.onerror = () => {
-                if (item.fallback && lbImg.src !== item.fallback) {
-                    lbImg.src = item.fallback;
-                }
-            };
-            lbImg.src = item.src;
-            lbCaption.textContent = item.caption;
-            lbCounter.textContent = `[${String(currentIndex + 1).padStart(2, '0')}/${String(galleryList.length).padStart(2, '0')}]`;
+            if (!galleryList.length) return;
+            const activeImg = galleryList[currentIndex];
+            lbImg.src = activeImg.currentSrc || activeImg.src;
+            lbCaption.textContent = activeImg.alt || '';
+            const curr = String(currentIndex + 1).padStart(2, '0');
+            const tot = String(galleryList.length).padStart(2, '0');
+            lbCounter.textContent = `${curr} / ${tot}`;
         }
 
-        function changeLightboxImage(step) {
+        function stepLightbox(dir) {
             if (!galleryList.length) return;
-            currentIndex = (currentIndex + step + galleryList.length) % galleryList.length;
+            currentIndex = (currentIndex + dir + galleryList.length) % galleryList.length;
             updateLightboxView();
         }
 
@@ -1128,22 +832,21 @@
         window.addEventListener('keydown', (e) => {
             if (lightbox.classList.contains('hidden')) return;
             if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowRight') changeLightboxImage(1);
-            if (e.key === 'ArrowLeft') changeLightboxImage(-1);
+            if (e.key === 'ArrowRight') stepLightbox(1);
+            if (e.key === 'ArrowLeft') stepLightbox(-1);
         });
 
-        // 4. Copia Email
+        // 5. Copia Email
         function copyEmail() {
-            const email = 'albeb3b@gmail.com';
-            navigator.clipboard.writeText(email).then(() => {
-                const emailText = document.getElementById('email-text');
-                const old = emailText.textContent;
-                emailText.textContent = 'Indirizzo copiato';
-                emailText.classList.add('text-accent');
+            navigator.clipboard.writeText('albeb3b@gmail.com').then(() => {
+                const el = document.getElementById('email-text');
+                const orig = el.textContent;
+                el.textContent = 'Indirizzo copiato negli appunti';
+                el.classList.add('text-accent');
                 setTimeout(() => {
-                    emailText.textContent = old;
-                    emailText.classList.remove('text-accent');
-                }, 1800);
+                    el.textContent = orig;
+                    el.classList.remove('text-accent');
+                }, 2000);
             });
         }
     </script>
